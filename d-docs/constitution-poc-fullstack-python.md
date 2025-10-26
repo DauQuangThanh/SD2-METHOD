@@ -71,6 +71,96 @@ vulnerability triage) REQUIRED before promoting a module beyond PoC maturity.
 
 Rationale: Reduces breach surface and ensures predictable data evolution.
 
+## Suggested Project Source Code Structure
+
+This structure adheres to hexagonal architecture principles, ensuring clear separation
+between domain logic, application use cases, and adapters.
+
+```
+project-root/
+├── backend/
+│   ├── src/
+│   │   ├── domain/                    # Pure business logic (framework-agnostic)
+│   │   │   ├── __init__.py
+│   │   │   ├── entities/              # Domain entities & value objects
+│   │   │   ├── repositories/          # Repository interfaces (ports)
+│   │   │   └── services/              # Domain services
+│   │   │
+│   │   ├── application/               # Use cases & application services
+│   │   │   ├── __init__.py
+│   │   │   ├── use_cases/             # Application use cases
+│   │   │   ├── ports/                 # Application-level ports
+│   │   │   └── dtos/                  # Data transfer objects
+│   │   │
+│   │   ├── adapters/                  # External dependencies
+│   │   │   ├── __init__.py
+│   │   │   ├── api/                   # FastAPI endpoints (primary adapter)
+│   │   │   │   ├── routers/
+│   │   │   │   ├── dependencies/
+│   │   │   │   └── schemas/           # Pydantic request/response models
+│   │   │   ├── persistence/           # Database adapters (secondary adapter)
+│   │   │   │   ├── repositories/      # Repository implementations
+│   │   │   │   └── models/            # SQLAlchemy ORM models
+│   │   │   └── external/              # External API clients
+│   │   │
+│   │   ├── infrastructure/            # Cross-cutting concerns
+│   │   │   ├── config/                # Configuration & settings
+│   │   │   ├── logging/               # Logging setup
+│   │   │   └── di/                    # Dependency injection container
+│   │   │
+│   │   └── main.py                    # Application entry point
+│   │
+│   ├── tests/
+│   │   ├── unit/                      # Domain & application tests
+│   │   ├── integration/               # Adapter integration tests
+│   │   └── e2e/                       # End-to-end tests
+│   │
+│   ├── migrations/                    # Alembic database migrations
+│   ├── pyproject.toml
+│   └── README.md
+│
+├── frontend/
+│   ├── src/
+│   │   ├── components/                # Vue 3 components
+│   │   │   ├── base/                  # Reusable UI primitives
+│   │   │   └── features/              # Feature-specific components
+│   │   ├── composables/               # Vue composables
+│   │   ├── contracts/                 # API contract types (TypeScript)
+│   │   ├── services/                  # API client services
+│   │   ├── stores/                    # Pinia state management
+│   │   ├── router/                    # Vue Router configuration
+│   │   ├── assets/                    # Static assets
+│   │   └── main.ts                    # Application entry point
+│   │
+│   ├── tests/
+│   │   ├── unit/
+│   │   └── e2e/
+│   │
+│   ├── public/
+│   ├── package.json
+│   ├── vite.config.ts
+│   ├── tsconfig.json
+│   └── README.md
+│
+├── docs/                              # Project documentation
+├── docker-compose.yml                 # Local development setup
+└── README.md
+```
+
+**Key Structural Principles:**
+
+- **Domain Isolation**: The `domain/` layer has zero dependencies on frameworks, ORM,
+  or FastAPI. Contains only pure Python business logic.
+- **Adapter Independence**: HTTP endpoints (`adapters/api/`) and database repositories
+  (`adapters/persistence/`) depend inward through interfaces defined in `domain/` and
+  `application/` layers.
+- **Contract-First Frontend**: `frontend/src/contracts/` contains TypeScript types
+  mirroring backend Pydantic schemas for type-safe API consumption.
+- **Maturity Markers**: Each module declares its maturity level (PoC/MVP/Production) in
+  docstrings or README fragments as per Principle 2.
+- **Migration Control**: All database schema changes flow through `migrations/` with
+  forward/backward compatibility.
+
 ## Architecture & Technical Constraints
 
 Stack: Frontend (Vue 3 + TypeScript + Vite + TailwindCSS). Backend (Python 3.12+, FastAPI

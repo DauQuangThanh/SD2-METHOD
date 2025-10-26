@@ -68,6 +68,145 @@ Denied or anomalous access attempts MUST emit structured security events.
 Rationale: Reduces lateral movement risk, enforces containment, and provides forensic
 visibility.
 
+## Suggested Project Source Code Structure
+
+This production-grade structure adheres to hexagonal architecture principles with Python
+conventions, emphasizing security, observability, and zero-trust principles.
+
+```
+project-root/
+├── backend/
+│   ├── src/
+│   │   ├── domain/                    # Pure business logic (framework-agnostic)
+│   │   │   ├── __init__.py
+│   │   │   ├── entities/              # Domain entities & value objects
+│   │   │   ├── repositories/          # Repository interfaces (ports)
+│   │   │   └── services/              # Domain services
+│   │   │
+│   │   ├── application/               # Use cases & application services
+│   │   │   ├── __init__.py
+│   │   │   ├── use_cases/             # Application use cases
+│   │   │   ├── ports/                 # Application-level ports
+│   │   │   ├── dtos/                  # Data transfer objects
+│   │   │   └── policies/              # Authorization policies
+│   │   │
+│   │   ├── adapters/                  # External dependencies
+│   │   │   ├── __init__.py
+│   │   │   ├── api/                   # FastAPI endpoints (primary adapter)
+│   │   │   │   ├── routers/
+│   │   │   │   │   ├── v1/            # Versioned API routes
+│   │   │   │   │   └── v2/
+│   │   │   │   ├── dependencies/      # Auth, DB session injection
+│   │   │   │   ├── middleware/        # Logging, tracing, auth middleware
+│   │   │   │   └── schemas/           # Versioned Pydantic models
+│   │   │   │       ├── v1/
+│   │   │   │       └── v2/
+│   │   │   ├── persistence/           # Database adapters (secondary adapter)
+│   │   │   │   ├── repositories/      # Repository implementations
+│   │   │   │   ├── models/            # SQLAlchemy ORM models
+│   │   │   │   └── connection.py      # DB connection with least-privilege
+│   │   │   ├── external/              # External API clients
+│   │   │   │   └── (with circuit breakers & retries)
+│   │   │   └── events/                # Message broker adapters (if needed)
+│   │   │
+│   │   ├── infrastructure/            # Cross-cutting concerns
+│   │   │   ├── config/                # Config with secret manager integration
+│   │   │   ├── logging/               # Structured JSON logging
+│   │   │   ├── metrics/               # Prometheus/OpenTelemetry metrics
+│   │   │   ├── tracing/               # Distributed tracing (OTel)
+│   │   │   ├── auth/                  # Authentication & authorization
+│   │   │   │   ├── jwt.py             # JWT token validation
+│   │   │   │   ├── mtls.py            # Mutual TLS setup
+│   │   │   │   └── policies.py        # Policy engine (OPA if used)
+│   │   │   ├── health/                # Health check endpoints
+│   │   │   └── di/                    # Dependency injection container
+│   │   │
+│   │   └── main.py                    # Application entry point
+│   │
+│   ├── tests/
+│   │   ├── unit/                      # Domain & application tests
+│   │   ├── integration/               # Adapter integration tests
+│   │   │   ├── test_auth_flows.py     # Authentication flows
+│   │   │   └── test_critical_paths.py # Critical business paths
+│   │   ├── e2e/                       # End-to-end tests
+│   │   └── chaos/                     # Chaos/failure injection tests
+│   │
+│   ├── migrations/                    # Alembic versioned migrations
+│   ├── scripts/                       # Operational scripts
+│   │   ├── db_backup.py
+│   │   └── rotate_secrets.py
+│   │
+│   ├── pyproject.toml
+│   ├── poetry.lock  # or requirements.txt
+│   ├── Dockerfile
+│   └── README.md
+│
+├── frontend/
+│   ├── src/
+│   │   ├── components/                # Vue 3 components
+│   │   │   ├── base/                  # Reusable UI primitives
+│   │   │   └── features/              # Feature-specific components
+│   │   ├── composables/               # Vue composables
+│   │   ├── contracts/                 # Versioned API contract types
+│   │   │   ├── v1/
+│   │   │   └── v2/
+│   │   ├── services/                  # API client services with auth
+│   │   ├── stores/                    # Pinia state management
+│   │   ├── router/                    # Vue Router with route guards
+│   │   ├── assets/                    # Static assets
+│   │   └── main.ts                    # Application entry point
+│   │
+│   ├── tests/
+│   │   ├── unit/
+│   │   ├── integration/
+│   │   └── e2e/
+│   │
+│   ├── public/
+│   ├── package.json
+│   ├── vite.config.ts
+│   ├── tsconfig.json
+│   ├── Dockerfile
+│   └── README.md
+│
+├── deployments/                       # Deployment configurations
+│   ├── kubernetes/                    # K8s manifests with RBAC
+│   └── terraform/                     # Infrastructure as code
+│
+├── docs/                              # Project documentation
+│   ├── architecture/                  # Architecture decision records (ADRs)
+│   ├── slos/                          # SLO definitions & error budgets
+│   └── runbooks/                      # Operational runbooks
+│
+├── .github/
+│   └── workflows/                     # CI/CD with security scans
+│       ├── ci.yml
+│       └── security-scan.yml
+│
+├── docker-compose.yml
+└── README.md
+```
+
+**Key Production-Grade Structural Principles:**
+
+- **Domain Isolation**: The `domain/` layer has zero dependencies on FastAPI, ORM,
+  or async libraries. Contains only pure Python business logic.
+- **Zero Trust Infrastructure**: `infrastructure/auth/` centralizes authentication
+  and authorization with JWT or mTLS. All service-to-service calls authenticated.
+- **Observability First**: Dedicated `infrastructure/logging/`, `metrics/`, `tracing/`,
+  and `health/` modules ensure structured logs, metrics, and traces are available for
+  all critical paths with correlation IDs via contextvars.
+- **Security by Design**: Secrets managed via `infrastructure/config/` with external
+  vault integration. Database connections use least-privilege roles. Security events
+  logged with structured context.
+- **Versioned Contracts**: API routes and Pydantic schemas versioned under `v1/`, `v2/`,
+  etc., with deprecation windows for breaking changes.
+- **Chaos Engineering**: `tests/chaos/` contains async failure injection tests for
+  critical paths (timeouts, DB failures, circuit breakers).
+- **Migration Control**: All schema changes via `migrations/` (Alembic) with
+  forward/backward compatibility and documented rollback procedures.
+- **Documentation & SLOs**: `docs/slos/` tracks SLO definitions, error budgets, and
+  operational procedures. Architecture decisions recorded in ADRs.
+
 ## Architecture & Technical Constraints
 
 Stack: Frontend (Vue 3 + TypeScript + Vite + TailwindCSS). Backend (Python 3.12+, FastAPI,

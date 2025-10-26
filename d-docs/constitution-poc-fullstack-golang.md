@@ -57,6 +57,102 @@ vulnerability triage) REQUIRED before promoting a module beyond PoC maturity.
 
 Rationale: Reduces breach surface and ensures predictable data evolution.
 
+## Suggested Project Source Code Structure
+
+This structure adheres to hexagonal architecture principles with Go-specific conventions,
+ensuring clear separation between domain logic, application use cases, and adapters.
+
+```
+project-root/
+├── cmd/
+│   └── api/
+│       └── main.go                    # Application entry point
+│
+├── internal/                          # Private application code
+│   ├── domain/                        # Pure business logic (framework-agnostic)
+│   │   ├── entities/                  # Domain entities & value objects
+│   │   ├── repositories/              # Repository interfaces (ports)
+│   │   └── services/                  # Domain services
+│   │
+│   ├── application/                   # Use cases & application services
+│   │   ├── usecases/                  # Application use cases
+│   │   ├── ports/                     # Application-level ports
+│   │   └── dtos/                      # Data transfer objects
+│   │
+│   ├── adapters/                      # External dependencies
+│   │   ├── http/                      # HTTP handlers (primary adapter)
+│   │   │   ├── handlers/              # Request handlers
+│   │   │   ├── middleware/            # HTTP middleware
+│   │   │   ├── contracts/             # Request/response contracts
+│   │   │   └── router.go              # Route definitions
+│   │   ├── persistence/               # Database adapters (secondary adapter)
+│   │   │   ├── postgres/              # PostgreSQL implementation
+│   │   │   │   ├── repositories/      # Repository implementations
+│   │   │   │   └── models/            # Database models
+│   │   │   └── migrations/            # SQL migration files
+│   │   └── external/                  # External API clients
+│   │
+│   ├── infrastructure/                # Cross-cutting concerns
+│   │   ├── config/                    # Configuration management
+│   │   ├── logger/                    # Structured logging
+│   │   └── di/                        # Dependency injection setup
+│   │
+│   └── types.go                       # Shared types & interfaces
+│
+├── pkg/                               # Public, reusable packages
+│   └── contracts/                     # Exported API contracts (if needed)
+│
+├── frontend/
+│   ├── src/
+│   │   ├── components/                # Vue 3 components
+│   │   │   ├── base/                  # Reusable UI primitives
+│   │   │   └── features/              # Feature-specific components
+│   │   ├── composables/               # Vue composables
+│   │   ├── contracts/                 # API contract types (TypeScript)
+│   │   ├── services/                  # API client services
+│   │   ├── stores/                    # Pinia state management
+│   │   ├── router/                    # Vue Router configuration
+│   │   ├── assets/                    # Static assets
+│   │   └── main.ts                    # Application entry point
+│   │
+│   ├── tests/
+│   │   ├── unit/
+│   │   └── e2e/
+│   │
+│   ├── public/
+│   ├── package.json
+│   ├── vite.config.ts
+│   ├── tsconfig.json
+│   └── README.md
+│
+├── tests/                             # Integration & E2E tests
+│   ├── integration/
+│   └── e2e/
+│
+├── docs/                              # Project documentation
+├── docker-compose.yml                 # Local development setup
+├── go.mod
+├── go.sum
+├── Makefile
+└── README.md
+```
+
+**Key Structural Principles:**
+
+- **Domain Isolation**: The `internal/domain/` layer has zero dependencies on net/http,
+  database/sql, or any framework. Contains only pure Go business logic with interfaces.
+- **Adapter Independence**: HTTP handlers (`adapters/http/`) and database repositories
+  (`adapters/persistence/`) depend inward through interfaces defined in `domain/` and
+  `application/` layers.
+- **Internal Package**: Following Go conventions, `internal/` ensures private application
+  code cannot be imported by external projects.
+- **Contract-First Frontend**: `frontend/src/contracts/` contains TypeScript types
+  mirroring backend JSON contracts for type-safe API consumption.
+- **Maturity Markers**: Each package declares its maturity level (PoC/MVP/Production) in
+  package comments as per Principle 2.
+- **Migration Control**: All database schema changes flow through
+  `internal/adapters/persistence/migrations/` with forward/backward compatibility.
+
 ## Architecture & Technical Constraints
 
 Stack: Frontend (Vue 3 + TypeScript + Vite + TailwindCSS). Backend (Go 1.24+, standard

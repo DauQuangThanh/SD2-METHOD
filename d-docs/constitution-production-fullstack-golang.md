@@ -70,6 +70,143 @@ Denied or anomalous access attempts MUST emit structured security events.
 Rationale: Reduces lateral movement risk, enforces containment, and provides forensic
 visibility.
 
+## Suggested Project Source Code Structure
+
+This production-grade structure adheres to hexagonal architecture with Go conventions,
+emphasizing security, observability, and zero-trust principles.
+
+```
+project-root/
+├── cmd/
+│   ├── api/
+│   │   └── main.go                    # API service entry point
+│   ├── worker/                        # Background workers (if needed)
+│   │   └── main.go
+│   └── migrator/                      # Migration runner
+│       └── main.go
+│
+├── internal/                          # Private application code
+│   ├── domain/                        # Pure business logic (framework-agnostic)
+│   │   ├── entities/                  # Domain entities & value objects
+│   │   ├── repositories/              # Repository interfaces (ports)
+│   │   └── services/                  # Domain services
+│   │
+│   ├── application/                   # Use cases & application services
+│   │   ├── usecases/                  # Application use cases
+│   │   ├── ports/                     # Application-level ports
+│   │   ├── dtos/                      # Data transfer objects
+│   │   └── policies/                  # Authorization policies
+│   │
+│   ├── adapters/                      # External dependencies
+│   │   ├── http/                      # HTTP handlers (primary adapter)
+│   │   │   ├── handlers/              # Request handlers
+│   │   │   ├── middleware/            # Auth, logging, tracing middleware
+│   │   │   ├── contracts/             # Versioned API contracts (v1/, v2/)
+│   │   │   └── router.go              # Route definitions with auth
+│   │   ├── persistence/               # Database adapters (secondary adapter)
+│   │   │   ├── postgres/
+│   │   │   │   ├── repositories/      # Repository implementations
+│   │   │   │   ├── models/            # Database models
+│   │   │   │   └── connection.go      # DB connection with least-privilege roles
+│   │   │   └── migrations/            # Versioned SQL migrations
+│   │   ├── external/                  # External API clients
+│   │   │   └── (with circuit breakers & retries)
+│   │   └── events/                    # Message broker adapters (if needed)
+│   │
+│   ├── infrastructure/                # Cross-cutting concerns
+│   │   ├── config/                    # Configuration with secret management
+│   │   ├── logger/                    # Structured JSON logging with correlation IDs
+│   │   ├── metrics/                   # Prometheus/OpenTelemetry metrics
+│   │   ├── tracing/                   # Distributed tracing setup
+│   │   ├── auth/                      # Authentication & authorization
+│   │   │   ├── jwt/                   # Token validation
+│   │   │   ├── mtls/                  # Mutual TLS setup
+│   │   │   └── policies/              # Policy engine (OPA if used)
+│   │   ├── health/                    # Health check endpoints
+│   │   └── di/                        # Dependency injection setup
+│   │
+│   └── types.go                       # Shared types & interfaces
+│
+├── pkg/                               # Public, reusable packages
+│   ├── contracts/                     # Exported API contracts
+│   └── errors/                        # Standardized error types
+│
+├── frontend/
+│   ├── src/
+│   │   ├── components/                # Vue 3 components
+│   │   │   ├── base/                  # Reusable UI primitives
+│   │   │   └── features/              # Feature-specific components
+│   │   ├── composables/               # Vue composables
+│   │   ├── contracts/                 # Versioned API contract types
+│   │   ├── services/                  # API client services with auth
+│   │   ├── stores/                    # Pinia state management
+│   │   ├── router/                    # Vue Router with route guards
+│   │   ├── assets/                    # Static assets
+│   │   └── main.ts                    # Application entry point
+│   │
+│   ├── tests/
+│   │   ├── unit/
+│   │   ├── integration/
+│   │   └── e2e/
+│   │
+│   ├── public/
+│   ├── package.json
+│   ├── vite.config.ts
+│   ├── tsconfig.json
+│   └── README.md
+│
+├── tests/                             # Integration & E2E tests
+│   ├── integration/
+│   │   ├── auth_test.go               # Authentication flows
+│   │   └── critical_paths_test.go     # Critical business paths
+│   ├── e2e/
+│   └── chaos/                         # Chaos/failure injection tests
+│
+├── deployments/                       # Deployment configurations
+│   ├── kubernetes/                    # K8s manifests with RBAC
+│   └── terraform/                     # Infrastructure as code
+│
+├── scripts/                           # Operational scripts
+│   ├── db-backup.sh
+│   └── rotate-secrets.sh
+│
+├── docs/                              # Project documentation
+│   ├── architecture/                  # Architecture decision records
+│   ├── slos/                          # SLO definitions & error budgets
+│   └── runbooks/                      # Operational runbooks
+│
+├── .github/
+│   └── workflows/                     # CI/CD with security scans
+│       ├── ci.yml
+│       └── security-scan.yml
+│
+├── docker-compose.yml
+├── Dockerfile
+├── go.mod
+├── go.sum
+├── Makefile
+└── README.md
+```
+
+**Key Production-Grade Structural Principles:**
+
+- **Zero Trust Infrastructure**: `internal/infrastructure/auth/` centralizes authentication
+  and authorization with mTLS or token-based identity. All service-to-service calls
+  authenticated.
+- **Observability First**: Dedicated `infrastructure/logger/`, `metrics/`, `tracing/`, and
+  `health/` packages ensure structured logs, metrics, and traces are available for all
+  critical paths.
+- **Security by Design**: Secrets managed via `infrastructure/config/` with external vault
+  integration. Database connections use least-privilege roles. Security events logged.
+- **Versioned Contracts**: API contracts versioned under `adapters/http/contracts/v1/`,
+  `v2/`, etc., with deprecation windows for breaking changes.
+- **Chaos Engineering**: `tests/chaos/` contains failure injection tests for critical
+  paths (timeouts, DB failures, circuit breakers).
+- **Migration Control**: All schema changes via `adapters/persistence/migrations/` with
+  forward/backward compatibility and rollback procedures.
+- **Documentation & SLOs**: `docs/slos/` tracks SLO definitions, error budgets, and
+  operational procedures. Architecture decisions recorded in ADRs.
+
 ## Architecture & Technical Constraints
 
 Stack: Frontend (Vue 3, TypeScript, Vite, TailwindCSS). Backend (Go 1.24+, stdlib net/http,

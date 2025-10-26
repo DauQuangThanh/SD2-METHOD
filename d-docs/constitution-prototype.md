@@ -45,6 +45,152 @@ Design tokens (colors/spacing/typography) centralized; ad hoc color hex values P
 
 Rationale: Prevents expensive retrofits and validates user value early.
 
+## Suggested Project Source Code Structure
+
+This frontend-focused structure emphasizes rapid prototyping with Vue 3 while maintaining
+modularity, testability, and clear separation of concerns for future backend integration.
+
+```
+project-root/
+├── src/
+│   ├── components/                    # Vue 3 single-file components
+│   │   ├── base/                      # Reusable UI primitives
+│   │   │   ├── Button.vue
+│   │   │   ├── Input.vue
+│   │   │   ├── Card.vue
+│   │   │   └── Modal.vue
+│   │   ├── features/                  # Feature-specific components
+│   │   │   ├── auth/                  # Authentication UI
+│   │   │   ├── catalog/               # Product catalog
+│   │   │   ├── checkout/              # Checkout flow
+│   │   │   └── profile/               # User profile
+│   │   └── layout/                    # Layout components
+│   │       ├── Header.vue
+│   │       ├── Footer.vue
+│   │       └── Sidebar.vue
+│   │
+│   ├── composables/                   # Vue 3 composables (reusable logic)
+│   │   ├── useAuth.ts                 # Authentication state & logic
+│   │   ├── useCart.ts                 # Shopping cart logic
+│   │   ├── useApi.ts                  # API call abstraction
+│   │   └── useForm.ts                 # Form validation helpers
+│   │
+│   ├── stores/                        # Pinia state management
+│   │   ├── auth.ts                    # Authentication store
+│   │   ├── cart.ts                    # Cart store
+│   │   ├── products.ts                # Product catalog store
+│   │   └── ui.ts                      # UI state (modals, toasts, etc.)
+│   │
+│   ├── services/                      # Service layer (API & mocks)
+│   │   ├── api/                       # API client services
+│   │   │   ├── client.ts              # Base HTTP client
+│   │   │   ├── auth.ts                # Auth API calls
+│   │   │   ├── products.ts            # Product API calls
+│   │   │   └── orders.ts              # Order API calls
+│   │   └── mocks/                     # Mock data & services
+│   │       ├── mockAuth.ts            # Mock authentication
+│   │       ├── mockProducts.ts        # Mock product data
+│   │       └── mockOrders.ts          # Mock order processing
+│   │
+│   ├── contracts/                     # TypeScript types & interfaces
+│   │   ├── auth.ts                    # Auth-related types
+│   │   ├── products.ts                # Product types
+│   │   ├── orders.ts                  # Order types
+│   │   └── api.ts                     # API request/response types
+│   │
+│   ├── router/                        # Vue Router configuration
+│   │   ├── index.ts                   # Router setup
+│   │   └── guards.ts                  # Route guards (auth, etc.)
+│   │
+│   ├── assets/                        # Static assets
+│   │   ├── styles/                    # Global styles & Tailwind config
+│   │   │   ├── main.css               # Main stylesheet
+│   │   │   └── tokens.css             # Design tokens (colors, spacing)
+│   │   ├── images/                    # Image assets
+│   │   └── icons/                     # Icon assets
+│   │
+│   ├── utils/                         # Utility functions
+│   │   ├── formatters.ts              # Data formatters (currency, dates)
+│   │   ├── validators.ts              # Input validators
+│   │   └── helpers.ts                 # General helpers
+│   │
+│   ├── views/                         # Page-level components
+│   │   ├── Home.vue
+│   │   ├── ProductList.vue
+│   │   ├── ProductDetail.vue
+│   │   ├── Cart.vue
+│   │   ├── Checkout.vue
+│   │   └── Profile.vue
+│   │
+│   ├── experimental/                  # Time-boxed experimental features
+│   │   └── (isolated prototype features)
+│   │
+│   ├── App.vue                        # Root component
+│   ├── main.ts                        # Application entry point
+│   └── env.d.ts                       # TypeScript environment declarations
+│
+├── tests/                             # Test files
+│   ├── unit/                          # Unit tests (components, composables)
+│   │   ├── components/
+│   │   └── composables/
+│   ├── integration/                   # Integration tests
+│   └── e2e/                           # End-to-end tests (Playwright/Cypress)
+│
+├── public/                            # Public static assets
+│   ├── favicon.ico
+│   └── robots.txt
+│
+├── .storybook/                        # Storybook configuration (optional)
+│   └── main.ts
+│
+├── docs/                              # Project documentation
+│   ├── features/                      # Feature documentation
+│   ├── design/                        # Design decisions & mockups
+│   └── feedback/                      # User feedback logs
+│
+├── .github/
+│   └── workflows/                     # CI/CD workflows
+│       └── ci.yml
+│
+├── package.json
+├── vite.config.ts
+├── tsconfig.json
+├── tailwind.config.js
+├── postcss.config.js
+├── .eslintrc.js
+├── .prettierrc
+└── README.md
+```
+
+**Key Prototype Structural Principles:**
+
+- **Component Modularity**: Clear separation between reusable `base/` components,
+  feature-specific `features/` components, and page-level `views/`.
+- **Mock-First Development**: `services/mocks/` contains mock implementations enabling
+  development without backend dependencies. Easy to swap with real API calls later.
+- **Centralized State**: Pinia stores in `stores/` manage application state with clear
+  boundaries per domain (auth, cart, products, UI).
+- **Type Safety**: `contracts/` directory centralizes all TypeScript interfaces and types,
+  preparing for future API integration with typed contracts.
+- **Design Tokens**: Consolidated color palette, spacing, and typography in
+  `assets/styles/tokens.css` using Tailwind custom properties. No ad hoc color values.
+- **Experimental Isolation**: Time-boxed experiments live under `experimental/` and are
+  clearly marked with expiration dates in their docstrings.
+- **Accessibility Built-In**: Base components follow WCAG AA standards with semantic HTML,
+  proper ARIA labels, and keyboard navigation support.
+- **Lightweight Testing**: 40% coverage target with focus on critical user journeys
+  (checkout, auth flows). Interaction tests in `tests/unit/`, visual regression with
+  Storybook (optional).
+
+**Future Backend Integration Path:**
+
+When transitioning from prototype to production with backend:
+1. Replace `services/mocks/` imports with real API clients from `services/api/`
+2. Update `contracts/` types to match backend API schemas (Pydantic/OpenAPI)
+3. Add authentication middleware in `router/guards.ts`
+4. Implement versioned API contracts (`contracts/v1/`, `contracts/v2/`)
+5. Increase test coverage to production standards (60%+ overall)
+
 ## Architecture & Technical Constraints
 
 Stack: Frontend only (Vue 3, TypeScript, Vite, TailwindCSS). No live backend dependency—API
