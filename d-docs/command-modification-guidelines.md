@@ -1,4 +1,4 @@
-# Agent Modification Guidelines
+# Command Modification Guidelines
 
 **GitHub Spec Kit - Minimal Impact Change Guide**
 
@@ -549,7 +549,7 @@ Use this checklist to verify your changes:
 
 | Directory | Purpose | Modification Frequency |
 |-----------|---------|----------------------|
-| `/templates/commands/` | Master command templates (8 commands) | Medium |
+| `/templates/commands/` | Master command templates (9 commands) | Medium |
 | `/templates/context/` | Master context templates | Low |
 
 ### Documentation Files

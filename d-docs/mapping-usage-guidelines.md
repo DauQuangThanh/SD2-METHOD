@@ -10,7 +10,7 @@
 
 ## Executive Summary
 
-GitHub Spec Kit is an **AI-augmented framework** that supports software development by providing 8 commands that map to different phases of the Software Development Life Cycle (SDLC). This document provides comprehensive guidelines for integrating Spec Kit into various development methodologies including Agile/Scrum, Kanban, Waterfall, and hybrid approaches.
+GitHub Spec Kit is an **AI-augmented framework** that supports software development by providing 9 commands that map to different phases of the Software Development Life Cycle (SDLC). This document provides comprehensive guidelines for integrating Spec Kit into various development methodologies including Agile/Scrum, Kanban, Waterfall, and hybrid approaches.
 
 **Key Value Proposition**: Spec Kit bridges the gap between business requirements and implementation by providing structured, AI-assisted workflows that ensure quality, consistency, and traceability throughout the development process.
 
@@ -3123,7 +3123,7 @@ GitHub Spec Kit provides a comprehensive, AI-augmented framework that maps to al
 - Add later: checklist, analyze, constitution
 
 **Large Team (11-30 people):**
-- Start with: Full workflow (all 8 commands)
+- Start with: Full workflow (all 9 commands)
 - Focus on: Multi-role checklists, mandatory quality gates
 
 **Enterprise (30+ people):**

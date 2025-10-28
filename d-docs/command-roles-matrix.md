@@ -9,7 +9,7 @@
 
 ## Executive Summary
 
-GitHub Spec Kit provides **8 commands** that support different stages of spec-driven development. This document maps each command to specific roles (actors) and explains the purposes, timing, and use cases for each role.
+GitHub Spec Kit provides **9 commands** that support different stages of spec-driven development. This document maps each command to specific roles (actors) and explains the purposes, timing, and use cases for each role.
 
 **Key Principle**: Commands are designed to support a complete workflow from specification to implementation, with clear ownership and collaboration points.
 
@@ -35,6 +35,7 @@ GitHub Spec Kit provides **8 commands** that support different stages of spec-dr
 | `/speckit.specify` | Create feature specification from natural language | 1. Specification | spec.md, requirements.md checklist |
 | `/speckit.clarify` | Interactive Q&A to reduce specification ambiguity | 2. Clarification | Updated spec.md with clarifications |
 | `/speckit.checklist` | Generate quality validation checklists ("unit tests for requirements") | 2-3. Quality | Domain-specific checklist (ux.md, api.md, security.md) |
+| `/speckit.summarize` | Generate/update project context for AI agent consistency | 0. Project Setup | project-context.md with coding standards and architecture |
 | `/speckit.plan` | Technical planning and architecture design | 4. Design | plan.md, data-model.md, contracts/, research.md |
 | `/speckit.tasks` | Generate executable task breakdown by user story | 5. Task Planning | tasks.md with dependency graph |
 | `/speckit.analyze` | Cross-artifact consistency analysis | 6. Pre-Implementation | Analysis report with coverage metrics |
@@ -46,6 +47,13 @@ GitHub Spec Kit provides **8 commands** that support different stages of spec-dr
 ```
             ┌────────────────────────┐
             │ /speckit.constitution  │ (Optional, run once per project)
+            └──────────┬─────────────┘
+                       │
+                       ▼
+            ┌────────────────────────┐
+            │  /speckit.summarize    │ (Recommended, run before /tasks)
+            │ (Generate project      │ ◄─── Solution Architect, Tech Lead
+            │  context for AI)       │
             └──────────┬─────────────┘
                        │
                        ▼
@@ -99,17 +107,17 @@ GitHub Spec Kit provides **8 commands** that support different stages of spec-dr
 
 | Role | Primary Commands | Secondary Commands | Read-Only Commands |
 |------|------------------|--------------------|--------------------|
-| **Product Owner** | specify, clarify | checklist (UX/business) | analyze, tasks |
-| **Product Manager** | specify, clarify | checklist (business) | plan, tasks, analyze |
-| **Business Analyst** | specify, clarify, checklist | - | plan, tasks, analyze |
-| **Solution Architect** | plan, checklist (architecture) | constitution | specify, clarify, tasks, analyze |
-| **Technical Lead** | plan, tasks, analyze | checklist (all), constitution | specify, clarify |
-| **Software Engineer** | implement, clarify | tasks, checklist (technical) | specify, plan, analyze |
-| **QA Engineer** | checklist (testing), analyze | - | specify, plan, tasks |
-| **Scrum Master** | tasks | checklist (process) | specify, plan, analyze |
-| **Security Engineer** | checklist (security), analyze | constitution | specify, plan, tasks |
-| **DevOps Engineer** | checklist (deployment), plan | tasks, constitution | specify, analyze |
-| **Engineering Manager** | constitution, analyze | - | All commands (for oversight) |
+| **Product Owner** | specify, clarify | checklist (UX/business) | analyze, tasks, summarize |
+| **Product Manager** | specify, clarify | checklist (business) | plan, tasks, analyze, summarize |
+| **Business Analyst** | specify, clarify, checklist | - | plan, tasks, analyze, summarize |
+| **Solution Architect** | plan, checklist (architecture), summarize | constitution | specify, clarify, tasks, analyze |
+| **Technical Lead** | plan, tasks, analyze, summarize | checklist (all), constitution | specify, clarify |
+| **Software Engineer** | implement, clarify | tasks, checklist (technical) | specify, plan, analyze, summarize |
+| **QA Engineer** | checklist (testing), analyze | - | specify, plan, tasks, summarize |
+| **Scrum Master** | tasks | checklist (process) | specify, plan, analyze, summarize |
+| **Security Engineer** | checklist (security), analyze | constitution | specify, plan, tasks, summarize |
+| **DevOps Engineer** | checklist (deployment), plan | tasks, constitution | specify, analyze, summarize |
+| **Engineering Manager** | constitution, analyze | summarize | All commands (for oversight) |
 
 ---
 
@@ -242,6 +250,48 @@ GitHub Spec Kit provides **8 commands** that support different stages of spec-dr
 ```
 
 **Why this role**: Architects make technical stack and architecture decisions
+
+---
+
+##### `/speckit.summarize` ⭐ PRIMARY
+
+**Purpose**: Generate or update project context to ensure AI agent consistency
+
+**When to use**:
+- At project inception (first time setup)
+- Before starting implementation on features
+- When major architectural changes occur
+- When coding standards evolve
+
+**What it does**:
+1. Analyzes project structure and existing artifacts
+2. Extracts tech stack, versions, and dependencies
+3. Identifies coding conventions and standards
+4. Documents architectural patterns and structure
+5. Records error handling and logging strategies
+6. Creates/updates memory/project-context.md
+
+**Example flow**:
+```bash
+# First time project setup
+/speckit.summarize
+
+# AI analyzes:
+# - README.md, package.json, requirements.txt for tech stack
+# - Source code for naming conventions and patterns
+# - Linter configs for style guides
+# - Existing architecture for patterns
+
+# Outputs:
+# - memory/project-context.md with:
+#   - Project goal (one sentence mission)
+#   - Tech stack & versions (Python 3.12, React 18, PostgreSQL 16)
+#   - Coding style guide (snake_case, PascalCase, etc.)
+#   - Architectural overview (system components, directory structure)
+#   - Error & log handling strategy (HTTP codes, logging patterns)
+```
+
+**Why this role**: Architects establish and document project-wide standards
 
 ---
 
@@ -384,6 +434,42 @@ GitHub Spec Kit provides **8 commands** that support different stages of spec-dr
 ```
 
 **Why this role**: Tech Leads are responsible for quality and completeness before implementation
+
+---
+
+##### `/speckit.summarize` ⭐ PRIMARY
+
+**Purpose**: Ensure project context is current for AI-assisted implementation
+
+**When to use**:
+- Before running `/speckit.tasks` (to ensure consistent task generation)
+- When team coding standards are updated
+- After significant architectural changes
+- Periodically to keep AI agents in sync with project evolution
+
+**What Tech Leads ensure**:
+- Project standards are documented accurately
+- Coding conventions match actual codebase
+- Error handling patterns are current
+- Testing requirements are specified
+- AI agents have complete context for consistent implementation
+
+**Example use**:
+```bash
+# Before generating tasks for a feature
+/speckit.summarize
+
+# Verifies project-context.md is current with:
+# - Latest dependency versions
+# - Current coding standards
+# - Updated directory structure
+# - Recent architectural patterns
+
+# Then proceed with tasks
+/speckit.tasks
+```
+
+**Why this role**: Tech Leads ensure team consistency and AI agent alignment
 
 ---
 
@@ -1390,8 +1476,9 @@ Phase 3 - Repeat for other services:
 | **specify** | Product Owner | Business Analyst | Start of feature, requirements definition |
 | **clarify** | Product Owner | Developer | After specify, when ambiguities exist |
 | **checklist** | Multi-Role | All | After specification, before planning, before implementation |
+| **summarize** | Solution Architect | Tech Lead, Engineering Manager | Project inception, before tasks, when standards change |
 | **plan** | Solution Architect | Tech Lead | After specification, before tasks |
-| **tasks** | Tech Lead | Scrum Master | After planning, before implementation |
+| **tasks** | Tech Lead | Scrum Master | After planning (and summarize), before implementation |
 | **analyze** | Tech Lead | QA Engineer | After tasks, before implementation |
 | **implement** | Developer | - | After analyze passes, during development |
 | **constitution** | Engineering Manager | Architect | Project inception, principle updates |
@@ -1402,10 +1489,11 @@ Phase 3 - Repeat for other services:
 
 | Stage | Primary Role | Supporting Roles | Commands Used |
 |-------|--------------|------------------|---------------|
+| **Project Context Setup** | Solution Architect | Tech Lead, Engineering Manager | summarize |
 | **Specification** | Product Owner | Business Analyst | specify, clarify |
 | **Quality Validation** | Multi-Role | QA, Security, DevOps | checklist (domain-specific) |
-| **Technical Planning** | Solution Architect | Tech Lead | plan, checklist (architecture) |
-| **Task Planning** | Tech Lead | Scrum Master | tasks |
+| **Technical Planning** | Solution Architect | Tech Lead | plan, checklist (architecture), summarize (if needed) |
+| **Task Planning** | Tech Lead | Scrum Master | tasks (after summarize) |
 | **Pre-Implementation** | Tech Lead | QA Engineer | analyze |
 | **Implementation** | Developer | - | implement |
 | **Governance** | Engineering Manager | Solution Architect | constitution |
