@@ -204,13 +204,6 @@ description: "Project context template for AI agent consistency"
 - [EXAMPLE: Implement rate limiting on all public endpoints]
 - [EXAMPLE: Implement CORS policies appropriately]
 
-### Git Workflow
-
-- [EXAMPLE: Use feature branches: `feature/[ticket-id]-description`]
-- [EXAMPLE: Commit messages follow Conventional Commits: `feat:`, `fix:`, `docs:`, etc.]
-- [EXAMPLE: All commits must pass CI/CD checks before merge]
-- [EXAMPLE: Require code review approval before merging to main]
-
 ### Environment Management
 
 - [EXAMPLE: Use environment variables for configuration (never hardcode)]

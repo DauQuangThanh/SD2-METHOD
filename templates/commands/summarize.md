@@ -20,6 +20,7 @@ You **MUST** consider the user input before proceeding (if not empty).
 2. **Load existing context**: If PROJECT_CONTEXT exists, read it to understand what information is already filled. If it's new, read the TEMPLATE to understand the required structure.
 
 3. **Analyze the project** to gather information for each section:
+   - Read `/memory/constitution.md`.
    - Read spec.md, data-model.md, quickstart.md, research.md, or any relevant files that are available in `specs` folder to gather necessary information for each section in the template file.
 
 4. **Generate/Update project-context.md**: Fill in the template with actual project information:
