@@ -1,6 +1,6 @@
 <div align="center">
-    <img src="./media/logo_small.webp" alt="Spec Kit Logo"/>
-    <h1>🌱 Spec Kit</h1>
+    <img src="./media/SD2.png" alt="SD2-METHOD Logo"/>
+    <h1> 🥳 SD2-METHOD</h1>
     <h3><em>Build high-quality software faster.</em></h3>
 </div>
 
@@ -9,10 +9,10 @@
 </p>
 
 <p align="center">
-    <a href="https://github.com/github/spec-kit/actions/workflows/release.yml"><img src="https://github.com/github/spec-kit/actions/workflows/release.yml/badge.svg" alt="Release"/></a>
-    <a href="https://github.com/github/spec-kit/stargazers"><img src="https://img.shields.io/github/stars/github/spec-kit?style=social" alt="GitHub stars"/></a>
-    <a href="https://github.com/github/spec-kit/blob/main/LICENSE"><img src="https://img.shields.io/github/license/github/spec-kit" alt="License"/></a>
-    <a href="https://github.github.io/spec-kit/"><img src="https://img.shields.io/badge/docs-GitHub_Pages-blue" alt="Documentation"/></a>
+    <a href="https://github.com/DauQuangThanh/SD2-METHOD/actions/workflows/release.yml"><img src="https://github.com/DauQuangThanh/SD2-METHOD/actions/workflows/release.yml/badge.svg" alt="Release"/></a>
+    <a href="https://github.com/DauQuangThanh/SD2-METHOD/stargazers"><img src="https://img.shields.io/github/stars/DauQuangThanh/SD2-METHOD?style=social" alt="GitHub stars"/></a>
+    <a href="https://github.com/DauQuangThanh/SD2-METHOD/blob/main/LICENSE"><img src="https://img.shields.io/github/license/DauQuangThanh/SD2-METHOD" alt="License"/></a>
+    <a href="https://dauquangthanh.github.io/SD2-METHOD/"><img src="https://img.shields.io/badge/docs-GitHub_Pages-blue" alt="Documentation"/></a>
 </p>
 
 ---
@@ -21,7 +21,6 @@
 
 - [🤔 What is Spec-Driven Development?](#-what-is-spec-driven-development)
 - [⚡ Get Started](#-get-started)
-- [📽️ Video Overview](#️-video-overview)
 - [🤖 Supported AI Agents](#-supported-ai-agents)
 - [🔧 Specify CLI Reference](#-specify-cli-reference)
 - [📚 Core Philosophy](#-core-philosophy)
@@ -51,7 +50,7 @@ Choose your preferred installation method:
 Install once and use everywhere:
 
 ```bash
-uv tool install specify-cli --from git+https://github.com/github/spec-kit.git
+uv tool install specify-cli --from git+https://github.com/DauQuangThanh/SD2-METHOD.git
 ```
 
 Then use the tool directly:
@@ -64,7 +63,7 @@ specify check
 To upgrade specify run:
 
 ```bash
-uv tool install specify-cli --force --from git+https://github.com/github/spec-kit.git
+uv tool install specify-cli --force --from git+https://github.com/DauQuangThanh/SD2-METHOD.git
 ```
 
 #### Option 2: One-time Usage
@@ -72,7 +71,7 @@ uv tool install specify-cli --force --from git+https://github.com/github/spec-ki
 Run directly without installing:
 
 ```bash
-uvx --from git+https://github.com/github/spec-kit.git specify init <PROJECT_NAME>
+uvx --from git+https://github.com/DauQuangThanh/SD2-METHOD.git specify init <PROJECT_NAME>
 ```
 
 **Benefits of persistent installation:**
@@ -125,12 +124,6 @@ Use **`/speckit.implement`** to execute all tasks and build your feature accordi
 ```
 
 For detailed step-by-step instructions, see our [comprehensive guide](./spec-driven.md).
-
-## 📽️ Video Overview
-
-Want to see Spec Kit in action? Watch our [video overview](https://www.youtube.com/watch?v=a9eR1xsfvHg&pp=0gcJCckJAYcqIYzv)!
-
-[![Spec Kit video header](/media/spec-kit-video-header.jpg)](https://www.youtube.com/watch?v=a9eR1xsfvHg&pp=0gcJCckJAYcqIYzv)
 
 ## 🤖 Supported AI Agents
 
@@ -622,7 +615,7 @@ rm gcm-linux_amd64.2.6.1.deb
 
 ## 💬 Support
 
-For support, please open a [GitHub issue](https://github.com/github/spec-kit/issues/new). We welcome bug reports, feature requests, and questions about using Spec-Driven Development.
+For support, please open a [GitHub issue](https://github.com/DauQuangThanh/SD2-METHOD/issues/new). We welcome bug reports, feature requests, and questions about using Spec-Driven Development.
 
 ## 🙏 Acknowledgements
 
