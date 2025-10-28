@@ -1,8 +1,5 @@
 ---
-description: Generate or update project-context.md with essential project information for AI agent consistency.
-scripts:
-  sh: scripts/bash/setup-summarize.sh --json
-  ps: scripts/powershell/setup-summarize.ps1 -Json
+description: Create or update the project context from docs and.or codebase analysis, ensuring AI agents have consistent implementation standards
 ---
 
 ## User Input
@@ -15,42 +12,61 @@ You **MUST** consider the user input before proceeding (if not empty).
 
 ## Outline
 
-1. **Setup**: Run `{SCRIPT}` from repo root and parse JSON for REPO_ROOT, PROJECT_CONTEXT, and TEMPLATE paths. All paths must be absolute. For single quotes in args like "I'm Groot", use escape syntax: e.g 'I'\''m Groot' (or double-quote if possible: "I'm Groot").
+You are updating the project context at `/memory/project-context.md`. This file is a TEMPLATE containing example placeholders in the form `[EXAMPLE: description]`. Your job is to (a) analyze the codebase and documentation, (b) derive concrete values, (c) replace examples with actual project data, and (d) preserve any manual customizations.
 
-2. **Load existing context**: If PROJECT_CONTEXT exists, read it to understand what information is already filled. If it's new, read the TEMPLATE to understand the required structure.
+Follow this execution flow:
 
-3. **Analyze the project** to gather information for each section:
-   - Read `/memory/constitution.md`.
-   - Read spec.md, data-model.md, quickstart.md, research.md, or any relevant files that are available in `specs` folder to gather necessary information for each section in the template file.
+1. **Load the existing project context** at `/memory/project-context.md`.
+   - Identify every placeholder of the form `[EXAMPLE: ...]`.
+   - **IMPORTANT**: Preserve any sections that have been manually customized (no longer contain `[EXAMPLE:` markers).
 
-4. **Generate/Update project-context.md**: Fill in the template with actual project information:
-   - Replace all `[EXAMPLE: ...]` placeholders with real data from the project
-   - Keep the structure from the template but customize content
-   - If information is not available or unclear, mark it as `[TO BE DETERMINED]` or provide best-guess based on common patterns
-   - Preserve any manual additions if updating an existing file
-   - Update the "Last Updated" section at the bottom
+2. **Collect and derive values** by:
+   - Read `/memory/constitution.md` if available.
+   - Read spec.md, plan.md, data-model.md from `specs/` folder if available.
+   - Analyze the codebase thoroughly to extract accurate information if available.
+   - **Last Updated**: Use today's date in ISO format (YYYY-MM-DD).
 
-5. **Validation**: Ensure all major sections are filled:
-   - Project Goal (one or two clear sentences)
-   - Tech Stack with versions
-   - Coding conventions
-   - Architectural description
-   - Error and logging rules & patterns
+3. **Draft the updated project context**:
+   - Replace every `[EXAMPLE: ...]` placeholder with concrete project data.
+   - Remove the `[EXAMPLE:` prefix and replace the description with actual values.
+   - If information is genuinely unavailable, replace with `[TO BE DETERMINED: reason]` and note in report.
+   - Preserve all manual content (sections without `[EXAMPLE:` markers).
+   - Ensure each section is specific to this project, not generic examples.
+   - Keep the same heading hierarchy and structure as the template.
 
-6. **Report**: Output a summary:
-   - Path to project-context.md
-   - List of sections updated
-   - Any sections that need manual review (marked as [TO BE DETERMINED]) and ask the user to provide them
-   - Remind the user to review and adjust as needed
+4. **Validation before writing**:
+   - No remaining unexplained `[EXAMPLE:` markers (except those intentionally deferred as `[TO BE DETERMINED:`).
+   - Project Goal is project-specific (not a generic example).
+   - Tech stack with specific versions.
+   - Coding conventions.
+   - Architecture description and project structure.
+   - Date is in ISO format YYYY-MM-DD.
+
+5. **Write the completed context** back to `/memory/project-context.md` (overwrite).
+
+6. **Output a final summary** to the user with:
+   - Confirmation of update with file path.
+   - List of sections updated (Project Goal, Tech Stack, Coding Style, Architecture, Error Handling, Other Rules).
+   - Any `[TO BE DETERMINED]` items requiring manual input with explanation.
+   - Reminder that this file should be reviewed and kept in sync with codebase evolution.
+
+## Formatting & Style Requirements
+
+- Use Markdown headings exactly as in the template (do not demote/promote levels).
+- Keep structure consistent with template.
+- Use concise, clear language focused on actual project specifics.
+- Avoid generic or vague descriptions.
+- Single blank line between sections.
+- No trailing whitespace.
 
 ## Key Rules
 
-- Use absolute paths for all file references
-- Be thorough in analyzing the docs & codebase to extract accurate information
-- Don't invent information - if unsure, mark as [TO BE DETERMINED]
-- Preserve existing manual customizations when updating
-- Focus on information that helps AI agents implement tasks consistently
-- The file should be concise but complete - aim for clarity over verbosity
+- **NEVER invent or guess information** - if unsure, mark as `[TO BE DETERMINED: reason]`.
+- **ALWAYS preserve manual customizations** - only replace sections still marked with `[EXAMPLE:]`.
+- Use absolute paths for all file references in the report.
+- Be thorough in analyzing the codebase to extract accurate information.
+- Focus on information that helps AI agents implement tasks consistently.
+- The file should be concise but complete - aim for clarity over verbosity.
 
 ## Output Format
 
@@ -60,23 +76,35 @@ After completing the analysis and update, provide:
 ✓ Project context updated: /absolute/path/to/memory/project-context.md
 
 Summary of updates:
-  ✓ Project Goal: [Brief summary]
-  ✓ Tech Stack: [Key technologies found]
-  ✓ Coding Style: [Style guide sources]
-  ✓ Architecture: [Architecture type]
-  ✓ Error Handling: [Strategy identified]
-  ⚠ Needs Review: [Any sections marked TO BE DETERMINED]
+  ✓ Project Goal: [Brief summary of what was found/updated]
+  ✓ Product Development Stage: [Stage identified]
+  ✓ Tech Stack: [Key technologies and versions found]
+  ✓ Coding Style: [Conventions detected from codebase or generated]
+  ✓ Architecture: [Architecture pattern identified]
+  ✓ Error & Log Handling: [Patterns found in code or generated]
+  ✓ Security Guidelines: [Patterns identified]
+  ✓ Environment Management: [Configuration approach]
+  ⚠ Needs Manual Review: [Any sections marked TO BE DETERMINED with reasons]
+
+Last Updated: [YYYY-MM-DD]
 
 Next steps:
-  1. Review memory/project-context.md for accuracy
-  2. Fill in any [TO BE DETERMINED] sections
-  3. Adjust based on project-specific requirements
-  4. This file will be referenced by AI agents for consistency
+  1. Review /memory/project-context.md for accuracy
+  2. Fill in any [TO BE DETERMINED] sections with project-specific information
+  3. Add any project-specific rules not captured by automated analysis
+  4. Keep this file updated as the project evolves
+  5. This file will be automatically loaded by /implement commands
 ```
 
 ## Important Notes
 
-- This command should be run BEFORE the /implement command to ensure AI agents have proper context
-- The project-context.md file should be updated whenever major architectural decisions change
-- Keep this file in sync with the actual codebase - it's a living document
-- Share this file with all team members so everyone has the same understanding
+- This command should be run BEFORE `/implement` command to ensure AI agents have proper context.
+- Run this command again when:
+  - Major architectural changes occur
+  - Coding standards are updated
+  - New frameworks or libraries are adopted
+  - Project moves to a different development stage (PoC → MVP → Production)
+- The project-context.md file is a living document - keep it synchronized with the actual codebase.
+- This file is automatically read by `/implement` commands for consistency.
+
+Do not create a new template; always operate on the existing `/memory/project-context.md` file.
