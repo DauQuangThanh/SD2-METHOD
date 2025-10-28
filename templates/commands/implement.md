@@ -49,6 +49,13 @@ You **MUST** consider the user input before proceeding (if not empty).
      - Automatically proceed to step 3
 
 3. Load and analyze the implementation context:
+   - **CRITICAL**: Read `/memory/project-context.md` (if exists) for:
+     - Project coding standards and naming conventions
+     - Tech stack versions and architectural patterns
+     - Error handling and logging strategies
+     - File structure and directory conventions
+     - Note: If this file doesn't exist, suggest running `/summarize` command first to ensure consistency
+
    - **REQUIRED**: Read tasks.md for the complete task list and execution plan
    - **REQUIRED**: Read plan.md for tech stack, architecture, and file structure
    - **IF EXISTS**: Read data-model.md for entities and relationships
