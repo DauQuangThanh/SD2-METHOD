@@ -19,21 +19,21 @@
 
 ## Table of Contents
 
-- [Table of Contents](#table-of-contents)
-- [🤔 What is Spec-Driven Development?](#-what-is-spec-driven-development)
-- [⚡ Get Started](#-get-started)
-  - [1. Install Specify CLI](#1-install-specify-cli)
-    - [Option 1: Persistent Installation (Recommended)](#option-1-persistent-installation-recommended)
-  - [2. Establish project principles](#2-establish-project-principles)
-  - [6. Execute implementation](#6-execute-implementation)
-  - [**STEP 6:** Generate task breakdown with /speckit.tasks](#step-6-generate-task-breakdown-with-speckittasks)
-  - [**STEP 7:** Implementation](#step-7-implementation)
-- [🔍 Troubleshooting](#-troubleshooting)
-  - [Git Credential Manager on Linux](#git-credential-manager-on-linux)
-- [👥 Maintainers](#-maintainers)
-- [💬 Support](#-support)
-- [🙏 Acknowledgements](#-acknowledgements)
-- [📄 License](#-license)
+- [🤔 What is Spec-Driven Development?](#🤔-what-is-spec-driven-development)
+- [⚡ Get Started](#⚡-get-started)
+- [🤖 Supported AI Agents](#🤖-supported-ai-agents)
+- [🔧 Specify CLI Reference](#🔧-specify-cli-reference)
+- [📚 Core Philosophy](#📚-core-philosophy)
+- [🌟 Development Phases](#🌟-development-phases)
+- [🎯 Experimental Goals](#🎯-experimental-goals)
+- [🔧 Prerequisites](#🔧-prerequisites)
+- [📖 Learn More](#📖-learn-more)
+- [📋 Detailed Process](#📋-detailed-process)
+- [🔍 Troubleshooting](#🔍-troubleshooting)
+- [👥 Maintainers](#👥-maintainers)
+- [💬 Support](#💬-support)
+- [🙏 Acknowledgements](#🙏-acknowledgements)
+- [📄 License](#📄-license)
 
 ## 🤔 What is Spec-Driven Development?
 
