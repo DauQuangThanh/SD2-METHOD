@@ -17,29 +17,24 @@ description: "Project context template for AI agent consistency"
 ---
 
 ## Product Development Stage
-
 - [EXAMPLE: Mock-up: A static visual representation, typically an image or non-functional wireframe, used only for design and layout approval.]
 - [EXAMPLE: PoC (Proof of Concept): A minimal, non-production-ready implementation designed solely to validate a single technical idea or assumption.]
 - [EXAMPLE: MVP (Minimum Viable Product): The first usable, production-ready version of a product that offers just enough core functionality to be deployed and gather initial user feedback.]
 - [EXAMPLE: Production: The fully stable, scalable, and polished system currently deployed and actively serving end-users with comprehensive features and quality standards.]
-
 ---
 
 ## Tech Stack & Versions
 
 **Programming Languages:**
-
 - [EXAMPLE: Python 3.12]
 - [EXAMPLE: TypeScript 5.3]
 
 **Major Frameworks:**
-
 - Backend: [EXAMPLE: FastAPI 0.109, Django 5.0]
 - Frontend: [EXAMPLE: React 18.2, Next.js 14]
 - Mobile: [EXAMPLE: React Native 0.73]
 
 **Critical Libraries & Versions:**
-
 - Database: [EXAMPLE: PostgreSQL 16, SQLAlchemy 2.0]
 - Authentication: [EXAMPLE: JWT, JWE, OAuth2]
 - Testing: [EXAMPLE: pytest 8.0, Jest 29]
@@ -52,21 +47,17 @@ description: "Project context template for AI agent consistency"
 ### Naming Conventions
 
 **Variables & Functions:**
-
 - [EXAMPLE: Python: `snake_case` for variables, functions, and methods]
 - [EXAMPLE: TypeScript: `camelCase` for variables and functions, `PascalCase` for classes and components]
 
 **Classes & Components:**
-
 - [EXAMPLE: Python: `PascalCase` for class names]
 - [EXAMPLE: TypeScript: `PascalCase` for React components and TypeScript classes]
 
 **Constants:**
-
 - [EXAMPLE: `UPPER_SNAKE_CASE` for constants across all languages]
 
 **Files & Directories:**
-
 - [EXAMPLE: Python: `snake_case.py` for modules]
 - [EXAMPLE: TypeScript: `PascalCase.tsx` for React components, `camelCase.ts` for utilities]
 - [EXAMPLE: Directories: `kebab-case` for all directory names]
@@ -124,7 +115,6 @@ description: "Project context template for AI agent consistency"
 ├── scripts/                      # [EXAMPLE: Automation and deployment scripts]
 └── config/                       # [EXAMPLE: Environment-specific configurations]
 ```
-
 ---
 
 ## Error & Log Handling Strategy
@@ -132,7 +122,6 @@ description: "Project context template for AI agent consistency"
 ### Error Handling
 
 **HTTP Status Codes:**
-
 - [EXAMPLE: 200 OK for successful GET requests]
 - [EXAMPLE: 201 Created for successful POST requests]
 - [EXAMPLE: 400 Bad Request for validation errors]
@@ -142,7 +131,6 @@ description: "Project context template for AI agent consistency"
 - [EXAMPLE: 500 Internal Server Error for unexpected errors]
 
 **Error Response Format:**
-
 ```json
 [EXAMPLE:
 {
@@ -161,7 +149,6 @@ description: "Project context template for AI agent consistency"
 ```
 
 **Exception Handling:**
-
 - [EXAMPLE: All exceptions should be caught at the controller/endpoint level]
 - [EXAMPLE: Never expose internal error details to end users]
 - [EXAMPLE: User-facing errors must be localized (support i18n)]
@@ -170,7 +157,6 @@ description: "Project context template for AI agent consistency"
 ### Logging Strategy
 
 **Log Levels:**
-
 - [EXAMPLE: DEBUG: Detailed diagnostic information]
 - [EXAMPLE: INFO: General informational messages (user actions, system events)]
 - [EXAMPLE: WARNING: Warning messages for recoverable issues]
@@ -178,17 +164,14 @@ description: "Project context template for AI agent consistency"
 - [EXAMPLE: CRITICAL: Critical errors that may cause system failure]
 
 **Logging Framework:**
-
 - [EXAMPLE: Python: Use standard `logging` module with structured logging]
 - [EXAMPLE: TypeScript: Use Winston or Pino for structured logging]
 
 **Log Destination:**
-
 - [EXAMPLE: Development: Console output]
 - [EXAMPLE: Production: Send logs to Fluentd/ELK Stack/CloudWatch]
 
 **What to Log:**
-
 - [EXAMPLE: Log all API requests (method, path, user ID, response status)]
 - [EXAMPLE: Log all authentication attempts (success/failure)]
 - [EXAMPLE: Log all database operations (queries, errors)]
@@ -196,7 +179,6 @@ description: "Project context template for AI agent consistency"
 - [EXAMPLE: NEVER log sensitive data (passwords, tokens, credit cards)]
 
 **Log Format:**
-
 ```
 [EXAMPLE:
 {
@@ -234,7 +216,6 @@ description: "Project context template for AI agent consistency"
 ## Notes
 
 This file should be updated whenever:
-
 - Major architectural decisions are made
 - New frameworks or libraries are adopted
 - Coding standards or conventions change

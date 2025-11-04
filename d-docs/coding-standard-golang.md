@@ -280,9 +280,9 @@ result := SomeType{}.
 // Editors should display tabs as 4 or 8 spaces
 
 func ExampleFunction() {
- if condition {
-  doSomething()
- }
+	if condition {
+		doSomething()
+	}
 }
 ```
 
@@ -536,10 +536,10 @@ type UserRepository interface {  // BAD: Defined where implemented
 //
 // Example usage:
 //
-// user, err := user.NewUser("test@example.com", "Test User")
-// if err != nil {
-//     log.Fatal(err)
-// }
+//	user, err := user.NewUser("test@example.com", "Test User")
+//	if err != nil {
+//	    log.Fatal(err)
+//	}
 package user
 ```
 
@@ -1297,5 +1297,4 @@ repos:
 ---
 
 **Version History**:
-
 - 1.0.0 (2025-10-26): Initial release

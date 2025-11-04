@@ -2181,14 +2181,12 @@ ACTIONS REQUIRED:
 ### Best Practice 1: Specification-First Development
 
 **DON'T:**
-
 ```
 ❌ Developer: "Let me just start coding and figure it out as I go"
    → Result: Scope creep, rework, missed requirements
 ```
 
 **DO:**
-
 ```
 ✓ Product Owner: /speckit.specify → Clear requirements
 ✓ Team: /speckit.checklist → Validation
@@ -2204,14 +2202,12 @@ ACTIONS REQUIRED:
 ### Best Practice 2: Progressive Elaboration
 
 **DON'T:**
-
 ```
 ❌ Try to specify everything perfectly upfront
    → Results in: Analysis paralysis, delayed delivery
 ```
 
 **DO:**
-
 ```
 ✓ Sprint N-2: High-level specification
    /speckit.specify (just core requirements)
@@ -2231,14 +2227,12 @@ ACTIONS REQUIRED:
 ### Best Practice 3: Checklist-Driven Quality
 
 **DON'T:**
-
 ```
 ❌ Skip checklists to "save time"
    → Result: Issues found late (expensive to fix)
 ```
 
 **DO:**
-
 ```
 ✓ Create domain-specific checklists early
    - UX checklist (before design)
@@ -2255,14 +2249,12 @@ ACTIONS REQUIRED:
 ### Best Practice 4: Constitution as Living Document
 
 **DON'T:**
-
 ```
 ❌ Create constitution once and never update
    → Result: Standards drift, inconsistency
 ```
 
 **DO:**
-
 ```
 ✓ Sprint Retrospective: Review constitution effectiveness
 ✓ After Major Issues: Update constitution with new principle
@@ -2277,14 +2269,12 @@ ACTIONS REQUIRED:
 ### Best Practice 5: Parallel Work Optimization
 
 **DON'T:**
-
 ```
 ❌ All tasks sequential (Developer A waits for Developer B)
    → Result: Low throughput, underutilized team
 ```
 
 **DO:**
-
 ```
 ✓ /speckit.tasks generates parallel markers [P]
 ✓ Assign [P] tasks to different developers
@@ -2299,14 +2289,12 @@ ACTIONS REQUIRED:
 ### Best Practice 6: Continuous Analysis
 
 **DON'T:**
-
 ```
 ❌ Run /speckit.analyze once and forget
    → Result: Inconsistencies accumulate
 ```
 
 **DO:**
-
 ```
 ✓ Before each sprint: /speckit.analyze (quality gate)
 ✓ After spec changes: /speckit.analyze (validate consistency)
@@ -2321,14 +2309,12 @@ ACTIONS REQUIRED:
 ### Best Practice 7: Contract-Driven Development
 
 **DON'T:**
-
 ```
 ❌ Define APIs informally ("We'll figure it out")
    → Result: Integration issues, rework
 ```
 
 **DO:**
-
 ```
 ✓ /speckit.plan creates contracts/ with OpenAPI/GraphQL specs
 ✓ Frontend and backend develop against contracts independently
@@ -2343,7 +2329,6 @@ ACTIONS REQUIRED:
 ### Best Practice 8: User Story Driven Tasks
 
 **DON'T:**
-
 ```
 ❌ Tasks organized by technical layer
    - All models first
@@ -2353,7 +2338,6 @@ ACTIONS REQUIRED:
 ```
 
 **DO:**
-
 ```
 ✓ /speckit.tasks organizes by user story
    - Story 1: Complete vertical slice (model + service + endpoint)
@@ -2366,14 +2350,12 @@ ACTIONS REQUIRED:
 ### Best Practice 9: Traceability
 
 **DON'T:**
-
 ```
 ❌ Lose connection between requirements and implementation
    → Result: Cannot verify all requirements met
 ```
 
 **DO:**
-
 ```
 ✓ Every task in tasks.md has [US1], [US2] story label
 ✓ Every story in spec.md has unique ID
@@ -2388,14 +2370,12 @@ ACTIONS REQUIRED:
 ### Best Practice 10: Early Feedback
 
 **DON'T:**
-
 ```
 ❌ Wait until implementation complete to get feedback
    → Result: Major rework if direction wrong
 ```
 
 **DO:**
-
 ```
 ✓ After /speckit.specify: Product Owner reviews spec.md
 ✓ After /speckit.clarify: Stakeholders review updated spec
@@ -2413,7 +2393,6 @@ ACTIONS REQUIRED:
 ### Pitfall 1: Specification Analysis Paralysis
 
 **Problem:**
-
 ```
 ❌ Team spends weeks perfecting spec.md
 ❌ Every detail must be clarified before proceeding
@@ -2422,7 +2401,6 @@ ACTIONS REQUIRED:
 ```
 
 **Solution:**
-
 ```
 ✓ Timebox /speckit.specify to 4 hours maximum
 ✓ Limit /speckit.clarify to 5 questions maximum
@@ -2438,7 +2416,6 @@ ACTIONS REQUIRED:
 ### Pitfall 2: Checklist Fatigue
 
 **Problem:**
-
 ```
 ❌ Team generates 10+ checklists per feature
 ❌ Each checklist has 50+ items
@@ -2448,7 +2425,6 @@ ACTIONS REQUIRED:
 ```
 
 **Solution:**
-
 ```
 ✓ Generate only essential checklists (3-5 per feature)
 ✓ Limit checklist items to 20-30 per checklist
@@ -2466,7 +2442,6 @@ ACTIONS REQUIRED:
 ### Pitfall 3: Over-Engineering in Planning
 
 **Problem:**
-
 ```
 ❌ /speckit.plan generates overly complex architecture
 ❌ Solution designed for 10M users when current is 100
@@ -2475,7 +2450,6 @@ ACTIONS REQUIRED:
 ```
 
 **Solution:**
-
 ```
 ✓ Plan for current needs + 1-2x growth
 ✓ Use constitution to define "appropriate complexity"
@@ -2492,7 +2466,6 @@ ACTIONS REQUIRED:
 ### Pitfall 4: Skipping Analysis
 
 **Problem:**
-
 ```
 ❌ Team skips /speckit.analyze to "save time"
 ❌ Goes straight from /speckit.tasks to /speckit.implement
@@ -2502,7 +2475,6 @@ ACTIONS REQUIRED:
 ```
 
 **Solution:**
-
 ```
 ✓ Make /speckit.analyze mandatory quality gate
 ✓ Automate in CI/CD pipeline
@@ -2518,7 +2490,6 @@ ACTIONS REQUIRED:
 ### Pitfall 5: Ignoring Constitution Violations
 
 **Problem:**
-
 ```
 ❌ /speckit.analyze shows constitution violations
 ❌ Team ignores them ("we'll fix it later")
@@ -2528,7 +2499,6 @@ ACTIONS REQUIRED:
 ```
 
 **Solution:**
-
 ```
 ✓ Make constitution compliance 100% mandatory
 ✓ /speckit.analyze must show 0 constitution violations to proceed
@@ -2544,7 +2514,6 @@ ACTIONS REQUIRED:
 ### Pitfall 6: Poor Task Granularity
 
 **Problem:**
-
 ```
 ❌ Tasks too large: "Implement user authentication" (40 hours)
 ❌ Tasks too small: "Add import statement" (5 minutes)
@@ -2553,7 +2522,6 @@ ACTIONS REQUIRED:
 ```
 
 **Solution:**
-
 ```
 ✓ Target task size: 2-8 hours
 ✓ If task >8 hours, break down further in /speckit.tasks
@@ -2569,7 +2537,6 @@ ACTIONS REQUIRED:
 ### Pitfall 7: Stale Artifacts
 
 **Problem:**
-
 ```
 ❌ spec.md updated but plan.md not updated
 ❌ plan.md changed but tasks.md not regenerated
@@ -2579,7 +2546,6 @@ ACTIONS REQUIRED:
 ```
 
 **Solution:**
-
 ```
 ✓ After updating spec.md: Re-run /speckit.clarify if needed
 ✓ After updating spec.md: Consider re-running /speckit.plan
@@ -2595,7 +2561,6 @@ ACTIONS REQUIRED:
 ### Pitfall 8: No Clear Ownership
 
 **Problem:**
-
 ```
 ❌ No one responsible for maintaining spec.md
 ❌ No one responsible for keeping constitution.md updated
@@ -2604,7 +2569,6 @@ ACTIONS REQUIRED:
 ```
 
 **Solution:**
-
 ```
 ✓ Product Owner owns spec.md (all changes go through them)
 ✓ Solution Architect owns plan.md and data-model.md
@@ -2621,7 +2585,6 @@ ACTIONS REQUIRED:
 ### Pitfall 9: Premature Implementation
 
 **Problem:**
-
 ```
 ❌ Developer starts coding before /speckit.analyze passes
 ❌ "I'll just get a head start while waiting for approval"
@@ -2630,7 +2593,6 @@ ACTIONS REQUIRED:
 ```
 
 **Solution:**
-
 ```
 ✓ Make /speckit.analyze passing a hard requirement to start coding
 ✓ Use feature flags to allow exploratory spikes (marked as such)
@@ -2646,7 +2608,6 @@ ACTIONS REQUIRED:
 ### Pitfall 10: Tool Over Process
 
 **Problem:**
-
 ```
 ❌ Team focuses on using Spec Kit commands perfectly
 ❌ Forgets the underlying goal: delivering quality software
@@ -2655,7 +2616,6 @@ ACTIONS REQUIRED:
 ```
 
 **Solution:**
-
 ```
 ✓ Remember: Spec Kit is a tool to support your process, not the process itself
 ✓ Adapt commands to your context (skip what doesn't add value)
@@ -3141,7 +3101,7 @@ METRICS:
 
 GitHub Spec Kit provides a comprehensive, AI-augmented framework that maps to all phases of software development across multiple methodologies (Agile, Waterfall, Kanban) and team sizes (solo to enterprise).
 
-### Key Success Factors
+### Key Success Factors:
 
 1. **Adapt to Your Context**: Use what works, skip what doesn't add value
 2. **Progressive Adoption**: Start with core commands, add more as needed
@@ -3152,25 +3112,21 @@ GitHub Spec Kit provides a comprehensive, AI-augmented framework that maps to al
 7. **Focus on Collaboration**: Use checklists to involve all stakeholders early
 8. **Balance Speed and Quality**: Timebox specification work, accept iteration
 
-### Recommended Starting Points by Team Type
+### Recommended Starting Points by Team Type:
 
 **Solo/Small Team (1-3 people):**
-
 - Start with: specify → plan → implement
 - Add later: clarify, tasks, analyze
 
 **Medium Team (4-10 people):**
-
 - Start with: specify → clarify → plan → tasks → implement
 - Add later: checklist, analyze, constitution
 
 **Large Team (11-30 people):**
-
 - Start with: Full workflow (all 9 commands)
 - Focus on: Multi-role checklists, mandatory quality gates
 
 **Enterprise (30+ people):**
-
 - Start with: Constitution first, then full workflow
 - Focus on: Governance, consistency, automation
 

@@ -3,7 +3,6 @@
 ## Core Principles
 
 ### 1. Hexagonal Architecture Integrity (NON‑NEGOTIABLE)
-
 All backend domain logic MUST reside in inner domain modules (pure Python) with no outbound
 framework (FastAPI), transport, OR ORM coupling. Adapters (FastAPI routers, async DB
 repositories, message broker consumers, external API clients) depend inward only via
@@ -16,7 +15,6 @@ accompanied by a time‑boxed waiver + migration plan.
 Rationale: Preserves testability, hot-swappability (transport/ORM), and controlled evolution.
 
 ### 2. Production Baseline & Controlled Experimentation
-
 The default expectation is production-grade quality. Experiments MUST be explicitly scoped
 (time‑boxed, tagged `experimental`, isolated under `experimental/` or module suffix) and MUST
 NOT transitively affect production modules. Promotion requires: (a) coverage compliance
@@ -27,7 +25,6 @@ archived or deleted.
 Rationale: Maintains production posture while enabling bounded innovation.
 
 ### 3. Contract-First Interfaces & Backward Compatibility
-
 All externally consumed interfaces (HTTP APIs, DB schemas, domain service ports, frontend
 clients) MUST be defined via versioned contracts (OpenAPI spec, Pydantic v2 models,
 Alembic/SQL migration manifest, or abstract Python protocol) before implementation. Breaking
@@ -38,7 +35,6 @@ Frontend integration MUST consume generated or typed client stubs.
 Rationale: Protects integrators and enables safe iterative change.
 
 ### 4. Quality & Observability as Gate Criteria
-
 Minimum automated coverage (enforced via CI): Domain ≥ 85%, Adapters ≥ 70%, Critical
 path packages (checkout, payment, inventory) ≥ 90%. Every feature MUST ship with:
 structured logging (request / correlation id), metrics (latency, throughput, error ratio), an
@@ -50,7 +46,6 @@ coverage below thresholds unless an explicit, time‑bounded waiver (<14 days) i
 Rationale: Ensures operational predictability and rapid incident diagnostics.
 
 ### 5. Secure & Compliant Data Stewardship
-
 PostgreSQL schemas MUST declare ownership (bounded context) and migration provenance.
 PII and regulated data fields MUST be minimized, classified, and (where applicable)
 encrypted at rest + masked in non‑prod environments. Secrets NEVER committed—managed
@@ -62,7 +57,6 @@ change impact) REQUIRED before release of any data-affecting feature.
 Rationale: Preserves integrity and compliance while enabling safe iteration.
 
 ### 6. Zero Trust & Least Privilege Enforcement
-
 Every request—internal or external—MUST be authenticated & authorized (no implicit trust
 based on network location). Service-to-service calls REQUIRE strong identity (mTLS,
 token-based identity, or workload attestation). Database roles follow least privilege and are
@@ -225,14 +219,12 @@ probes. Security: mTLS or OIDC/JWT service identity, secret manager integration,
 for complex authZ when justified. Performance Targets (Production): p95 API latency < 250ms;
 critical checkout success rate ≥ 99.9%; cold start (first request) < 2s; error budget tracked per
 SLO. Frontend: core bundle size budget documented; shared primitives consolidated.
-
 ## Zero Trust Security Controls
 
 Controls Inventory: Identity (mTLS / token), Policy Enforcement, Secrets Management, Data
 Classification, Audit & Event Logging, Least Privilege RBAC, Dependency Scanning.
 
 Mandatory Baseline:
-
 - Unique service identity and auth on every call (no anonymous internal endpoints).
 - Principle of least privilege for DB roles & cloud resources.
 - Enforcement of authZ policies at service boundary or centralized gateway.
@@ -255,7 +247,6 @@ versioning impact, observability plan, security considerations, rollback path, a
 level assignment.
 
 Pull Request Requirements:
-
 1. Link to spec & plan sections referencing contract definitions.
 2. Evidence of failing tests before implementation (where new domains introduced).
 3. Added/updated migrations with rollback notes.
@@ -272,7 +263,6 @@ governance change; MINOR=new or materially expanded principle/section; PATCH=cla
 non-semantic wording). Reviewers MUST verify gates remain objectively testable.
 
 Amendment Procedure:
-
 1. Draft proposal referencing impacted principles / sections.
 2. Classify bump level per rules above.
 3. Include migration or adoption steps if changing enforcement criteria.
@@ -281,9 +271,8 @@ Amendment Procedure:
 established).
 
 Compliance:
-
 - Quarterly (or pre-production milestone) audit: architecture boundaries, contract drift,
- test coverage thresholds, security dependency scan status.
+	test coverage thresholds, security dependency scan status.
 - Violations create remediation tasks with tracked due dates.
 - Emergency deviations allowed only with logged risk acceptance.
 

@@ -80,7 +80,6 @@ Context files maintained via update scripts
 **Object**: `AGENT_CONFIG` dictionary
 
 This dictionary contains all agent definitions with metadata:
-
 - `name`: Display name
 - `folder`: Directory name for agent-specific files
 - `install_url`: Installation instructions URL
@@ -120,13 +119,11 @@ AGENT_CONFIG = {
 **Risk**: Low
 
 **What to modify**:
-
 - Add new agent entry to `AGENT_CONFIG`
 - Update agent metadata (name, folder, URLs)
 - Change agent flags (requires_cli)
 
 **Example**:
-
 ```python
 "newtool": {
     "name": "New Tool",
@@ -144,12 +141,10 @@ AGENT_CONFIG = {
 **Risk**: Low
 
 **What to modify**:
-
 - Add case statement for new agent in template processing
 - Add agent key to the release loop
 
 **Example**:
-
 ```bash
 # In the case statement (around line 150)
 newtool)
@@ -169,12 +164,10 @@ for agent in claude gemini github cursor qwen opencode codex windsurf kilo auggi
 **Risk**: Low
 
 **What to modify**:
-
 - Add context file path mapping
 - Add file existence check
 
 **Example**:
-
 ```bash
 "newtool")
   CONTEXT_FILE=".newtool/NEWTOOL.md"
@@ -189,12 +182,10 @@ for agent in claude gemini github cursor qwen opencode codex windsurf kilo auggi
 **Risk**: Low
 
 **What to modify**:
-
 - Add context file path in switch statement
 - Add existence check in elseif block
 
 **Example**:
-
 ```powershell
 # In switch statement (line 55)
 "newtool" { $contextFile = ".newtool/NEWTOOL.md" }
@@ -213,7 +204,6 @@ elseif (Test-Path ".newtool/NEWTOOL.md") {
 **Risk**: None
 
 **What to modify**:
-
 - Add agent to supported agents list
 - Update agent count in descriptions
 - Add installation instructions if needed
@@ -312,7 +302,6 @@ Run through the [Testing Checklist](#testing-checklist) below.
 **CRITICAL**: Agent dictionary keys MUST match the actual CLI tool executable name.
 
 ✅ **Correct**:
-
 ```python
 "cursor-agent": {  # If the tool is called 'cursor-agent'
     "name": "Cursor",
@@ -322,7 +311,6 @@ Run through the [Testing Checklist](#testing-checklist) below.
 ```
 
 ❌ **Wrong**:
-
 ```python
 "cursor": {  # If the tool is actually called 'cursor-agent'
     "name": "Cursor",
@@ -476,7 +464,6 @@ Use this checklist to verify your changes:
 **Situation**: You want to add support for "SuperCoder" agent.
 
 **Steps**:
-
 1. Add to AGENT_CONFIG: `"supercoder": {...}`
 2. Update release script: Add case for "supercoder"
 3. Update context scripts: Add "supercoder" handling
@@ -491,7 +478,6 @@ Use this checklist to verify your changes:
 **Situation**: Rename "GitHub Copilot" to "GitHub Copilot Assistant"
 
 **Steps**:
-
 1. Update `name` field in AGENT_CONFIG
 2. Update documentation references
 3. No other changes needed
@@ -505,7 +491,6 @@ Use this checklist to verify your changes:
 **Situation**: Change `.claude/` to `.claude-ai/`
 
 **Steps**:
-
 1. Update `folder` field in AGENT_CONFIG
 2. Update release script case statement
 3. Update both context scripts
@@ -521,7 +506,6 @@ Use this checklist to verify your changes:
 **Situation**: Add a new `/review` command for all agents
 
 **Steps**:
-
 1. Create master template in `/templates/commands/review.md`
 2. Release script automatically processes for all agents
 3. No per-agent changes needed
@@ -536,7 +520,6 @@ Use this checklist to verify your changes:
 **Situation**: Remove support for an obsolete agent
 
 **Steps**:
-
 1. Add deprecation notice to documentation (1 release cycle)
 2. Mark agent as deprecated in AGENT_CONFIG (add flag)
 3. Show warning during `specify init`
@@ -591,7 +574,6 @@ Use this checklist to verify your changes:
 **Decision**: Use single AGENT_CONFIG dictionary as source of truth.
 
 **Consequences**:
-
 - ✅ Easy to add new agents (~30 lines)
 - ✅ Single place to modify agent metadata
 - ✅ Consistent behavior across agents
@@ -607,7 +589,6 @@ Use this checklist to verify your changes:
 **Decision**: Master templates auto-generate agent-specific commands at release time.
 
 **Consequences**:
-
 - ✅ Single source for command logic
 - ✅ Easy to add features to all agents
 - ✅ Consistent command behavior
@@ -623,7 +604,6 @@ Use this checklist to verify your changes:
 **Decision**: Agent dictionary keys must match actual CLI tool executable names.
 
 **Consequences**:
-
 - ✅ Direct CLI tool detection
 - ✅ No additional mapping layer needed
 - ⚠️ Keys may not be user-friendly (e.g., "cursor-agent" vs "cursor")
@@ -717,7 +697,6 @@ newagent)
 ### Context Script Templates
 
 **Bash** (`scripts/bash/update-agent-context.sh`):
-
 ```bash
 "newagent")
   CONTEXT_FILE=".newagent/NEWAGENT.md"
@@ -725,7 +704,6 @@ newagent)
 ```
 
 **PowerShell** (`scripts/powershell/update-agent-context.ps1`):
-
 ```powershell
 # In switch statement
 "newagent" { $contextFile = ".newagent/NEWAGENT.md" }
@@ -750,7 +728,6 @@ elseif (Test-Path ".newagent/NEWAGENT.md") {
 ## Contact & Support
 
 For questions about modifying agents:
-
 1. Review this guide thoroughly
 2. Check existing agent implementations for examples
 3. Test changes in isolated environment first
