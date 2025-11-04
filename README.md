@@ -1,6 +1,6 @@
 <div align="center">
     <img src="./media/SD2.png" alt="OnSpecKit Logo"/>
-    <h1> 🥳 SD2-METHOD</h1>
+    <h1> 🥳 OnSpecKit</h1>
     <h3><em>Build high-quality software faster.</em></h3>
 </div>
 
@@ -613,6 +613,7 @@ rm gcm-linux_amd64.2.6.1.deb
 
 - Den Delimarsky ([@localden](https://github.com/localden))
 - John Lam ([@jflam](https://github.com/jflam))
+- Dau Quang Thanh ([@dauquangthanh](https://github.com/dauquangthanh))
 
 ## 💬 Support
 
