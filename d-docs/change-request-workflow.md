@@ -2,9 +2,9 @@
 
 **Handling Mid-Development Changes with Spec Kit**
 
-**Date**: 2025-10-26
-**Version**: 1.0
-**Context**: GitHub Spec Kit (SD2-METHOD)
+**Date**: 2025-11-04
+**Version**: 1.1
+**Context**: GitHub Spec Kit (OnSpecKit)
 
 ---
 
@@ -402,10 +402,14 @@ STEP 2: Re-Specify (2-4 hours)
 │  └─ OPTION B: Re-run /speckit.specify (if major rewrite needed)
 │     └─ Creates new spec.md or updates existing
 │
-└─ Command: /speckit.clarify
-   └─ Resolve OAuth2 provider questions (Google, GitHub, Microsoft?)
-   └─ Resolve session management questions
-   └─ Result: spec.md fully updated with OAuth2 requirements
+├─ Command: /speckit.clarify
+│  └─ Resolve OAuth2 provider questions (Google, GitHub, Microsoft?)
+│  └─ Resolve session management questions
+│  └─ Result: spec.md fully updated with OAuth2 requirements
+│
+└─ Command: Update architecture if needed
+   └─ If architecture.md exists: Update with OAuth2 architectural changes
+   └─ If major architectural shift: /speckit.architect (to document new approach)
 
 ────────────────────────────────────────────────────────────────────────────
 
@@ -1256,4 +1260,4 @@ KEY METRICS TO TRACK:
 
 **Version**: 1.0
 **Last Updated**: 2025-10-26
-**Framework**: GitHub Spec Kit (SD2-METHOD)
+**Framework**: GitHub Spec Kit (OnSpecKit)

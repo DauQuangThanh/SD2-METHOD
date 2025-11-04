@@ -2,15 +2,15 @@
 
 **Comprehensive Integration Guidelines for AI-Augmented Development**
 
-**Date**: 2025-10-26
-**Version**: 1.0
-**Project**: GitHub Spec Kit (SD2-METHOD)
+**Date**: 2025-11-04
+**Version**: 1.1
+**Project**: GitHub Spec Kit (OnSpecKit)
 
 ---
 
 ## Executive Summary
 
-GitHub Spec Kit is an **AI-augmented framework** that supports software development by providing 9 commands that map to different phases of the Software Development Life Cycle (SDLC). This document provides comprehensive guidelines for integrating Spec Kit into various development methodologies including Agile/Scrum, Kanban, Waterfall, and hybrid approaches.
+GitHub Spec Kit is an **AI-augmented framework** that supports software development by providing 10 commands that map to different phases of the Software Development Life Cycle (SDLC). This document provides comprehensive guidelines for integrating Spec Kit into various development methodologies including Agile/Scrum, Kanban, Waterfall, and hybrid approaches.
 
 **Key Value Proposition**: Spec Kit bridges the gap between business requirements and implementation by providing structured, AI-assisted workflows that ensure quality, consistency, and traceability throughout the development process.
 
@@ -81,6 +81,11 @@ Phase 2: REQUIREMENTS VALIDATION & QUALITY ASSURANCE
 Phase 3: SYSTEM DESIGN & ARCHITECTURE
 ├─ Activities: Technical design, architecture decisions, API design
 ├─ Spec Kit Commands:
+│  ├─ /speckit.architect (OPTIONAL - for formal architecture documentation)
+│  │  └─ Input: spec.md (requirements)
+│  │  └─ Output: architecture.md with views, decisions, quality attributes, constraints
+│  │  └─ Duration: 2-4 hours per system/major component
+│  │
 │  ├─ /speckit.plan (PRIMARY)
 │  │  └─ Input: spec.md
 │  │  └─ Output: plan.md, data-model.md, contracts/, research.md
@@ -89,7 +94,7 @@ Phase 3: SYSTEM DESIGN & ARCHITECTURE
 │  └─ /speckit.checklist (SECONDARY - Architecture focus)
 │     └─ Output: architecture.md checklist
 │
-├─ Artifacts Produced: Technical design documents, API contracts, data models
+├─ Artifacts Produced: Architecture design document, technical design documents, API contracts, data models
 ├─ Roles: Solution Architect, Technical Lead
 └─ Exit Criteria: Architecture approved, all design decisions documented
 
@@ -187,6 +192,10 @@ BACKLOG REFINEMENT (Weekly)
 │  │  └─ QA: Testing requirements
 │  │  └─ Security: Security requirements
 │  │  └─ DevOps: Deployment requirements
+│  │
+│  ├─ Solution Architect: /speckit.architect (optional, for complex features)
+│  │  └─ Creates formal architecture design when needed
+│  │  └─ Output: architecture.md
 │  │
 │  ├─ Solution Architect: /speckit.plan
 │  │  └─ Creates technical design
@@ -1386,6 +1395,7 @@ Week N-2 (Two weeks ahead):
 
 Week N-1 (One week ahead):
 ├─ Architecture Team: Create designs
+│  ├─ /speckit.architect (for complex features requiring formal architecture)
 │  ├─ /speckit.plan
 │  └─ /speckit.tasks
 │
@@ -1551,6 +1561,10 @@ PHASE 1: MVP Definition (Weeks 2-3)
 ├─ Team: /speckit.checklist (all domains)
 │  └─ Especially critical: Security and architecture
 │
+├─ Solution Architect: /speckit.architect (for complex systems)
+│  └─ Create formal architecture design document
+│  └─ Output: architecture.md with views, decisions, constraints
+│
 └─ Solution Architect: /speckit.plan
    └─ Make foundational technology decisions
    └─ Output: research.md with ALL key decisions documented
@@ -1584,6 +1598,10 @@ PHASE 1: Integration Planning (Week 2)
 │  └─ Include: Integration points with existing system
 │  └─ Include: Migration requirements if applicable
 │
+├─ Solution Architect: /speckit.architect (if major architectural changes)
+│  └─ Document how new feature affects system architecture
+│  └─ Output: Updated architecture.md
+│
 ├─ Solution Architect: /speckit.plan
 │  └─ Focus on: How new feature integrates with existing
 │  └─ Document: Existing system constraints
@@ -1609,6 +1627,7 @@ PHASE 3: Implementation (Weeks 3-N)
 BEST PRACTICES:
 - Create constitution retrospectively if missing
 - Document existing system constraints in plan.md
+- Use /speckit.architect if major architectural changes are needed
 - Add integration tests to testing checklist
 - Plan for rollback in deployment checklist
 ```
@@ -3134,4 +3153,4 @@ GitHub Spec Kit provides a comprehensive, AI-augmented framework that maps to al
 
 **Version**: 1.0
 **Last Updated**: 2025-10-26
-**Framework**: GitHub Spec Kit (SD2-METHOD)
+**Framework**: GitHub Spec Kit (OnSpecKit)

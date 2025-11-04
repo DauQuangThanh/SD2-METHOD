@@ -10,9 +10,9 @@
 
 <p align="center">
     <a href="https://github.com/DauQuangThanh/OnSpecKit/actions/workflows/release.yml"><img src="https://github.com/DauQuangThanh/OnSpecKit/actions/workflows/release.yml/badge.svg" alt="Release"/></a>
-    <a href="https://github.com/DauQuangThanh/OnSpecKit/stargazers"><img src="https://img.shields.io/github/stars/DauQuangThanh/SD2-METHOD?style=social" alt="GitHub stars"/></a>
-    <a href="https://github.com/DauQuangThanh/OnSpecKit/blob/main/LICENSE"><img src="https://img.shields.io/github/license/DauQuangThanh/SD2-METHOD" alt="License"/></a>
-    <a href="https://dauquangthanh.github.io/SD2-METHOD/"><img src="https://img.shields.io/badge/docs-GitHub_Pages-blue" alt="Documentation"/></a>
+    <a href="https://github.com/DauQuangThanh/OnSpecKit/stargazers"><img src="https://img.shields.io/github/stars/DauQuangThanh/OnSpecKit?style=social" alt="GitHub stars"/></a>
+    <a href="https://github.com/DauQuangThanh/OnSpecKit/blob/main/LICENSE"><img src="https://img.shields.io/github/license/DauQuangThanh/OnSpecKit" alt="License"/></a>
+    <a href="https://dauquangthanh.github.io/OnSpecKit/"><img src="https://img.shields.io/badge/docs-GitHub_Pages-blue" alt="Documentation"/></a>
 </p>
 
 ---
@@ -91,7 +91,15 @@ Use the **`/speckit.constitution`** command to create your project's governing p
 /speckit.constitution Create principles focused on code quality, testing standards, user experience consistency, and performance requirements
 ```
 
-### 3. Create the spec
+### 3. Define system architecture (Optional)
+
+Use the **`/speckit.architect`** command to establish your system's architecture design, including architectural views, decisions, and constraints.
+
+```bash
+/speckit.architect Design a microservices architecture with REST APIs, using PostgreSQL for data persistence and Redis for caching. Include deployment view for Kubernetes orchestration.
+```
+
+### 4. Create the spec
 
 Use the **`/speckit.specify`** command to describe what you want to build. Focus on the **what** and **why**, not the tech stack.
 
@@ -225,6 +233,7 @@ Essential commands for the Spec-Driven Development workflow:
 | Command                  | Description                                                           |
 |--------------------------|-----------------------------------------------------------------------|
 | `/speckit.constitution`  | Create or update project governing principles and development guidelines |
+| `/speckit.architect`     | Create or update the project architecture design document with views, decisions, and constraints |
 | `/speckit.specify`       | Define what you want to build (requirements and user stories)        |
 | `/speckit.plan`          | Create technical implementation plans with your chosen tech stack     |
 | `/speckit.tasks`         | Generate actionable task lists for implementation                     |
@@ -366,7 +375,7 @@ Go to the project folder and run your AI agent. In our example, we're using `cla
 
 ![Bootstrapping Claude Code environment](./media/bootstrap-claude-code.gif)
 
-You will know that things are configured correctly if you see the `/speckit.constitution`, `/speckit.specify`, `/speckit.plan`, `/speckit.tasks`, and `/speckit.implement` commands available.
+You will know that things are configured correctly if you see the `/speckit.constitution`, `/speckit.architect`, `/speckit.specify`, `/speckit.plan`, `/speckit.tasks`, and `/speckit.implement` commands available.
 
 The first step should be establishing your project's governing principles using the `/speckit.constitution` command. This helps ensure consistent decision-making throughout all subsequent development phases:
 
@@ -375,6 +384,14 @@ The first step should be establishing your project's governing principles using 
 ```
 
 This step creates or updates the `.specify/memory/constitution.md` file with your project's foundational guidelines that the AI agent will reference during specification, planning, and implementation phases.
+
+Optionally, you can also establish your system architecture using the `/speckit.architect` command. This creates a formal architecture design document:
+
+```text
+/speckit.architect Design a microservices architecture with clear component boundaries. Include logical view showing service decomposition, deployment view for cloud infrastructure, and key architectural decisions around API design and data persistence.
+```
+
+This step creates or updates the `.specify/memory/architecture.md` file with your system's architectural views, decisions, quality attributes, and design constraints that will guide technical planning and implementation.
 
 ### **STEP 2:** Create project specifications
 

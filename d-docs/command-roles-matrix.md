@@ -2,14 +2,14 @@
 
 **GitHub Spec Kit - Who Should Use Which Commands and Why**
 
-**Date**: 2025-10-26
-**Version**: 1.0
+**Date**: 2025-11-04
+**Version**: 1.1
 
 ---
 
 ## Executive Summary
 
-GitHub Spec Kit provides **9 commands** that support different stages of spec-driven development. This document maps each command to specific roles (actors) and explains the purposes, timing, and use cases for each role.
+GitHub Spec Kit provides **10 commands** that support different stages of spec-driven development. This document maps each command to specific roles (actors) and explains the purposes, timing, and use cases for each role.
 
 **Key Principle**: Commands are designed to support a complete workflow from specification to implementation, with clear ownership and collaboration points.
 
@@ -36,17 +36,24 @@ GitHub Spec Kit provides **9 commands** that support different stages of spec-dr
 | `/speckit.clarify` | Interactive Q&A to reduce specification ambiguity | 2. Clarification | Updated spec.md with clarifications |
 | `/speckit.checklist` | Generate quality validation checklists ("unit tests for requirements") | 2-3. Quality | Domain-specific checklist (ux.md, api.md, security.md) |
 | `/speckit.contextualize` | Generate/update project context for AI agent consistency | 0. Project Setup | project-context.md with coding standards and architecture |
+| `/speckit.constitution` | Create/update project governance principles | 0. Governance | constitution.md |
+| `/speckit.architect` | Create/update project architecture design document | 0. Architecture | architecture.md with views, decisions, and constraints |
 | `/speckit.plan` | Technical planning and architecture design | 4. Design | plan.md, data-model.md, contracts/, research.md |
 | `/speckit.tasks` | Generate executable task breakdown by user story | 5. Task Planning | tasks.md with dependency graph |
 | `/speckit.analyze` | Cross-artifact consistency analysis | 6. Pre-Implementation | Analysis report with coverage metrics |
 | `/speckit.implement` | Execute implementation following task plan | 7. Implementation | Working code implementation |
-| `/speckit.constitution` | Create/update project governance principles | 0. Governance | constitution.md |
 
 ### Command Flow
 
 ```
             ┌────────────────────────┐
             │ /speckit.constitution  │ (Optional, run once per project)
+            └──────────┬─────────────┘
+                       │
+            ┌──────────▼─────────────┐
+            │  /speckit.architect    │ (Optional, run for formal architecture)
+            │ (Create architecture   │ ◄─── Solution Architect, Engineering Manager
+            │  design document)      │
             └──────────┬─────────────┘
                        │
                        ▼
@@ -107,17 +114,17 @@ GitHub Spec Kit provides **9 commands** that support different stages of spec-dr
 
 | Role | Primary Commands | Secondary Commands | Read-Only Commands |
 |------|------------------|--------------------|--------------------|
-| **Product Owner** | specify, clarify | checklist (UX/business) | analyze, tasks, contextualize |
-| **Product Manager** | specify, clarify | checklist (business) | plan, tasks, analyze, contextualize |
-| **Business Analyst** | specify, clarify, checklist | - | plan, tasks, analyze, contextualize |
-| **Solution Architect** | plan, checklist (architecture), contextualize | constitution | specify, clarify, tasks, analyze |
-| **Technical Lead** | plan, tasks, analyze, contextualize | checklist (all), constitution | specify, clarify |
-| **Software Engineer** | implement, clarify | tasks, checklist (technical) | specify, plan, analyze, contextualize |
-| **QA Engineer** | checklist (testing), analyze | - | specify, plan, tasks, contextualize |
-| **Scrum Master** | tasks | checklist (process) | specify, plan, analyze, contextualize |
-| **Security Engineer** | checklist (security), analyze | constitution | specify, plan, tasks, contextualize |
-| **DevOps Engineer** | checklist (deployment), plan | tasks, constitution | specify, analyze, contextualize |
-| **Engineering Manager** | constitution, analyze | contextualize | All commands (for oversight) |
+| **Product Owner** | specify, clarify | checklist (UX/business) | analyze, tasks, contextualize, architect |
+| **Product Manager** | specify, clarify | checklist (business) | plan, tasks, analyze, contextualize, architect |
+| **Business Analyst** | specify, clarify, checklist | - | plan, tasks, analyze, contextualize, architect |
+| **Solution Architect** | plan, architect, checklist (architecture), contextualize | constitution | specify, clarify, tasks, analyze |
+| **Technical Lead** | plan, tasks, analyze, contextualize | checklist (all), constitution, architect | specify, clarify |
+| **Software Engineer** | implement, clarify | tasks, checklist (technical) | specify, plan, analyze, contextualize, architect |
+| **QA Engineer** | checklist (testing), analyze | - | specify, plan, tasks, contextualize, architect |
+| **Scrum Master** | tasks | checklist (process) | specify, plan, analyze, contextualize, architect |
+| **Security Engineer** | checklist (security), analyze | constitution | specify, plan, tasks, contextualize, architect |
+| **DevOps Engineer** | checklist (deployment), plan | tasks, constitution | specify, analyze, contextualize, architect |
+| **Engineering Manager** | constitution, analyze, architect | contextualize | All commands (for oversight) |
 
 ---
 
@@ -295,6 +302,41 @@ GitHub Spec Kit provides **9 commands** that support different stages of spec-dr
 
 ---
 
+##### `/speckit.architect` ⭐ PRIMARY
+
+**Purpose**: Create or update formal architecture design document
+
+**When to use**:
+- At project inception (for greenfield projects)
+- When establishing system architecture
+- When major architectural changes occur
+- For formal architecture documentation needs
+
+**What it does**:
+1. Creates or updates memory/architecture.md
+2. Documents architectural views (Logical, Process, Deployment, Data)
+3. Records architectural decisions with rationale
+4. Defines quality attributes and constraints
+5. Establishes system-wide policies and patterns
+6. Maps stakeholder concerns to architectural views
+
+**Example flow**:
+```bash
+# Create architecture design document
+/speckit.architect Design a microservices architecture with REST APIs. Include logical view showing service boundaries, deployment view for Kubernetes, and key decisions around API design and data persistence.
+
+# AI creates architecture.md with:
+# - Introduction (purpose, scope, stakeholder concerns)
+# - Architectural views (logical, process, deployment, data)
+# - Goals and constraints (business goals, quality attributes)
+# - Architectural decisions (key decisions with rationale)
+# - Policies and patterns (system-wide standards)
+```
+
+**Why this role**: Architects create formal architecture documentation for complex systems
+
+---
+
 ##### `/speckit.checklist` (Architecture Focus) - SECONDARY
 
 **Purpose**: Validate architectural quality and technical completeness
@@ -348,6 +390,7 @@ GitHub Spec Kit provides **9 commands** that support different stages of spec-dr
 - `/speckit.clarify` - See product decisions
 - `/speckit.tasks` - Review implementation plan
 - `/speckit.analyze` - Verify technical consistency
+- `/speckit.architect` - Reference formal architecture design
 
 ---
 
@@ -513,6 +556,7 @@ GitHub Spec Kit provides **9 commands** that support different stages of spec-dr
 - `/speckit.specify` - Understand requirements
 - `/speckit.clarify` - See product decisions
 - `/speckit.implement` - Monitor implementation progress
+- `/speckit.architect` - Reference formal architecture design
 
 ---
 
@@ -635,6 +679,7 @@ GitHub Spec Kit provides **9 commands** that support different stages of spec-dr
 - `/speckit.specify` - Understand requirements
 - `/speckit.plan` - Understand architecture
 - `/speckit.analyze` - See quality issues
+- `/speckit.architect` - Reference formal architecture design
 
 ---
 
@@ -1020,6 +1065,24 @@ GitHub Spec Kit provides **9 commands** that support different stages of spec-dr
 
 ---
 
+##### `/speckit.architect` ⭐ PRIMARY
+
+**Purpose**: Oversee formal architecture design and governance
+
+**When to use**:
+- At project inception
+- For architecture reviews
+- When approving major architectural changes
+- For enterprise architecture alignment
+
+**Example principles and architecture alignment**:
+- **Constitution**: Defines WHAT principles must be followed ("All services must be independently deployable")
+- **Architecture**: Defines HOW the system achieves those principles (microservices with containers, event-driven communication)
+
+**Why this role**: Engineering Managers ensure architecture aligns with organizational standards and governance
+
+---
+
 ##### `/speckit.analyze` - SECONDARY
 
 **Purpose**: Quality oversight and risk management
@@ -1048,6 +1111,18 @@ Engineering Managers should have read access to all commands for:
 ### Typical Feature Development Flow
 
 ```
+┌─────────────────────────────────────────────────────────────────┐
+│ Stage 0: Governance & Architecture (Engineering Manager + Architect) │
+└─────────────────────────────────────────────────────────────────┘
+    0a. Engineering Manager: /speckit.constitution
+        → Output: constitution.md with project principles
+
+    0b. Solution Architect: /speckit.architect (optional, for complex systems)
+        → Output: architecture.md with architectural views and decisions
+
+    0c. Solution Architect: /speckit.contextualize
+        → Output: project-context.md with coding standards
+
 ┌─────────────────────────────────────────────────────────────────┐
 │ Stage 1: Specification (Product Owner)                          │
 └─────────────────────────────────────────────────────────────────┘
@@ -1489,6 +1564,8 @@ Phase 3 - Repeat for other services:
 
 | Stage | Primary Role | Supporting Roles | Commands Used |
 |-------|--------------|------------------|---------------|
+| **Governance** | Engineering Manager | Solution Architect | constitution |
+| **Architecture Design** | Solution Architect | Engineering Manager | architect |
 | **Project Context Setup** | Solution Architect | Tech Lead, Engineering Manager | contextualize |
 | **Specification** | Product Owner | Business Analyst | specify, clarify |
 | **Quality Validation** | Multi-Role | QA, Security, DevOps | checklist (domain-specific) |
@@ -1496,7 +1573,6 @@ Phase 3 - Repeat for other services:
 | **Task Planning** | Tech Lead | Scrum Master | tasks (after contextualize) |
 | **Pre-Implementation** | Tech Lead | QA Engineer | analyze |
 | **Implementation** | Developer | - | implement |
-| **Governance** | Engineering Manager | Solution Architect | constitution |
 
 ---
 
@@ -1504,17 +1580,17 @@ Phase 3 - Repeat for other services:
 
 GitHub Spec Kit provides a complete workflow from specification to implementation, with clear role assignments:
 
-1. **Product Owners** own requirements (specify, clarify)
-2. **Architects** own technical design (plan, constitution)
-3. **Tech Leads** own quality and execution (tasks, analyze)
-4. **Developers** own implementation (implement)
-5. **QA/Security/DevOps** own domain-specific validation (checklist)
-6. **Scrum Masters** own process facilitation (tasks, planning)
-7. **Engineering Managers** own governance (constitution)
+1. **Engineering Managers** own governance (constitution) and architecture oversight (architect)
+2. **Architects** own formal architecture design (architect) and technical design (plan, constitution)
+3. **Product Owners** own requirements (specify, clarify)
+4. **Tech Leads** own quality and execution (tasks, analyze)
+5. **Developers** own implementation (implement)
+6. **QA/Security/DevOps** own domain-specific validation (checklist)
+7. **Scrum Masters** own process facilitation (tasks, planning)
 
 **Key Principle**: Each role uses commands at the appropriate stage to ensure quality, consistency, and efficiency in the development process.
 
 ---
 
-**Version**: 1.0
-**Last Updated**: 2025-10-26
+**Version**: 1.1
+**Last Updated**: 2025-11-04

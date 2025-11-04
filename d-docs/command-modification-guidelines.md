@@ -4,7 +4,7 @@
 
 **Date**: 2025-10-26
 **Version**: 1.0
-**Codebase**: SD2-METHOD
+**Codebase**: OnSpecKit
 
 ---
 
