@@ -54,7 +54,7 @@ You **MUST** consider the user input before proceeding (if not empty).
      - Tech stack versions and architectural patterns
      - Error handling and logging strategies
      - File structure and directory conventions
-     - Note: If this file is in template mode, suggest running `/summarize` command first to ensure consistency
+     - Note: If this file is in template mode, suggest running `/contextualize` command first to ensure consistency
 
    - **REQUIRED**: Read tasks.md for the complete task list and execution plan
    - **REQUIRED**: Read plan.md for tech stack, architecture, and file structure

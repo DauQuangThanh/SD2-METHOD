@@ -35,7 +35,7 @@ GitHub Spec Kit provides **9 commands** that support different stages of spec-dr
 | `/speckit.specify` | Create feature specification from natural language | 1. Specification | spec.md, requirements.md checklist |
 | `/speckit.clarify` | Interactive Q&A to reduce specification ambiguity | 2. Clarification | Updated spec.md with clarifications |
 | `/speckit.checklist` | Generate quality validation checklists ("unit tests for requirements") | 2-3. Quality | Domain-specific checklist (ux.md, api.md, security.md) |
-| `/speckit.summarize` | Generate/update project context for AI agent consistency | 0. Project Setup | project-context.md with coding standards and architecture |
+| `/speckit.contextualize` | Generate/update project context for AI agent consistency | 0. Project Setup | project-context.md with coding standards and architecture |
 | `/speckit.plan` | Technical planning and architecture design | 4. Design | plan.md, data-model.md, contracts/, research.md |
 | `/speckit.tasks` | Generate executable task breakdown by user story | 5. Task Planning | tasks.md with dependency graph |
 | `/speckit.analyze` | Cross-artifact consistency analysis | 6. Pre-Implementation | Analysis report with coverage metrics |
@@ -50,11 +50,11 @@ GitHub Spec Kit provides **9 commands** that support different stages of spec-dr
             └──────────┬─────────────┘
                        │
                        ▼
-            ┌────────────────────────┐
-            │  /speckit.summarize    │ (Recommended, run before /tasks)
-            │ (Generate project      │ ◄─── Solution Architect, Tech Lead
-            │  context for AI)       │
-            └──────────┬─────────────┘
+            ┌────────────────────────────┐
+            │  /speckit.contextualize    │ (Recommended, run before /tasks)
+            │ (Generate project          │ ◄─── Solution Architect, Tech Lead
+            │  context for AI)           │
+            └──────────┬─────────────────┘
                        │
                        ▼
         ┌────────────────────────────────────┐
@@ -107,17 +107,17 @@ GitHub Spec Kit provides **9 commands** that support different stages of spec-dr
 
 | Role | Primary Commands | Secondary Commands | Read-Only Commands |
 |------|------------------|--------------------|--------------------|
-| **Product Owner** | specify, clarify | checklist (UX/business) | analyze, tasks, summarize |
-| **Product Manager** | specify, clarify | checklist (business) | plan, tasks, analyze, summarize |
-| **Business Analyst** | specify, clarify, checklist | - | plan, tasks, analyze, summarize |
-| **Solution Architect** | plan, checklist (architecture), summarize | constitution | specify, clarify, tasks, analyze |
-| **Technical Lead** | plan, tasks, analyze, summarize | checklist (all), constitution | specify, clarify |
-| **Software Engineer** | implement, clarify | tasks, checklist (technical) | specify, plan, analyze, summarize |
-| **QA Engineer** | checklist (testing), analyze | - | specify, plan, tasks, summarize |
-| **Scrum Master** | tasks | checklist (process) | specify, plan, analyze, summarize |
-| **Security Engineer** | checklist (security), analyze | constitution | specify, plan, tasks, summarize |
-| **DevOps Engineer** | checklist (deployment), plan | tasks, constitution | specify, analyze, summarize |
-| **Engineering Manager** | constitution, analyze | summarize | All commands (for oversight) |
+| **Product Owner** | specify, clarify | checklist (UX/business) | analyze, tasks, contextualize |
+| **Product Manager** | specify, clarify | checklist (business) | plan, tasks, analyze, contextualize |
+| **Business Analyst** | specify, clarify, checklist | - | plan, tasks, analyze, contextualize |
+| **Solution Architect** | plan, checklist (architecture), contextualize | constitution | specify, clarify, tasks, analyze |
+| **Technical Lead** | plan, tasks, analyze, contextualize | checklist (all), constitution | specify, clarify |
+| **Software Engineer** | implement, clarify | tasks, checklist (technical) | specify, plan, analyze, contextualize |
+| **QA Engineer** | checklist (testing), analyze | - | specify, plan, tasks, contextualize |
+| **Scrum Master** | tasks | checklist (process) | specify, plan, analyze, contextualize |
+| **Security Engineer** | checklist (security), analyze | constitution | specify, plan, tasks, contextualize |
+| **DevOps Engineer** | checklist (deployment), plan | tasks, constitution | specify, analyze, contextualize |
+| **Engineering Manager** | constitution, analyze | contextualize | All commands (for oversight) |
 
 ---
 
@@ -253,7 +253,7 @@ GitHub Spec Kit provides **9 commands** that support different stages of spec-dr
 
 ---
 
-##### `/speckit.summarize` ⭐ PRIMARY
+##### `/speckit.contextualize` ⭐ PRIMARY
 
 **Purpose**: Generate or update project context to ensure AI agent consistency
 
@@ -274,7 +274,7 @@ GitHub Spec Kit provides **9 commands** that support different stages of spec-dr
 **Example flow**:
 ```bash
 # First time project setup
-/speckit.summarize
+/speckit.contextualize
 
 # AI analyzes:
 # - README.md, package.json, requirements.txt for tech stack
@@ -437,7 +437,7 @@ GitHub Spec Kit provides **9 commands** that support different stages of spec-dr
 
 ---
 
-##### `/speckit.summarize` ⭐ PRIMARY
+##### `/speckit.contextualize` ⭐ PRIMARY
 
 **Purpose**: Ensure project context is current for AI-assisted implementation
 
@@ -457,7 +457,7 @@ GitHub Spec Kit provides **9 commands** that support different stages of spec-dr
 **Example use**:
 ```bash
 # Before generating tasks for a feature
-/speckit.summarize
+/speckit.contextualize
 
 # Verifies project-context.md is current with:
 # - Latest dependency versions
@@ -1476,9 +1476,9 @@ Phase 3 - Repeat for other services:
 | **specify** | Product Owner | Business Analyst | Start of feature, requirements definition |
 | **clarify** | Product Owner | Developer | After specify, when ambiguities exist |
 | **checklist** | Multi-Role | All | After specification, before planning, before implementation |
-| **summarize** | Solution Architect | Tech Lead, Engineering Manager | Project inception, before tasks, when standards change |
+| **contextualize** | Solution Architect | Tech Lead, Engineering Manager | Project inception, before tasks, when standards change |
 | **plan** | Solution Architect | Tech Lead | After specification, before tasks |
-| **tasks** | Tech Lead | Scrum Master | After planning (and summarize), before implementation |
+| **tasks** | Tech Lead | Scrum Master | After planning (and contextualize), before implementation |
 | **analyze** | Tech Lead | QA Engineer | After tasks, before implementation |
 | **implement** | Developer | - | After analyze passes, during development |
 | **constitution** | Engineering Manager | Architect | Project inception, principle updates |
@@ -1489,11 +1489,11 @@ Phase 3 - Repeat for other services:
 
 | Stage | Primary Role | Supporting Roles | Commands Used |
 |-------|--------------|------------------|---------------|
-| **Project Context Setup** | Solution Architect | Tech Lead, Engineering Manager | summarize |
+| **Project Context Setup** | Solution Architect | Tech Lead, Engineering Manager | contextualize |
 | **Specification** | Product Owner | Business Analyst | specify, clarify |
 | **Quality Validation** | Multi-Role | QA, Security, DevOps | checklist (domain-specific) |
-| **Technical Planning** | Solution Architect | Tech Lead | plan, checklist (architecture), summarize (if needed) |
-| **Task Planning** | Tech Lead | Scrum Master | tasks (after summarize) |
+| **Technical Planning** | Solution Architect | Tech Lead | plan, checklist (architecture), contextualize (if needed) |
+| **Task Planning** | Tech Lead | Scrum Master | tasks (after contextualize) |
 | **Pre-Implementation** | Tech Lead | QA Engineer | analyze |
 | **Implementation** | Developer | - | implement |
 | **Governance** | Engineering Manager | Solution Architect | constitution |
