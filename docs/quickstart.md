@@ -12,14 +12,14 @@ Initialize your project depending on the coding agent you're using:
 
 ```bash
 uvx --from git+https://github.com/DauQuangThanh/SD2-METHOD.git specify init <PROJECT_NAME>
-```bash
+```
 
 Pick script type explicitly (optional):
 
 ```bash
 uvx --from git+https://github.com/DauQuangThanh/SD2-METHOD.git specify init <PROJECT_NAME> --script ps  # Force PowerShell
 uvx --from git+https://github.com/DauQuangThanh/SD2-METHOD.git specify init <PROJECT_NAME> --script sh  # Force POSIX shell
-```bash
+```
 
 ### 2. Create the Spec
 
@@ -27,7 +27,7 @@ Use the `/speckit.specify` command to describe what you want to build. Focus on 
 
 ```bash
 /speckit.specify Build an application that can help me organize my photos in separate photo albums. Albums are grouped by date and can be re-organized by dragging and dropping on the main page. Albums are never in other nested albums. Within each album, photos are previewed in a tile-like interface.
-```text
+```
 
 ### 3. Create a Technical Implementation Plan
 
@@ -64,7 +64,7 @@ You'll be able to drag and drop cards back and forth between different columns. 
 assigned to you, the currently logged in user, in a different color from all the other ones, so you can quickly
 see yours. You can edit any comments that you make, but you can't edit comments that other people made. You can
 delete any comments that you made, but you can't delete comments anybody else made.
-```text
+```
 
 ### Step 2: Refine the Specification
 
@@ -74,13 +74,13 @@ After the initial specification is created, clarify any missing requirements:
 For each sample project or project that you create there should be a variable number of tasks between 5 and 15
 tasks for each one randomly distributed into different states of completion. Make sure that there's at least
 one task in each stage of completion.
-```text
+```
 
 Also validate the specification checklist:
 
 ```text
 Read the review and acceptance checklist, and check off each item in the checklist if the feature spec meets the criteria. Leave it empty if it does not.
-```text
+```
 
 ### Step 3: Generate Technical Plan with `/speckit.plan`
 
@@ -100,13 +100,13 @@ Have your AI agent audit the implementation plan:
 Now I want you to go and audit the implementation plan and the implementation detail files.
 Read through it with an eye on determining whether or not there is a sequence of tasks that you need
 to be doing that are obvious from reading this. Because I don't know if there's enough here.
-```text
+```
 
 Finally, implement the solution:
 
 ```text
 implement specs/002-create-taskify/plan.md
-```text
+```
 
 ## Key Principles
 

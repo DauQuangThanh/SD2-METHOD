@@ -11,7 +11,7 @@ git clone https://github.com/DauQuangThanh/SD2-METHOD.git
 cd spec-kit
 # Work on a feature branch
 git checkout -b your-feature-branch
-```bash
+```
 
 ## 2. Run the CLI Directly (Fastest Feedback)
 
@@ -21,13 +21,13 @@ You can execute the CLI via the module entrypoint without installing anything:
 # From repo root
 python -m src.specify_cli --help
 python -m src.specify_cli init demo-project --ai claude --ignore-agent-tools --script sh
-```bash
+```
 
 If you prefer invoking the script file style (uses shebang):
 
 ```bash
 python src/specify_cli/__init__.py init demo-project --script ps
-```bash
+```
 
 ## 3. Use Editable Install (Isolated Environment)
 
@@ -53,7 +53,7 @@ Re-running after code edits requires no reinstall because of editable mode.
 
 ```bash
 uvx --from . specify init demo-uvx --ai copilot --ignore-agent-tools --script sh
-```bash
+```
 
 You can also point uvx at a specific branch without merging:
 
@@ -61,7 +61,7 @@ You can also point uvx at a specific branch without merging:
 # Push your working branch first
 git push origin your-feature-branch
 uvx --from git+https://github.com/DauQuangThanh/SD2-METHOD.git@your-feature-branch specify init demo-branch-test --script ps
-```bash
+```
 
 ### 4a. Absolute Path uvx (Run From Anywhere)
 
@@ -70,7 +70,7 @@ If you're in another directory, use an absolute path instead of `.`:
 ```bash
 uvx --from /mnt/c/GitHub/spec-kit specify --help
 uvx --from /mnt/c/GitHub/spec-kit specify init demo-anywhere --ai copilot --ignore-agent-tools --script sh
-```javascript
+```
 
 Set an environment variable for convenience:
 
@@ -85,7 +85,7 @@ uvx --from "$SPEC_KIT_SRC" specify init demo-env --ai copilot --ignore-agent-too
 specify-dev() { uvx --from /mnt/c/GitHub/spec-kit specify "$@"; }
 # Then
 specify-dev --help
-```text
+```
 
 ## 5. Testing Script Permission Logic
 
@@ -94,7 +94,7 @@ After running an `init`, check that shell scripts are executable on POSIX system
 ```bash
 ls -l scripts | grep .sh
 # Expect owner execute bit (e.g. -rwxr-xr-x)
-```bash
+```
 
 On Windows you will instead use the `.ps1` scripts (no chmod needed).
 
@@ -104,7 +104,7 @@ Currently no enforced lint config is bundled, but you can quickly sanity check i
 
 ```bash
 python -c "import specify_cli; print('Import OK')"
-```text
+```
 
 ## 7. Build a Wheel Locally (Optional)
 
@@ -124,7 +124,7 @@ When testing `init --here` in a dirty directory, create a temp workspace:
 ```bash
 mkdir /tmp/spec-test && cd /tmp/spec-test
 python -m src.specify_cli init --here --ai claude --ignore-agent-tools --script sh  # if repo copied here
-```bash
+```
 
 Or copy only the modified CLI portion if you want a lighter sandbox.
 
@@ -135,7 +135,7 @@ If you need to bypass TLS validation while experimenting:
 ```bash
 specify check --skip-tls
 specify init demo --skip-tls --ai gemini --ignore-agent-tools --script ps
-```bash
+```
 
 (Use only for local experimentation.)
 
@@ -156,7 +156,7 @@ Remove build artifacts / virtual env quickly:
 
 ```bash
 rm -rf .venv dist build *.egg-info
-```text
+```
 
 ## 12. Common Issues
 

@@ -1,6 +1,6 @@
 # Mapping GitHub Spec Kit to Software Development Processes
 
-## Comprehensive Integration Guidelines for AI-Augmented Development
+**Comprehensive Integration Guidelines for AI-Augmented Development**
 
 **Date**: 2025-10-26
 **Version**: 1.0
@@ -19,17 +19,17 @@ GitHub Spec Kit is an **AI-augmented framework** that supports software developm
 ## Table of Contents
 
 1. [SDLC Phase Mapping](#sdlc-phase-mapping)
-1. [Agile/Scrum Integration](#agilescrum-integration)
-1. [Kanban Integration](#kanban-integration)
-1. [Waterfall Integration](#waterfall-integration)
-1. [DevOps/CI-CD Integration](#devopsci-cd-integration)
-1. [Team Size Adaptations](#team-size-adaptations)
-1. [Project Type Adaptations](#project-type-adaptations)
-1. [Quality Gates and Metrics](#quality-gates-and-metrics)
-1. [Best Practices and Patterns](#best-practices-and-patterns)
-1. [Common Pitfalls and Solutions](#common-pitfalls-and-solutions)
-1. [Integration with Existing Tools](#integration-with-existing-tools)
-1. [Real-World Workflows](#real-world-workflows)
+2. [Agile/Scrum Integration](#agilescrum-integration)
+3. [Kanban Integration](#kanban-integration)
+4. [Waterfall Integration](#waterfall-integration)
+5. [DevOps/CI-CD Integration](#devopsci-cd-integration)
+6. [Team Size Adaptations](#team-size-adaptations)
+7. [Project Type Adaptations](#project-type-adaptations)
+8. [Quality Gates and Metrics](#quality-gates-and-metrics)
+9. [Best Practices and Patterns](#best-practices-and-patterns)
+10. [Common Pitfalls and Solutions](#common-pitfalls-and-solutions)
+11. [Integration with Existing Tools](#integration-with-existing-tools)
+12. [Real-World Workflows](#real-world-workflows)
 
 ---
 
@@ -37,7 +37,7 @@ GitHub Spec Kit is an **AI-augmented framework** that supports software developm
 
 ### Traditional SDLC Phases
 
-```bash
+```
 ┌─────────────────────────────────────────────────────────────────────────┐
 │                         SDLC PHASE MAPPING                              │
 └─────────────────────────────────────────────────────────────────────────┘
@@ -148,7 +148,7 @@ Phase 0: GOVERNANCE (One-time setup)
 ├─ Artifacts Produced: Project constitution, governance rules
 ├─ Roles: Engineering Manager, Solution Architect
 └─ Exit Criteria: All principles defined and ratified
-```yaml
+```
 
 ---
 
@@ -156,7 +156,7 @@ Phase 0: GOVERNANCE (One-time setup)
 
 ### Scrum Ceremony Mapping
 
-```bash
+```
 ┌─────────────────────────────────────────────────────────────────────────┐
 │                    SCRUM CEREMONY INTEGRATION                            │
 └─────────────────────────────────────────────────────────────────────────┘
@@ -219,13 +219,11 @@ SPRINT PLANNING (Start of sprint)
 └─ Duration: 2-4 hours
 
 SPRINT PLANNING PART 1 (What to build):
-
   - Review spec.md for each story
   - Confirm acceptance criteria with Product Owner
   - Verify all checklists complete
 
 SPRINT PLANNING PART 2 (How to build):
-
   - Review plan.md for technical approach
   - Review tasks.md for task breakdown
   - Assign tasks to developers based on parallel opportunities
@@ -308,9 +306,9 @@ SPRINT RETROSPECTIVE (End of sprint)
 
 ### Sprint-Level Workflow Example
 
-#### 2-Week Sprint with 3 User Stories
+**2-Week Sprint with 3 User Stories**
 
-```bash
+```
 WEEK BEFORE SPRINT (Backlog Refinement):
 ┌────────────────────────────────────────────────────────────────┐
 │ Monday-Wednesday: Story Elaboration                             │
@@ -387,7 +385,7 @@ SPRINT EXECUTION (Week 2):
 │   - Review: Both stories accepted ✓                            │
 │   - Retrospective: Team velocity was accurate                  │
 └────────────────────────────────────────────────────────────────┘
-```yaml
+```
 
 ---
 
@@ -395,7 +393,7 @@ SPRINT EXECUTION (Week 2):
 
 ### Kanban Board with Spec Kit
 
-```bash
+```
 ┌─────────────────────────────────────────────────────────────────────────┐
 │                         KANBAN BOARD COLUMNS                             │
 └─────────────────────────────────────────────────────────────────────────┘
@@ -550,7 +548,7 @@ Column 10: DONE
 
 ### Kanban Metrics with Spec Kit
 
-```bash
+```
 CYCLE TIME BREAKDOWN BY COLUMN (Target vs. Actual):
 
 ┌─────────────────────────────────────────┬──────────┬──────────┐
@@ -581,11 +579,9 @@ CYCLE TIME BREAKDOWN BY COLUMN (Target vs. Actual):
 TOTAL CYCLE TIME: Target 5.5 days | Actual 6 days
 
 BOTTLENECK ANALYSIS:
-
 - Code Review taking 2x longer → Consider pair programming
 - Development slower than expected → Re-estimate task complexity
-
-```yaml
+```
 
 ---
 
@@ -593,7 +589,7 @@ BOTTLENECK ANALYSIS:
 
 ### Waterfall Phases with Spec Kit
 
-```bash
+```
 ┌─────────────────────────────────────────────────────────────────────────┐
 │                    WATERFALL METHODOLOGY INTEGRATION                     │
 └─────────────────────────────────────────────────────────────────────────┘
@@ -861,7 +857,7 @@ PHASE 8: MAINTENANCE (Ongoing)
 
 ### Continuous Integration Pipeline
 
-```text
+```
 ┌─────────────────────────────────────────────────────────────────────────┐
 │                      CI/CD PIPELINE INTEGRATION                          │
 └─────────────────────────────────────────────────────────────────────────┘
@@ -1042,7 +1038,7 @@ STAGE 11: DEPLOYMENT (CD)
 │  └─ Monitor metrics
 │
 └─ Quality Gate: Deployment successful, smoke tests pass
-```yaml
+```
 
 ---
 
@@ -1056,7 +1052,6 @@ name: Spec Kit Validation
 on:
   pull_request:
     paths:
-
       - 'specs/**'
       - 'memory/constitution.md'
 
@@ -1065,11 +1060,9 @@ jobs:
     runs-on: ubuntu-latest
     if: contains(github.event.pull_request.changed_files, 'spec.md')
     steps:
-
       - uses: actions/checkout@v3
 
       - name: Check for NEEDS CLARIFICATION markers
-
         run: |
           if grep -r "NEEDS CLARIFICATION" specs/*/spec.md; then
             echo "❌ Found unresolved clarification markers"
@@ -1078,7 +1071,6 @@ jobs:
           echo "✓ No clarification markers found"
 
       - name: Validate mandatory sections
-
         run: |
           for spec in specs/*/spec.md; do
             required_sections=("Overview" "Functional Requirements" "User Stories" "Success Criteria")
@@ -1092,7 +1084,6 @@ jobs:
           echo "✓ All mandatory sections present"
 
       - name: Check checklists exist and complete
-
         run: |
           for feature_dir in specs/*/; do
             if [ -f "${feature_dir}spec.md" ]; then
@@ -1114,11 +1105,9 @@ jobs:
     runs-on: ubuntu-latest
     if: contains(github.event.pull_request.changed_files, 'plan.md')
     steps:
-
       - uses: actions/checkout@v3
 
       - name: Validate plan references spec
-
         run: |
           for plan in specs/*/plan.md; do
             dir=$(dirname "$plan")
@@ -1130,7 +1119,6 @@ jobs:
           echo "✓ All plans have corresponding specs"
 
       - name: Validate OpenAPI contracts
-
         uses: openapi-lint/action@v1
         with:
           paths: 'specs/*/contracts/*.yaml'
@@ -1139,11 +1127,9 @@ jobs:
     runs-on: ubuntu-latest
     if: contains(github.event.pull_request.changed_files, 'tasks.md')
     steps:
-
       - uses: actions/checkout@v3
 
       - name: Validate task format
-
         run: |
           for tasks in specs/*/tasks.md; do
             # Check all tasks have checkboxes and IDs
@@ -1155,7 +1141,6 @@ jobs:
           echo "✓ All tasks properly formatted"
 
       - name: Validate story labels match spec
-
         run: |
           for dir in specs/*/; do
             if [ -f "$dir/tasks.md" ] && [ -f "$dir/spec.md" ]; then
@@ -1180,16 +1165,13 @@ jobs:
     runs-on: ubuntu-latest
     if: github.event.pull_request.label == 'ready-for-implementation'
     steps:
-
       - uses: actions/checkout@v3
 
       - name: Setup Spec Kit CLI
-
         run: |
           pip install specify-cli
 
       - name: Run spec kit analysis
-
         run: |
           cd specs/*
           specify analyze > analysis-report.md
@@ -1205,7 +1187,6 @@ jobs:
           echo "✓ Analysis passed with no critical issues"
 
       - name: Post analysis report
-
         uses: actions/github-script@v6
         with:
           script: |
@@ -1217,7 +1198,7 @@ jobs:
               repo: context.repo.repo,
               body: `## Spec Kit Analysis Report\n\n${report}`
             });
-```yaml
+```
 
 ---
 
@@ -1226,7 +1207,6 @@ jobs:
 ### Solo Developer / Small Team (1-3 people)
 
 ```
-
 ┌─────────────────────────────────────────────────────────────────────────┐
 │                     SOLO DEVELOPER / SMALL TEAM                          │
 └─────────────────────────────────────────────────────────────────────────┘
@@ -1263,7 +1243,6 @@ TOTAL OVERHEAD: ~1 hour of specification work
 BENEFIT: Clear direction, testable requirements, no scope creep
 
 OPTIMIZATIONS:
-
 - Skip /speckit.clarify if requirements are clear
 - Generate only essential checklists (1-2 max)
 - Combine design and task planning in one session
@@ -1271,19 +1250,17 @@ OPTIMIZATIONS:
 - Focus on speed while maintaining quality
 
 WHEN TO USE FULL WORKFLOW:
-
 - Customer-facing features
 - Complex business logic
 - Security-sensitive features
 - Features with unclear requirements
-
-```yaml
+```
 
 ---
 
 ### Medium Team (4-10 people)
 
-```bash
+```
 ┌─────────────────────────────────────────────────────────────────────────┐
 │                          MEDIUM TEAM (4-10)                              │
 └─────────────────────────────────────────────────────────────────────────┘
@@ -1340,19 +1317,16 @@ Sprint Execution:
 └─ Day 10: Sprint review and retrospective
 
 PARALLEL WORK OPPORTUNITIES:
-
 - Multiple developers can work on different stories simultaneously
 - Tech Lead prepares future sprints while developers implement current sprint
 - QA validates completed stories while developers continue new ones
-
-```yaml
+```
 
 ---
 
 ### Large Team (11-30 people)
 
 ```
-
 ┌─────────────────────────────────────────────────────────────────────────┐
 │                         LARGE TEAM (11-30)                               │
 └─────────────────────────────────────────────────────────────────────────┘
@@ -1425,26 +1399,23 @@ Week N (Current sprint):
 └─ Weekly: Cross-team sync for dependencies
 
 PARALLEL EXECUTION:
-
 - 4 Scrum teams can implement 4 independent features simultaneously
 - Product team prepares Sprint N+2 while teams execute Sprint N
 - Architecture team designs Sprint N+1 while teams execute Sprint N
 - Quality team validates Sprint N-1 output while teams execute Sprint N
 
 SCALING BENEFITS:
-
 - Clear separation of concerns (product, architecture, quality, implementation)
 - 2-sprint look-ahead ensures work is always ready
 - Multiple teams can work independently on different features
 - Consistent quality across all teams via shared constitution
-
-```yaml
+```
 
 ---
 
 ### Enterprise Team (30+ people)
 
-```bash
+```
 ┌─────────────────────────────────────────────────────────────────────────┐
 │                      ENTERPRISE TEAM (30+)                               │
 └─────────────────────────────────────────────────────────────────────────┘
@@ -1520,22 +1491,22 @@ COORDINATION MECHANISMS:
    - All business units must comply
    - Changes require approval from all BU leaders
 
-1. Design Review Board:
+2. Design Review Board:
    - Weekly meeting of all Solution Architects
    - Reviews all /speckit.plan outputs
    - Ensures cross-BU consistency
 
-1. Quality Council:
+3. Quality Council:
    - Bi-weekly meeting of QA, Security, DevOps leaders
    - Reviews /speckit.analyze reports
    - Identifies patterns and improvement opportunities
 
-1. Specification Library:
+4. Specification Library:
    - Central repository of all spec.md files
    - Searchable by feature, domain, business unit
    - Prevents duplicate work across BUs
 
-1. Metrics Dashboard:
+5. Metrics Dashboard:
    - Tracks Spec Kit usage across all teams
    - Monitors quality metrics (analyze results)
    - Identifies bottlenecks and optimization opportunities
@@ -1556,7 +1527,7 @@ Challenge 4: Knowledge silos
 
 Challenge 5: Governance overhead
 └─ Solution: Delegate most decisions to BUs, central team reviews exceptions only
-```yaml
+```
 
 ---
 
@@ -1565,7 +1536,6 @@ Challenge 5: Governance overhead
 ### Greenfield Project (New Product)
 
 ```
-
 PHASE 0: Foundation (Week 1)
 ├─ Engineering Manager: /speckit.constitution
 │  └─ Define all project principles upfront
@@ -1590,19 +1560,17 @@ PHASE 2: Implementation (Weeks 4-12)
 └─ Team: /speckit.implement (incremental MVP delivery)
 
 BEST PRACTICES:
-
 - Take time on constitution - it sets standards for entire project
 - Document ALL technology decisions in research.md
 - Start with minimal but complete features
 - Focus on architecture that can scale
-
-```yaml
+```
 
 ---
 
 ### Brownfield Project (Adding to Existing System)
 
-```bash
+```
 PHASE 0: Assessment (Week 1)
 ├─ Review existing architecture and constraints
 ├─ Check if constitution.md exists
@@ -1639,20 +1607,17 @@ PHASE 3: Implementation (Weeks 3-N)
    └─ Extra care with existing code integration
 
 BEST PRACTICES:
-
 - Create constitution retrospectively if missing
 - Document existing system constraints in plan.md
 - Add integration tests to testing checklist
 - Plan for rollback in deployment checklist
-
-```yaml
+```
 
 ---
 
 ### Microservices Project
 
 ```
-
 PATTERN: One Spec Kit workflow per microservice
 
 SERVICE 1: User Service
@@ -1681,10 +1646,8 @@ Shared Constitution:
    └─ Defines: Observability requirements
 
 Contract-First Development:
-
 1. Define service contracts in contracts/ BEFORE implementation
-1. Each service's contracts/ directory contains:
-
+2. Each service's contracts/ directory contains:
    ├─ OpenAPI specs for REST endpoints
    ├─ GraphQL schemas for GraphQL endpoints
    ├─ Event schemas for async communication
@@ -1703,14 +1666,13 @@ VALIDATION STRATEGY:
    ├─ Contracts don't conflict across services
    ├─ Data ownership boundaries are respected
    └─ Inter-service dependencies are documented
-
-```yaml
+```
 
 ---
 
 ### API-First Project
 
-```bash
+```
 CRITICAL: contracts/ directory is PRIMARY artifact
 
 PHASE 1: API Design (Before any other work)
@@ -1748,20 +1710,17 @@ PHASE 4: Contract Testing
    └─ Every endpoint must match contract exactly
 
 BEST PRACTICES:
-
 - contracts/ is source of truth
 - Never deviate from contracts without updating them
 - Use contract testing tools (Pact, Dredd, etc.)
 - Version APIs from day one
-
-```yaml
+```
 
 ---
 
 ### Mobile App Project
 
 ```
-
 PLATFORM-SPECIFIC WORKFLOWS:
 
 BACKEND (API):
@@ -1805,14 +1764,13 @@ SHARED SPECIFICATIONS:
 COORDINATION:
 └─ Product Owner creates ONE spec.md
    └─ Platform teams adapt to platform-specific plans
-
-```yaml
+```
 
 ---
 
 ### Data Engineering Project
 
-```bash
+```
 SPECIALIZED FOCUS: data-model.md is PRIMARY artifact
 
 PHASE 1: Data Requirements
@@ -1857,13 +1815,11 @@ PHASE 4: Pipeline Implementation
       └─ Monitoring and alerting tasks
 
 SPECIALIZED CHECKLISTS:
-
 - Privacy/GDPR compliance checklist
 - Data retention and deletion checklist
 - Data security and encryption checklist
 - Data pipeline monitoring checklist
-
-```yaml
+```
 
 ---
 
@@ -1872,7 +1828,6 @@ SPECIALIZED CHECKLISTS:
 ### Quality Gates by Phase
 
 ```
-
 ┌─────────────────────────────────────────────────────────────────────────┐
 │                           QUALITY GATES                                  │
 └─────────────────────────────────────────────────────────────────────────┘
@@ -2014,14 +1969,13 @@ GATE 7: Acceptance
 │  └─ Defect rate: Target <1 per 100 requirements
 │
 └─ Decision: PASS → Deploy | FAIL → Fix and retest
-
-```yaml
+```
 
 ---
 
 ### Key Performance Indicators (KPIs)
 
-```bash
+```
 ┌─────────────────────────────────────────────────────────────────────────┐
 │                     SPEC KIT KPIs & METRICS                              │
 └─────────────────────────────────────────────────────────────────────────┘
@@ -2029,28 +1983,24 @@ GATE 7: Acceptance
 SPEED METRICS (How fast are we moving?):
 
 1. Specification Velocity
-
    ├─ Definition: Number of features specified per week
    ├─ Calculation: Count of complete spec.md files / week
    ├─ Target: 3-5 features/week (medium team)
    └─ Tracks: Product Owner efficiency with /speckit.specify
 
-1. Design Velocity
-
+2. Design Velocity
    ├─ Definition: Number of features designed per week
    ├─ Calculation: Count of complete plan.md files / week
    ├─ Target: 3-5 features/week (medium team)
    └─ Tracks: Architect efficiency with /speckit.plan
 
-1. Implementation Velocity
-
+3. Implementation Velocity
    ├─ Definition: Number of features implemented per sprint
    ├─ Calculation: Count of completed tasks.md (all tasks [X]) / sprint
    ├─ Target: Team-dependent (track and improve)
    └─ Tracks: Developer efficiency with /speckit.implement
 
-1. Time to First Code
-
+4. Time to First Code
    ├─ Definition: Time from /speckit.specify to /speckit.implement start
    ├─ Calculation: Timestamp difference
    ├─ Target: ≤5 days (Agile), ≤2 weeks (Waterfall)
@@ -2060,36 +2010,31 @@ SPEED METRICS (How fast are we moving?):
 
 QUALITY METRICS (How good is our work?):
 
-1. Specification Quality Score
-
+5. Specification Quality Score
    ├─ Definition: Percentage of specs passing first-time validation
    ├─ Calculation: (Specs with 0 revisions / Total specs) × 100
    ├─ Target: ≥80%
    └─ Tracks: /speckit.specify + /speckit.clarify effectiveness
 
-1. Pre-Implementation Issue Rate
-
+6. Pre-Implementation Issue Rate
    ├─ Definition: Average issues found per /speckit.analyze
    ├─ Calculation: (Total issues / Total analyzes)
    ├─ Target: <5 issues, 0 critical
    └─ Tracks: Quality of specs, plans, and tasks
 
-1. Requirement Coverage
-
+7. Requirement Coverage
    ├─ Definition: Percentage of requirements with tasks
    ├─ Calculation: From /speckit.analyze coverage report
    ├─ Target: 100%
    └─ Tracks: /speckit.tasks completeness
 
-1. Post-Implementation Defect Rate
-
+8. Post-Implementation Defect Rate
    ├─ Definition: Bugs found per feature after implementation
    ├─ Calculation: (Post-impl bugs / Features) × 100
    ├─ Target: <2 bugs per feature
    └─ Tracks: Overall workflow effectiveness
 
-1. Rework Rate
-
+9. Rework Rate
    ├─ Definition: Percentage of features requiring spec changes post-planning
    ├─ Calculation: (Features with spec rework / Total features) × 100
    ├─ Target: <10%
@@ -2099,36 +2044,31 @@ QUALITY METRICS (How good is our work?):
 
 EFFICIENCY METRICS (Are we working smart?):
 
-1. Clarification Efficiency
-
+10. Clarification Efficiency
     ├─ Definition: Average clarification rounds per feature
     ├─ Calculation: Count of /speckit.clarify runs / feature
     ├─ Target: ≤2 rounds
     └─ Tracks: Initial spec quality
 
-1. Checklist Completion Time
-
+11. Checklist Completion Time
     ├─ Definition: Time from checklist creation to 100% complete
     ├─ Calculation: Timestamp difference
     ├─ Target: <2 days
     └─ Tracks: Validation process efficiency
 
-1. Parallel Work Ratio
-
+12. Parallel Work Ratio
     ├─ Definition: Percentage of tasks that can run in parallel
     ├─ Calculation: (Tasks with [P] marker / Total tasks) × 100
     ├─ Target: ≥30%
     └─ Tracks: /speckit.tasks optimization
 
-1. Constitution Compliance Rate
-
+13. Constitution Compliance Rate
     ├─ Definition: Percentage of features passing constitution checks
     ├─ Calculation: From /speckit.analyze constitution section
     ├─ Target: 100%
     └─ Tracks: Team adherence to standards
 
-1. Analysis Pass Rate
-
+14. Analysis Pass Rate
     ├─ Definition: Percentage of features passing /speckit.analyze first time
     ├─ Calculation: (Analyzes with 0 critical issues / Total analyzes) × 100
     ├─ Target: ≥90%
@@ -2138,22 +2078,19 @@ EFFICIENCY METRICS (Are we working smart?):
 
 COLLABORATION METRICS (Is the team working well together?):
 
-1. Specification Review Cycle Time
-
+15. Specification Review Cycle Time
     ├─ Definition: Time for stakeholders to complete checklists
     ├─ Calculation: From checklist creation to 100% complete
     ├─ Target: <3 days
     └─ Tracks: Stakeholder engagement
 
-1. Cross-Functional Checklist Coverage
-
+16. Cross-Functional Checklist Coverage
     ├─ Definition: Number of domains with checklists per feature
     ├─ Calculation: Count of checklist files per feature
     ├─ Target: ≥3 domains (UX, Testing, Security minimum)
     └─ Tracks: Multi-stakeholder involvement
 
-1. Clarification Response Time
-
+17. Clarification Response Time
     ├─ Definition: Time from clarification question to answer
     ├─ Calculation: Time between /speckit.clarify calls
     ├─ Target: <4 hours
@@ -2163,34 +2100,30 @@ COLLABORATION METRICS (Is the team working well together?):
 
 BUSINESS METRICS (Are we delivering value?):
 
-1. Feature Lead Time
-
+18. Feature Lead Time
     ├─ Definition: Time from /speckit.specify to production
     ├─ Calculation: End-to-end timestamp difference
     ├─ Target: <3 weeks (Agile), <3 months (Waterfall)
     └─ Tracks: Overall delivery efficiency
 
-1. Specification Reuse Rate
-
+19. Specification Reuse Rate
     ├─ Definition: Percentage of specs reused/referenced in other features
     ├─ Calculation: (Reused specs / Total specs) × 100
     ├─ Target: Track trend (should increase over time)
     └─ Tracks: Pattern identification and reuse
 
-1. Success Criteria Achievement Rate
-
+20. Success Criteria Achievement Rate
     ├─ Definition: Percentage of spec.md success criteria achieved
     ├─ Calculation: (Achieved criteria / Total criteria) × 100
     ├─ Target: 100%
     └─ Tracks: Business value delivery
-```yaml
+```
 
 ---
 
 ### Metrics Dashboard Example
 
 ```
-
 ┌─────────────────────────────────────────────────────────────────┐
 │               SPEC KIT METRICS DASHBOARD                        │
 │                      2025-10-26                                 │
@@ -2235,16 +2168,11 @@ TRENDS (vs. Last Sprint):
 └─ Collaboration: Stable →
 
 ACTIONS REQUIRED:
-
 1. ⚠ Implementation Velocity below target (3 vs. 4 features/sprint)
-
    → Action: Review task estimates, check for blockers
-
-1. ⚠ Success Criteria Achievement Rate below 100%
-
+2. ⚠ Success Criteria Achievement Rate below 100%
    → Action: Review which criteria not met, refine definitions
-
-```yaml
+```
 
 ---
 
@@ -2254,15 +2182,14 @@ ACTIONS REQUIRED:
 
 **DON'T:**
 
-```text
+```
 ❌ Developer: "Let me just start coding and figure it out as I go"
    → Result: Scope creep, rework, missed requirements
-```text
+```
 
 **DO:**
 
 ```
-
 ✓ Product Owner: /speckit.specify → Clear requirements
 ✓ Team: /speckit.checklist → Validation
 ✓ Architect: /speckit.plan → Technical design
@@ -2270,8 +2197,7 @@ ACTIONS REQUIRED:
 ✓ Tech Lead: /speckit.analyze → Pre-implementation validation
 ✓ Developer: /speckit.implement → Confident implementation
    → Result: Clear direction, fewer defects, less rework
-
-```yaml
+```
 
 ---
 
@@ -2279,15 +2205,14 @@ ACTIONS REQUIRED:
 
 **DON'T:**
 
-```bash
+```
 ❌ Try to specify everything perfectly upfront
    → Results in: Analysis paralysis, delayed delivery
-```text
+```
 
 **DO:**
 
 ```
-
 ✓ Sprint N-2: High-level specification
    /speckit.specify (just core requirements)
 
@@ -2299,8 +2224,7 @@ ACTIONS REQUIRED:
    /speckit.implement
 
 → Result: Just-in-time elaboration, reduced waste
-
-```yaml
+```
 
 ---
 
@@ -2308,26 +2232,23 @@ ACTIONS REQUIRED:
 
 **DON'T:**
 
-```text
+```
 ❌ Skip checklists to "save time"
    → Result: Issues found late (expensive to fix)
-```text
+```
 
 **DO:**
 
 ```
-
 ✓ Create domain-specific checklists early
-
-- UX checklist (before design)
-- Security checklist (before design)
-- Testing checklist (before implementation)
-- Deployment checklist (before implementation)
+   - UX checklist (before design)
+   - Security checklist (before design)
+   - Testing checklist (before implementation)
+   - Deployment checklist (before implementation)
 
 ✓ Make checklists mandatory quality gates
    → Result: Issues found early (cheap to fix)
-
-```yaml
+```
 
 ---
 
@@ -2335,23 +2256,21 @@ ACTIONS REQUIRED:
 
 **DON'T:**
 
-```text
+```
 ❌ Create constitution once and never update
    → Result: Standards drift, inconsistency
-```text
+```
 
 **DO:**
 
 ```
-
 ✓ Sprint Retrospective: Review constitution effectiveness
 ✓ After Major Issues: Update constitution with new principle
 ✓ Quarterly: Full constitution review and update
 ✓ /speckit.analyze: Enforces current constitution
 
 → Result: Standards evolve with team learning
-
-```yaml
+```
 
 ---
 
@@ -2359,23 +2278,21 @@ ACTIONS REQUIRED:
 
 **DON'T:**
 
-```text
+```
 ❌ All tasks sequential (Developer A waits for Developer B)
    → Result: Low throughput, underutilized team
-```text
+```
 
 **DO:**
 
 ```
-
 ✓ /speckit.tasks generates parallel markers [P]
 ✓ Assign [P] tasks to different developers
 ✓ Use dependency graph to identify critical path
 ✓ Maximize parallel work within each user story
 
 → Result: Higher throughput, better team utilization
-
-```yaml
+```
 
 ---
 
@@ -2383,23 +2300,21 @@ ACTIONS REQUIRED:
 
 **DON'T:**
 
-```text
+```
 ❌ Run /speckit.analyze once and forget
    → Result: Inconsistencies accumulate
-```text
+```
 
 **DO:**
 
 ```
-
 ✓ Before each sprint: /speckit.analyze (quality gate)
 ✓ After spec changes: /speckit.analyze (validate consistency)
 ✓ After design changes: /speckit.analyze (validate impact)
 ✓ CI/CD pipeline: Automated /speckit.analyze
 
 → Result: Continuous consistency validation
-
-```yaml
+```
 
 ---
 
@@ -2407,23 +2322,21 @@ ACTIONS REQUIRED:
 
 **DON'T:**
 
-```text
+```
 ❌ Define APIs informally ("We'll figure it out")
    → Result: Integration issues, rework
-```text
+```
 
 **DO:**
 
 ```
-
 ✓ /speckit.plan creates contracts/ with OpenAPI/GraphQL specs
 ✓ Frontend and backend develop against contracts independently
 ✓ Contract tests validate implementation matches contracts
 ✓ Contracts versioned and never changed (only extended)
 
 → Result: Parallel development, fewer integration issues
-
-```yaml
+```
 
 ---
 
@@ -2431,28 +2344,22 @@ ACTIONS REQUIRED:
 
 **DON'T:**
 
-```text
+```
 ❌ Tasks organized by technical layer
-
    - All models first
    - All services next
    - All endpoints last
-
    → Result: No incremental value delivery
-```text
+```
 
 **DO:**
 
 ```
-
 ✓ /speckit.tasks organizes by user story
-
-- Story 1: Complete vertical slice (model + service + endpoint)
-- Story 2: Complete vertical slice
-
+   - Story 1: Complete vertical slice (model + service + endpoint)
+   - Story 2: Complete vertical slice
    → Result: Incremental value, early testing
-
-```yaml
+```
 
 ---
 
@@ -2460,23 +2367,21 @@ ACTIONS REQUIRED:
 
 **DON'T:**
 
-```text
+```
 ❌ Lose connection between requirements and implementation
    → Result: Cannot verify all requirements met
-```text
+```
 
 **DO:**
 
 ```
-
 ✓ Every task in tasks.md has [US1], [US2] story label
 ✓ Every story in spec.md has unique ID
 ✓ /speckit.analyze validates traceability
 ✓ Checklists reference spec sections
 
 → Result: Complete traceability, coverage validation
-
-```yaml
+```
 
 ---
 
@@ -2484,15 +2389,14 @@ ACTIONS REQUIRED:
 
 **DON'T:**
 
-```text
+```
 ❌ Wait until implementation complete to get feedback
    → Result: Major rework if direction wrong
-```text
+```
 
 **DO:**
 
 ```
-
 ✓ After /speckit.specify: Product Owner reviews spec.md
 ✓ After /speckit.clarify: Stakeholders review updated spec
 ✓ After /speckit.plan: Architect reviews plan.md
@@ -2500,8 +2404,7 @@ ACTIONS REQUIRED:
 ✓ After /speckit.analyze: Team reviews quality report
 
 → Result: Continuous feedback, early course correction
-
-```yaml
+```
 
 ---
 
@@ -2511,17 +2414,16 @@ ACTIONS REQUIRED:
 
 **Problem:**
 
-```text
+```
 ❌ Team spends weeks perfecting spec.md
 ❌ Every detail must be clarified before proceeding
 ❌ Product Owner overwhelmed with clarification questions
 → Result: Delayed delivery, no incremental progress
-```text
+```
 
 **Solution:**
 
 ```
-
 ✓ Timebox /speckit.specify to 4 hours maximum
 ✓ Limit /speckit.clarify to 5 questions maximum
 ✓ Use reasonable defaults, document assumptions
@@ -2529,8 +2431,7 @@ ACTIONS REQUIRED:
 ✓ Use /speckit.clarify during implementation for just-in-time answers
 
 → Result: Balanced speed and quality
-
-```yaml
+```
 
 ---
 
@@ -2538,31 +2439,27 @@ ACTIONS REQUIRED:
 
 **Problem:**
 
-```text
+```
 ❌ Team generates 10+ checklists per feature
 ❌ Each checklist has 50+ items
 ❌ Completing checklists takes weeks
 ❌ Team sees checklists as bureaucratic overhead
 → Result: Checklists abandoned, quality suffers
-```text
+```
 
 **Solution:**
 
 ```
-
 ✓ Generate only essential checklists (3-5 per feature)
 ✓ Limit checklist items to 20-30 per checklist
 ✓ Focus on high-impact quality checks only
 ✓ Make checklists specific to feature complexity
-
-- Simple feature: 1-2 checklists
-- Complex feature: 4-5 checklists
-
+   - Simple feature: 1-2 checklists
+   - Complex feature: 4-5 checklists
 ✓ Automate checklist items where possible
 
 → Result: Lightweight, valuable quality checks
-
-```yaml
+```
 
 ---
 
@@ -2570,28 +2467,25 @@ ACTIONS REQUIRED:
 
 **Problem:**
 
-```text
+```
 ❌ /speckit.plan generates overly complex architecture
 ❌ Solution designed for 10M users when current is 100
 ❌ Months spent on "future-proof" design
 → Result: Over-engineered, delayed, never used features
-```text
+```
 
 **Solution:**
 
 ```
-
 ✓ Plan for current needs + 1-2x growth
 ✓ Use constitution to define "appropriate complexity"
 ✓ Focus on extensibility, not premature optimization
 ✓ Validate plan.md complexity matches feature priority
-
-- P1 feature: Optimize for current needs
-- P3 feature: Simple implementation, refactor later if needed
+   - P1 feature: Optimize for current needs
+   - P3 feature: Simple implementation, refactor later if needed
 
 → Result: Appropriate design for actual needs
-
-```yaml
+```
 
 ---
 
@@ -2599,18 +2493,17 @@ ACTIONS REQUIRED:
 
 **Problem:**
 
-```text
+```
 ❌ Team skips /speckit.analyze to "save time"
 ❌ Goes straight from /speckit.tasks to /speckit.implement
 ❌ Discovers requirement gaps during implementation
 ❌ Discovers design conflicts during implementation
 → Result: Mid-sprint rework, missed deadlines
-```text
+```
 
 **Solution:**
 
 ```
-
 ✓ Make /speckit.analyze mandatory quality gate
 ✓ Automate in CI/CD pipeline
 ✓ Block sprint start if analysis shows critical issues
@@ -2618,8 +2511,7 @@ ACTIONS REQUIRED:
 ✓ Continuously improve analysis effectiveness
 
 → Result: Issues caught early, smoother implementation
-
-```yaml
+```
 
 ---
 
@@ -2627,18 +2519,17 @@ ACTIONS REQUIRED:
 
 **Problem:**
 
-```text
+```
 ❌ /speckit.analyze shows constitution violations
 ❌ Team ignores them ("we'll fix it later")
 ❌ Technical debt accumulates
 ❌ Standards erode over time
 → Result: Inconsistent system, difficult to maintain
-```text
+```
 
 **Solution:**
 
 ```
-
 ✓ Make constitution compliance 100% mandatory
 ✓ /speckit.analyze must show 0 constitution violations to proceed
 ✓ If principle is wrong, update constitution (don't violate it)
@@ -2646,8 +2537,7 @@ ACTIONS REQUIRED:
 ✓ Review constitution effectiveness quarterly
 
 → Result: Consistent standards, maintainable system
-
-```yaml
+```
 
 ---
 
@@ -2655,17 +2545,16 @@ ACTIONS REQUIRED:
 
 **Problem:**
 
-```text
+```
 ❌ Tasks too large: "Implement user authentication" (40 hours)
 ❌ Tasks too small: "Add import statement" (5 minutes)
 ❌ Developer cannot track meaningful progress
 → Result: Poor velocity tracking, unclear progress
-```text
+```
 
 **Solution:**
 
 ```
-
 ✓ Target task size: 2-8 hours
 ✓ If task >8 hours, break down further in /speckit.tasks
 ✓ If task <1 hour, combine with related tasks
@@ -2673,8 +2562,7 @@ ACTIONS REQUIRED:
 ✓ Review task granularity in retrospectives
 
 → Result: Trackable progress, accurate velocity
-
-```yaml
+```
 
 ---
 
@@ -2682,18 +2570,17 @@ ACTIONS REQUIRED:
 
 **Problem:**
 
-```text
+```
 ❌ spec.md updated but plan.md not updated
 ❌ plan.md changed but tasks.md not regenerated
 ❌ Artifacts drift out of sync
 ❌ /speckit.implement uses outdated information
 → Result: Implementation doesn't match current requirements
-```text
+```
 
 **Solution:**
 
 ```
-
 ✓ After updating spec.md: Re-run /speckit.clarify if needed
 ✓ After updating spec.md: Consider re-running /speckit.plan
 ✓ After updating plan.md: Always re-run /speckit.tasks
@@ -2701,8 +2588,7 @@ ACTIONS REQUIRED:
 ✓ Use git hooks to enforce artifact consistency
 
 → Result: Artifacts stay in sync
-
-```yaml
+```
 
 ---
 
@@ -2710,17 +2596,16 @@ ACTIONS REQUIRED:
 
 **Problem:**
 
-```text
+```
 ❌ No one responsible for maintaining spec.md
 ❌ No one responsible for keeping constitution.md updated
 ❌ Artifacts become outdated
 → Result: Loss of single source of truth
-```text
+```
 
 **Solution:**
 
 ```
-
 ✓ Product Owner owns spec.md (all changes go through them)
 ✓ Solution Architect owns plan.md and data-model.md
 ✓ Tech Lead owns tasks.md
@@ -2729,8 +2614,7 @@ ACTIONS REQUIRED:
 ✓ Enforce through PR approval requirements
 
 → Result: Clear ownership, maintained artifacts
-
-```yaml
+```
 
 ---
 
@@ -2738,17 +2622,16 @@ ACTIONS REQUIRED:
 
 **Problem:**
 
-```text
+```
 ❌ Developer starts coding before /speckit.analyze passes
 ❌ "I'll just get a head start while waiting for approval"
 ❌ Requirements change after analysis
 → Result: Wasted effort, rework
-```text
+```
 
 **Solution:**
 
 ```
-
 ✓ Make /speckit.analyze passing a hard requirement to start coding
 ✓ Use feature flags to allow exploratory spikes (marked as such)
 ✓ Time-box spikes (4-8 hours maximum)
@@ -2756,8 +2639,7 @@ ACTIONS REQUIRED:
 ✓ Track "premature implementation waste" metric
 
 → Result: Reduced waste, disciplined process
-
-```yaml
+```
 
 ---
 
@@ -2765,17 +2647,16 @@ ACTIONS REQUIRED:
 
 **Problem:**
 
-```text
+```
 ❌ Team focuses on using Spec Kit commands perfectly
 ❌ Forgets the underlying goal: delivering quality software
 ❌ Process becomes bureaucratic
 → Result: Compliance over value
-```text
+```
 
 **Solution:**
 
 ```
-
 ✓ Remember: Spec Kit is a tool to support your process, not the process itself
 ✓ Adapt commands to your context (skip what doesn't add value)
 ✓ Measure outcomes (quality, speed, satisfaction), not command usage
@@ -2783,8 +2664,7 @@ ACTIONS REQUIRED:
 ✓ Evolve usage based on what works for your team
 
 → Result: Practical, value-driven usage
-
-```yaml
+```
 
 ---
 
@@ -2792,7 +2672,7 @@ ACTIONS REQUIRED:
 
 ### Jira Integration
 
-```yaml
+```
 MAPPING SPEC KIT ARTIFACTS TO JIRA:
 
 Epic:
@@ -2825,14 +2705,13 @@ AUTOMATION:
 ├─ Bot creates subtasks from tasks.md
 ├─ Bot updates status when tasks marked [X] in git
 └─ Bot comments with /speckit.analyze results
-```yaml
+```
 
 ---
 
 ### GitHub/GitLab Integration
 
 ```
-
 REPOSITORY STRUCTURE:
 
 repo/
@@ -2872,24 +2751,20 @@ PULL REQUEST TEMPLATE:
 **Tasks:** `specs/XXX-feature-name/tasks.md`
 
 ### Spec Kit Validation
-
 - [ ] All checklists complete (100%)
 - [ ] /speckit.analyze passed (0 critical issues)
 - [ ] All tasks marked complete [X] in tasks.md
 - [ ] Implementation matches plan.md architecture
 
 ### Acceptance Criteria
-
-_Copy from spec.md*
+_Copy from spec.md_
 
 ### Testing
-
 - [ ] Unit tests pass
 - [ ] Integration tests pass
 - [ ] Contract tests pass (against contracts/)
 
 ### Review Checklist
-
 - [ ] Code review completed
 - [ ] Security review completed (if applicable)
 - [ ] Architecture review completed (if complex)
@@ -2902,38 +2777,33 @@ BRANCH PROTECTION RULES:
 │  ├─ Code owner (Developer)
 │  ├─ CODEOWNERS file references solution architect for plan.md changes
 │  └─ Product Owner for spec.md changes
-
-```yaml
+```
 
 ---
 
 ### Confluence/Documentation Integration
 
-```text
+```
 AUTOMATIC DOCUMENTATION GENERATION:
 
 1. Feature Catalog Page:
-
    └─ Auto-generated from all spec.md files
       ├─ Table of features with status
       ├─ Links to specs/ directories
       └─ Updated on every commit
 
-1. Architecture Decision Records (ADR):
-
+2. Architecture Decision Records (ADR):
    └─ Auto-generated from research.md files
       ├─ Each decision from research.md → One ADR
       └─ Format: Context, Decision, Rationale, Alternatives
 
-1. API Documentation:
-
+3. API Documentation:
    └─ Auto-generated from contracts/
       ├─ OpenAPI specs → Swagger UI
       ├─ GraphQL schemas → GraphQL Playground
       └─ Hosted and updated automatically
 
-1. Data Model Documentation:
-
+4. Data Model Documentation:
    └─ Auto-generated from data-model.md
       ├─ Entity-Relationship Diagrams
       ├─ Table definitions
@@ -2947,14 +2817,13 @@ Project Home
 ├─ Architecture → Auto-generated from plan.md files
 ├─ API Reference → Auto-generated from contracts/
 └─ Development Guide → Manual documentation
-```yaml
+```
 
 ---
 
 ### Slack/Teams Integration
 
 ```
-
 NOTIFICATIONS:
 
 Bot: @speckit-bot
@@ -2971,31 +2840,27 @@ COMMANDS:
 
 AUTOMATIC NOTIFICATIONS:
 
-## product channel
-
+#product channel:
 ├─ New spec.md created → "@product-team New feature spec: [link]"
 ├─ Clarification needed → "@product-owner Clarification needed: [question]"
 └─ Feature completed → "@product-team Feature [name] deployed"
 
-## engineering channel
-
+#engineering channel:
 ├─ New plan.md created → "@architecture-team New design: [link]"
 ├─ Analysis failed → "@tech-lead Analysis failed with X critical issues"
 └─ Tasks ready → "@dev-team New tasks ready for sprint"
 
-## quality channel
-
+#quality channel:
 ├─ New checklist created → "@quality-team Checklist needs review: [link]"
 ├─ Checklist completed → "@quality-team Checklist complete, feature ready"
 └─ Constitution updated → "@all-team Constitution updated: [summary]"
-
-```yaml
+```
 
 ---
 
 ### Monitoring/Observability Integration
 
-```text
+```
 METRICS COLLECTION:
 
 Application Performance Monitoring (APM):
@@ -3024,7 +2889,7 @@ Error Tracking (Sentry/Rollbar):
    ├─ User Story ID (from spec.md)
    └─ Task ID (from tasks.md)
    → Enables tracing production issues back to requirements
-```yaml
+```
 
 ---
 
@@ -3033,7 +2898,6 @@ Error Tracking (Sentry/Rollbar):
 ### Workflow 1: Bug Fix (Small Change)
 
 ```
-
 TIME: 2-4 hours total
 
 SCENARIO: Critical bug in production - payment processing fails over $1000
@@ -3082,14 +2946,13 @@ STEP 7: Deployment (30 minutes)
 
 TOTAL OVERHEAD: ~1.5 hours of specification work for 1.5 hours of development
 BENEFIT: Proper fix with tests, prevents regression, traceable
-
-```yaml
+```
 
 ---
 
 ### Workflow 2: New Feature (Medium Complexity)
 
-```bash
+```
 TIME: 2 weeks total (1 week prep, 1 week implementation)
 
 SCENARIO: Add email notifications for order status changes
@@ -3170,28 +3033,26 @@ TOTAL EFFORT:
 ├─ Preparation: 22 hours across team
 ├─ Implementation: 60 hours (3 developers × 4 days × 5 hours coding)
 └─ Overhead: 22/82 = 27% (prevents likely 30-40% rework without specs)
-```yaml
+```
 
 ---
 
 ### Workflow 3: Large Initiative (Multi-Team, Multi-Month)
 
 ```
-
 TIME: 4 months total
 
 SCENARIO: Build entire e-commerce platform (MVP)
 
 FEATURES:
-
 1. User Authentication (15 story points)
-1. Product Catalog (21 story points)
-1. Shopping Cart (13 story points)
-1. Checkout Flow (21 story points)
-1. Order Management (13 story points)
-1. Payment Processing (21 story points)
-1. Email Notifications (8 story points)
-1. Admin Dashboard (21 story points)
+2. Product Catalog (21 story points)
+3. Shopping Cart (13 story points)
+4. Checkout Flow (21 story points)
+5. Order Management (13 story points)
+6. Payment Processing (21 story points)
+7. Email Notifications (8 story points)
+8. Admin Dashboard (21 story points)
 
 TOTAL: 133 story points, 3 teams, 4 months
 
@@ -3272,8 +3133,7 @@ METRICS:
 ├─ Spec Kit overhead: ~800 hours (8%)
 ├─ Rework avoided: Estimated 20-30% (1,900-2,900 hours)
 └─ Net benefit: 1,100-2,100 hours saved (11-22%)
-
-```yaml
+```
 
 ---
 
@@ -3284,13 +3144,13 @@ GitHub Spec Kit provides a comprehensive, AI-augmented framework that maps to al
 ### Key Success Factors
 
 1. **Adapt to Your Context**: Use what works, skip what doesn't add value
-1. **Progressive Adoption**: Start with core commands, add more as needed
-1. **Measure Outcomes**: Track quality, speed, and satisfaction, not just command usage
-1. **Evolve Continuously**: Update constitution and practices based on retrospectives
-1. **Automate Quality Gates**: Integrate into CI/CD for continuous validation
-1. **Maintain Traceability**: Keep artifacts in sync from requirements to code
-1. **Focus on Collaboration**: Use checklists to involve all stakeholders early
-1. **Balance Speed and Quality**: Timebox specification work, accept iteration
+2. **Progressive Adoption**: Start with core commands, add more as needed
+3. **Measure Outcomes**: Track quality, speed, and satisfaction, not just command usage
+4. **Evolve Continuously**: Update constitution and practices based on retrospectives
+5. **Automate Quality Gates**: Integrate into CI/CD for continuous validation
+6. **Maintain Traceability**: Keep artifacts in sync from requirements to code
+7. **Focus on Collaboration**: Use checklists to involve all stakeholders early
+8. **Balance Speed and Quality**: Timebox specification work, accept iteration
 
 ### Recommended Starting Points by Team Type
 

@@ -19,21 +19,21 @@
 
 ## Table of Contents
 
-- [🤔 What is Spec-Driven Development?](#🤔-what-is-spec-driven-development)
-- [⚡ Get Started](#⚡-get-started)
-- [🤖 Supported AI Agents](#🤖-supported-ai-agents)
-- [🔧 Specify CLI Reference](#🔧-specify-cli-reference)
-- [📚 Core Philosophy](#📚-core-philosophy)
-- [🌟 Development Phases](#🌟-development-phases)
-- [🎯 Experimental Goals](#🎯-experimental-goals)
-- [🔧 Prerequisites](#🔧-prerequisites)
-- [📖 Learn More](#📖-learn-more)
-- [📋 Detailed Process](#📋-detailed-process)
-- [🔍 Troubleshooting](#🔍-troubleshooting)
-- [👥 Maintainers](#👥-maintainers)
-- [💬 Support](#💬-support)
-- [🙏 Acknowledgements](#🙏-acknowledgements)
-- [📄 License](#📄-license)
+- [🤔 What is Spec-Driven Development?](#-what-is-spec-driven-development)
+- [⚡ Get Started](#-get-started)
+- [🤖 Supported AI Agents](#-supported-ai-agents)
+- [🔧 Specify CLI Reference](#-specify-cli-reference)
+- [📚 Core Philosophy](#-core-philosophy)
+- [🌟 Development Phases](#-development-phases)
+- [🎯 Experimental Goals](#-experimental-goals)
+- [🔧 Prerequisites](#-prerequisites)
+- [📖 Learn More](#-learn-more)
+- [📋 Detailed Process](#-detailed-process)
+- [🔍 Troubleshooting](#-troubleshooting)
+- [👥 Maintainers](#-maintainers)
+- [💬 Support](#-support)
+- [🙏 Acknowledgements](#-acknowledgements)
+- [📄 License](#-license)
 
 ## 🤔 What is Spec-Driven Development?
 
@@ -51,20 +51,20 @@ Install once and use everywhere:
 
 ```bash
 uv tool install specify-cli --from git+https://github.com/DauQuangThanh/OnSpecKit.git
-```bash
+```
 
 Then use the tool directly:
 
 ```bash
 specify init <PROJECT_NAME>
 specify check
-```bash
+```
 
 To upgrade specify run:
 
 ```bash
 uv tool install specify-cli --force --from git+https://github.com/DauQuangThanh/OnSpecKit.git
-```bash
+```
 
 #### Option 2: One-time Usage
 
@@ -89,7 +89,7 @@ Use the **`/speckit.constitution`** command to create your project's governing p
 
 ```bash
 /speckit.constitution Create principles focused on code quality, testing standards, user experience consistency, and performance requirements
-```bash
+```
 
 ### 3. Create the spec
 
@@ -97,7 +97,7 @@ Use the **`/speckit.specify`** command to describe what you want to build. Focus
 
 ```bash
 /speckit.specify Build an application that can help me organize my photos in separate photo albums. Albums are grouped by date and can be re-organized by dragging and dropping on the main page. Albums are never in other nested albums. Within each album, photos are previewed in a tile-like interface.
-```text
+```
 
 ### 4. Create a technical implementation plan
 
@@ -105,7 +105,7 @@ Use the **`/speckit.plan`** command to provide your tech stack and architecture 
 
 ```bash
 /speckit.plan The application uses Vite with minimal number of libraries. Use vanilla HTML, CSS, and JavaScript as much as possible. Images are not uploaded anywhere and metadata is stored in a local SQLite database.
-```text
+```
 
 ### 5. Break down into tasks
 
@@ -121,7 +121,7 @@ Use **`/speckit.implement`** to execute all tasks and build your feature accordi
 
 ```bash
 /speckit.implement
-```bash
+```
 
 For detailed step-by-step instructions, see our [comprehensive guide](./spec-driven.md).
 
@@ -212,7 +212,7 @@ specify init my-project --ai claude --github-token ghp_your_token_here
 
 # Check system requirements
 specify check
-```bash
+```
 
 ### Available Slash Commands
 
@@ -293,7 +293,7 @@ Our research and experimentation focus on:
 ## 🔧 Prerequisites
 
 - **Linux/macOS/Windows**
-- [Supported](#supported-ai-agents) AI coding agent.
+- [Supported](#-supported-ai-agents) AI coding agent.
 - [uv](https://docs.astral.sh/uv/) for package management
 - [Python 3.11+](https://www.python.org/downloads/)
 - [Git](https://git-scm.com/downloads)
@@ -316,7 +316,7 @@ You can use the Specify CLI to bootstrap your project, which will bring in the r
 
 ```bash
 specify init <project_name>
-```bash
+```
 
 Or initialize in the current directory:
 
@@ -352,13 +352,13 @@ specify init . --force --ai claude
 
 # or
 specify init --here --force --ai claude
-```bash
+```
 
 The CLI will check if you have Claude Code, Gemini CLI, Cursor CLI, Qwen CLI, opencode, Codex CLI, or Amazon Q Developer CLI installed. If you do not, or you prefer to get the templates without checking for the right tools, use `--ignore-agent-tools` with your command:
 
 ```bash
 specify init <project_name> --ai claude --ignore-agent-tools
-```bash
+```
 
 ### **STEP 1:** Establish project principles
 
@@ -372,7 +372,7 @@ The first step should be establishing your project's governing principles using 
 
 ```text
 /speckit.constitution Create principles focused on code quality, testing standards, user experience consistency, and performance requirements. Include governance for how these principles should guide technical decisions and implementation choices.
-```bash
+```
 
 This step creates or updates the `.specify/memory/constitution.md` file with your project's foundational guidelines that the AI agent will reference during specification, planning, and implementation phases.
 
@@ -429,7 +429,7 @@ At this stage, your project folder contents should resemble the following:
         ├── plan-template.md
         ├── spec-template.md
         └── tasks-template.md
-```text
+```
 
 ### **STEP 3:** Functional specification clarification (required before planning)
 
@@ -440,7 +440,7 @@ You should run the structured clarification workflow **before** creating a techn
 Preferred order:
 
 1. Use `/speckit.clarify` (structured) – sequential, coverage-based questioning that records answers in a Clarifications section.
-1. Optionally follow up with ad-hoc free-form refinement if something still feels vague.
+2. Optionally follow up with ad-hoc free-form refinement if something still feels vague.
 
 If you intentionally want to skip clarification (e.g., spike or exploratory prototype), explicitly state that so the agent doesn't block on missing clarifications.
 
@@ -450,13 +450,13 @@ Example free-form refinement prompt (after `/speckit.clarify` if still needed):
 For each sample project or project that you create there should be a variable number of tasks between 5 and 15
 tasks for each one randomly distributed into different states of completion. Make sure that there's at least
 one task in each stage of completion.
-```text
+```
 
 You should also ask Claude Code to validate the **Review & Acceptance Checklist**, checking off the things that are validated/pass the requirements, and leave the ones that are not unchecked. The following prompt can be used:
 
 ```text
 Read the review and acceptance checklist, and check off each item in the checklist if the feature spec meets the criteria. Leave it empty if it does not.
-```text
+```
 
 It's important to use the interaction with Claude Code as an opportunity to clarify and ask questions around the specification - **do not treat its first attempt as final**.
 
@@ -498,7 +498,7 @@ The output of this step will include a number of implementation detail documents
     ├── plan-template.md
     ├── spec-template.md
     └── tasks-template.md
-```text
+```
 
 Check the `research.md` document to ensure that the right tech stack is used, based on your instructions. You can ask Claude Code to refine it if any of the components stand out, or even have it check the locally-installed version of the platform/framework you want to use (e.g., .NET).
 
@@ -510,7 +510,7 @@ benefit from additional research as .NET Aspire is a rapidly changing library. F
 require further research, I want you to update the research document with additional details about the specific
 versions that we are going to be using in this Taskify application and spawn parallel research tasks to clarify
 any details using research from the web.
-```text
+```
 
 During this process, you might find that Claude Code gets stuck researching the wrong thing - you can help nudge it in the right direction with a prompt like this:
 
@@ -522,7 +522,7 @@ I want you to spin up a separate research task so that the net results is we are
 all of those very specific tasks in parallel. What I saw you doing was it looks like you were
 researching .NET Aspire in general and I don't think that's gonna do much for us in this case.
 That's way too untargeted research. The research needs to help you solve a specific targeted question.
-```text
+```
 
 >[!NOTE]
 >Claude Code might be over-eager and add components that you did not ask for. Ask it to clarify the rationale and the source of the change.
@@ -552,7 +552,7 @@ With the implementation plan validated, you can now break down the plan into spe
 
 ```text
 /speckit.tasks
-```text
+```
 
 This step creates a `tasks.md` file in your feature specification directory that contains:
 
@@ -571,7 +571,7 @@ Once ready, use the `/speckit.implement` command to execute your implementation 
 
 ```text
 /speckit.implement
-```bash
+```
 
 The `/speckit.implement` command will:
 
@@ -607,7 +607,7 @@ echo "Configuring Git to use GCM..."
 git config --global credential.helper manager
 echo "Cleaning up..."
 rm gcm-linux_amd64.2.6.1.deb
-```bash
+```
 
 ## 👥 Maintainers
 

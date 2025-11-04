@@ -1,6 +1,6 @@
 # Command Modification Guidelines
 
-## GitHub Spec Kit - Minimal Impact Change Guide
+**GitHub Spec Kit - Minimal Impact Change Guide**
 
 **Date**: 2025-10-26
 **Version**: 1.0
@@ -19,14 +19,14 @@ GitHub Spec Kit is a toolkit for Spec-Driven Development that supports **14 AI a
 ## Table of Contents
 
 1. [Project Overview](#project-overview)
-1. [Agent Architecture](#agent-architecture)
-1. [Primary Modification Points](#primary-modification-points)
-1. [Step-by-Step Modification Guide](#step-by-step-modification-guide)
-1. [Critical Design Rules](#critical-design-rules)
-1. [Safe vs. High-Impact Changes](#safe-vs-high-impact-changes)
-1. [Testing Checklist](#testing-checklist)
-1. [Common Scenarios](#common-scenarios)
-1. [File Reference](#file-reference)
+2. [Agent Architecture](#agent-architecture)
+3. [Primary Modification Points](#primary-modification-points)
+4. [Step-by-Step Modification Guide](#step-by-step-modification-guide)
+5. [Critical Design Rules](#critical-design-rules)
+6. [Safe vs. High-Impact Changes](#safe-vs-high-impact-changes)
+7. [Testing Checklist](#testing-checklist)
+8. [Common Scenarios](#common-scenarios)
+9. [File Reference](#file-reference)
 
 ---
 
@@ -39,23 +39,23 @@ A toolkit that enables AI coding assistants to generate implementations from spe
 ### Supported Agents (14 Total)
 
 1. Claude Code (claude)
-1. Gemini Code (gemini)
-1. GitHub Copilot (github)
-1. Cursor (cursor)
-1. Qwen (qwen)
-1. opencode
-1. Codex (codex)
-1. Windsurf (windsurf)
-1. Kilo Code (kilo)
-1. Auggie (auggie)
-1. Roo Code (roo)
-1. CodeBuddy (codebuddy)
-1. Amp (amp)
-1. Amazon Q (amazonq)
+2. Gemini Code (gemini)
+3. GitHub Copilot (github)
+4. Cursor (cursor)
+5. Qwen (qwen)
+6. opencode
+7. Codex (codex)
+8. Windsurf (windsurf)
+9. Kilo Code (kilo)
+10. Auggie (auggie)
+11. Roo Code (roo)
+12. CodeBuddy (codebuddy)
+13. Amp (amp)
+14. Amazon Q (amazonq)
 
 ### Current Architecture Pattern
 
-```bash
+```
 User: specify init
     ↓
 Select agent from AGENT_CONFIG
@@ -67,7 +67,7 @@ Extract to agent folder (.claude/, .gemini/, .cursor/, etc.)
 Agent reads commands from their folder at runtime
     ↓
 Context files maintained via update scripts
-```yaml
+```
 
 ---
 
@@ -98,15 +98,15 @@ AGENT_CONFIG = {
     },
     # ... more agents
 }
-```bash
+```
 
 ### How Agents Work
 
 1. **Initialization**: User runs `specify init` and selects an agent
-1. **Template Download**: Agent-specific ZIP downloaded from GitHub releases
-1. **Project Setup**: Command files extracted to dedicated directories
-1. **Runtime Execution**: Agent reads commands from their folder
-1. **Context Management**: Runtime context files are updated dynamically
+2. **Template Download**: Agent-specific ZIP downloaded from GitHub releases
+3. **Project Setup**: Command files extracted to dedicated directories
+4. **Runtime Execution**: Agent reads commands from their folder
+5. **Context Management**: Runtime context files are updated dynamically
 
 ---
 
@@ -159,7 +159,7 @@ newtool)
 
 # In the loop list (around line 195)
 for agent in claude gemini github cursor qwen opencode codex windsurf kilo auggie roo codebuddy amp amazonq newtool; do
-```text
+```
 
 ### 3. Bash Context Update Script (REQUIRED for runtime)
 
@@ -179,7 +179,7 @@ for agent in claude gemini github cursor qwen opencode codex windsurf kilo auggi
 "newtool")
   CONTEXT_FILE=".newtool/NEWTOOL.md"
   ;;
-```bash
+```
 
 ### 4. PowerShell Context Update Script (REQUIRED for runtime)
 
@@ -204,7 +204,7 @@ elseif (Test-Path ".newtool/NEWTOOL.md") {
     $agentType = "newtool"
     $contextFile = ".newtool/NEWTOOL.md"
 }
-```bash
+```
 
 ### 5. Documentation (RECOMMENDED)
 
@@ -231,8 +231,8 @@ elseif (Test-Path ".newtool/NEWTOOL.md") {
 #### Step 1: Update AGENT_CONFIG
 
 1. Open `src/specify_cli/__init__.py`
-1. Navigate to line 68 (AGENT_CONFIG dictionary)
-1. Add new agent entry following the pattern:
+2. Navigate to line 68 (AGENT_CONFIG dictionary)
+3. Add new agent entry following the pattern:
 
 ```python
 "newagent": {
@@ -243,61 +243,61 @@ elseif (Test-Path ".newtool/NEWTOOL.md") {
 },
 ```
 
-1. **Critical**: Ensure the key matches the actual CLI tool name
+4. **Critical**: Ensure the key matches the actual CLI tool name
 
 #### Step 2: Update Release Script
 
 1. Open `.github/workflows/scripts/create-release-packages.sh`
-1. Add case statement around line 150:
+2. Add case statement around line 150:
 
 ```bash
 newagent)
   AGENT_NAME="newagent"
   COMMANDS_DIR=".newagent/commands"
   ;;
-```bash
+```
 
-1. Add to agent loop around line 195:
+3. Add to agent loop around line 195:
 
 ```bash
 for agent in claude gemini github cursor qwen opencode codex windsurf kilo auggie roo codebuddy amp amazonq newagent; do
-```text
+```
 
 #### Step 3: Update Bash Context Script
 
 1. Open `scripts/bash/update-agent-context.sh`
-1. Add case around line 65:
+2. Add case around line 65:
 
 ```bash
 "newagent")
   CONTEXT_FILE=".newagent/NEWAGENT.md"
   ;;
-```text
+```
 
 #### Step 4: Update PowerShell Context Script
 
 1. Open `scripts/powershell/update-agent-context.ps1`
-1. Add switch case around line 55:
+2. Add switch case around line 55:
 
 ```powershell
 "newagent" { $contextFile = ".newagent/NEWAGENT.md" }
 ```
 
-1. Add elseif around line 379:
+3. Add elseif around line 379:
 
 ```powershell
 elseif (Test-Path ".newagent/NEWAGENT.md") {
     $agentType = "newagent"
     $contextFile = ".newagent/NEWAGENT.md"
 }
-```text
+```
 
 #### Step 5: Update Documentation
 
 1. Open `README.md` and `AGENTS.md`
-1. Add agent to supported agents list
-1. Update count (14 → 15 agents)
-1. Add any specific installation notes
+2. Add agent to supported agents list
+3. Update count (14 → 15 agents)
+4. Add any specific installation notes
 
 #### Step 6: Test
 
@@ -319,7 +319,7 @@ Run through the [Testing Checklist](#testing-checklist) below.
     "folder": ".cursor",
     ...
 }
-```json
+```
 
 ❌ **Wrong**:
 
@@ -329,7 +329,7 @@ Run through the [Testing Checklist](#testing-checklist) below.
     "folder": ".cursor",
     ...
 }
-```bash
+```
 
 **Why**: The system uses the dictionary key to check if the CLI tool is installed and executable.
 
@@ -478,10 +478,10 @@ Use this checklist to verify your changes:
 **Steps**:
 
 1. Add to AGENT_CONFIG: `"supercoder": {...}`
-1. Update release script: Add case for "supercoder"
-1. Update context scripts: Add "supercoder" handling
-1. Update documentation: Add to agent list
-1. Test: Run through testing checklist
+2. Update release script: Add case for "supercoder"
+3. Update context scripts: Add "supercoder" handling
+4. Update documentation: Add to agent list
+5. Test: Run through testing checklist
 
 **Files Modified**: 5
 **Time**: 15-20 minutes
@@ -493,8 +493,8 @@ Use this checklist to verify your changes:
 **Steps**:
 
 1. Update `name` field in AGENT_CONFIG
-1. Update documentation references
-1. No other changes needed
+2. Update documentation references
+3. No other changes needed
 
 **Files Modified**: 2-3
 **Time**: 5 minutes
@@ -507,10 +507,10 @@ Use this checklist to verify your changes:
 **Steps**:
 
 1. Update `folder` field in AGENT_CONFIG
-1. Update release script case statement
-1. Update both context scripts
-1. Create migration script for existing users
-1. Update documentation
+2. Update release script case statement
+3. Update both context scripts
+4. Create migration script for existing users
+5. Update documentation
 
 **Files Modified**: 6+
 **Time**: 30-45 minutes
@@ -523,9 +523,9 @@ Use this checklist to verify your changes:
 **Steps**:
 
 1. Create master template in `/templates/commands/review.md`
-1. Release script automatically processes for all agents
-1. No per-agent changes needed
-1. Update documentation
+2. Release script automatically processes for all agents
+3. No per-agent changes needed
+4. Update documentation
 
 **Files Modified**: 2
 **Time**: 20-30 minutes
@@ -538,10 +538,10 @@ Use this checklist to verify your changes:
 **Steps**:
 
 1. Add deprecation notice to documentation (1 release cycle)
-1. Mark agent as deprecated in AGENT_CONFIG (add flag)
-1. Show warning during `specify init`
-1. After deprecation period: Remove from all locations
-1. Add migration guide
+2. Mark agent as deprecated in AGENT_CONFIG (add flag)
+3. Show warning during `specify init`
+4. After deprecation period: Remove from all locations
+5. Add migration guide
 
 **Files Modified**: 5-7
 **Time**: 45-60 minutes
@@ -635,25 +635,25 @@ Use this checklist to verify your changes:
 ### When Adding Agents
 
 1. **Research first**: Verify CLI tool name, installation method, folder conventions
-1. **Follow patterns**: Look at existing agents for guidance
-1. **Test thoroughly**: Don't skip the testing checklist
-1. **Document well**: Update all relevant documentation
-1. **Consider users**: Think about migration and backward compatibility
+2. **Follow patterns**: Look at existing agents for guidance
+3. **Test thoroughly**: Don't skip the testing checklist
+4. **Document well**: Update all relevant documentation
+5. **Consider users**: Think about migration and backward compatibility
 
 ### When Modifying Agents
 
 1. **Minimal change**: Change only what's necessary
-1. **Preserve keys**: Never change existing agent keys
-1. **Version carefully**: Use semantic versioning for breaking changes
-1. **Test existing**: Ensure existing agents still work
-1. **Communicate**: Update changelog and migration guide
+2. **Preserve keys**: Never change existing agent keys
+3. **Version carefully**: Use semantic versioning for breaking changes
+4. **Test existing**: Ensure existing agents still work
+5. **Communicate**: Update changelog and migration guide
 
 ### When Deprecating Agents
 
 1. **Announce early**: Give users at least one release cycle
-1. **Provide alternatives**: Suggest replacement agents
-1. **Migrate gracefully**: Provide migration scripts/guides
-1. **Keep data**: Don't delete user's agent-specific files automatically
+2. **Provide alternatives**: Suggest replacement agents
+3. **Migrate gracefully**: Provide migration scripts/guides
+4. **Keep data**: Don't delete user's agent-specific files automatically
 
 ---
 
@@ -702,7 +702,7 @@ Use this template when adding a new agent:
     "install_url": "https://installation-instructions-url.com",
     "requires_cli": True  # Set to False if no CLI installation needed
 },
-```text
+```
 
 ### Release Script Template
 
@@ -712,7 +712,7 @@ newagent)
   AGENT_NAME="newagent"
   COMMANDS_DIR=".newagent/commands"
   ;;
-```text
+```
 
 ### Context Script Templates
 
@@ -722,7 +722,7 @@ newagent)
 "newagent")
   CONTEXT_FILE=".newagent/NEWAGENT.md"
   ;;
-```text
+```
 
 **PowerShell** (`scripts/powershell/update-agent-context.ps1`):
 
@@ -752,10 +752,10 @@ elseif (Test-Path ".newagent/NEWAGENT.md") {
 For questions about modifying agents:
 
 1. Review this guide thoroughly
-1. Check existing agent implementations for examples
-1. Test changes in isolated environment first
-1. Consult with team before making breaking changes
+2. Check existing agent implementations for examples
+3. Test changes in isolated environment first
+4. Consult with team before making breaking changes
 
 ---
 
-## End of Guidelines
+**End of Guidelines**

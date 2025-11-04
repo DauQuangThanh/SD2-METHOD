@@ -10,7 +10,7 @@ Auto-generated from all feature plans. Last updated: [DATE]
 
 ```text
 [ACTUAL STRUCTURE FROM PLANS]
-```toml
+```
 
 ## Commands
 

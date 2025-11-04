@@ -66,7 +66,7 @@ AGENT_CONFIG = {
         "requires_cli": True,  # True if CLI tool required, False for IDE-based agents
     },
 }
-```bash
+```
 
 **Key Design Principle**: The dictionary key should match the actual executable name that users install. For example:
 
@@ -88,7 +88,7 @@ Update the `--ai` parameter help text in the `init()` command to include the new
 
 ```python
 ai_assistant: str = typer.Option(None, "--ai", help="AI assistant to use: claude, gemini, copilot, cursor-agent, qwen, opencode, codex, windsurf, kilocode, auggie, codebuddy, new-agent-cli, or q"),
-```bash
+```
 
 Also update any function docstrings, examples, and error messages that list available agents.
 
@@ -109,7 +109,7 @@ Modify `.github/workflows/scripts/create-release-packages.sh`:
 
 ```bash
 ALL_AGENTS=(claude gemini copilot cursor-agent qwen opencode windsurf q)
-```text
+```
 
 ##### Add case statement for directory structure
 
@@ -132,7 +132,7 @@ gh release create "$VERSION" \
   .genreleases/spec-kit-template-windsurf-sh-"$VERSION".zip \
   .genreleases/spec-kit-template-windsurf-ps-"$VERSION".zip \
   # Add new agent packages here
-```bash
+```
 
 #### 5. Update Agent Context Scripts
 
@@ -142,7 +142,7 @@ Add file variable:
 
 ```bash
 WINDSURF_FILE="$REPO_ROOT/.windsurf/rules/specify-rules.md"
-```bash
+```
 
 Add to case statement:
 
@@ -156,7 +156,7 @@ case "$AGENT_TYPE" in
     # Update default creation condition
     ;;
 esac
-```bash
+```
 
 ##### PowerShell script (`scripts/powershell/update-agent-context.ps1`)
 
@@ -182,7 +182,7 @@ switch ($AgentType) {
         # Update default creation condition
     }
 }
-```text
+```
 
 #### 6. Update CLI Tool Checks (Optional)
 
@@ -198,7 +198,7 @@ elif selected_ai == "windsurf":
     if not check_tool("windsurf", "Install from: https://windsurf.com/"):
         console.print("[red]Error:[/red] Windsurf CLI is required for Windsurf projects")
         agent_tool_missing = True
-```text
+```
 
 **Note**: CLI tool checks are now handled automatically based on the `requires_cli` field in AGENT_CONFIG. No additional code changes needed in the `check()` or `init()` commands - they automatically loop through AGENT_CONFIG and check tools as needed.
 
@@ -230,7 +230,7 @@ AGENT_CONFIG = {
 cli_tool = agent_key
 if agent_key == "cursor":
     cli_tool = "cursor-agent"  # Map to the real tool name
-```json
+```
 
 ✅ **Correct approach** (no mapping needed):
 
@@ -272,7 +272,7 @@ For agents available as VS Code extensions, add them to `.devcontainer/devcontai
     }
   }
 }
-```text
+```
 
 ##### CLI-based Agents
 
@@ -288,7 +288,7 @@ echo -e "\n🤖 Installing [New Agent Name] CLI..."
 # or other installation instructions (must be non-interactive and compatible with Linux Debian "Trixie" or later)...
 echo "✅ Done"
 
-```bash
+```
 
 **Quick Tips:**
 
@@ -331,7 +331,7 @@ description: "Command description"
 ---
 
 Command content with {SCRIPT} and $ARGUMENTS placeholders.
-```text
+```
 
 ### TOML Format
 
@@ -365,19 +365,19 @@ Different agents use different argument placeholders:
 ## Testing New Agent Integration
 
 1. **Build test**: Run package creation script locally
-1. **CLI test**: Test `specify init --ai <agent>` command
-1. **File generation**: Verify correct directory structure and files
-1. **Command validation**: Ensure generated commands work with the agent
-1. **Context update**: Test agent context update scripts
+2. **CLI test**: Test `specify init --ai <agent>` command
+3. **File generation**: Verify correct directory structure and files
+4. **Command validation**: Ensure generated commands work with the agent
+5. **Context update**: Test agent context update scripts
 
 ## Common Pitfalls
 
 1. **Using shorthand keys instead of actual CLI tool names**: Always use the actual executable name as the AGENT_CONFIG key (e.g., `"cursor-agent"` not `"cursor"`). This prevents the need for special-case mappings throughout the codebase.
-1. **Forgetting update scripts**: Both bash and PowerShell scripts must be updated when adding new agents.
-1. **Incorrect `requires_cli` value**: Set to `True` only for agents that actually have CLI tools to check; set to `False` for IDE-based agents.
-1. **Wrong argument format**: Use correct placeholder format for each agent type (`$ARGUMENTS` for Markdown, `{{args}}` for TOML).
-1. **Directory naming**: Follow agent-specific conventions exactly (check existing agents for patterns).
-1. **Help text inconsistency**: Update all user-facing text consistently (help strings, docstrings, README, error messages).
+2. **Forgetting update scripts**: Both bash and PowerShell scripts must be updated when adding new agents.
+3. **Incorrect `requires_cli` value**: Set to `True` only for agents that actually have CLI tools to check; set to `False` for IDE-based agents.
+4. **Wrong argument format**: Use correct placeholder format for each agent type (`$ARGUMENTS` for Markdown, `{{args}}` for TOML).
+5. **Directory naming**: Follow agent-specific conventions exactly (check existing agents for patterns).
+6. **Help text inconsistency**: Update all user-facing text consistently (help strings, docstrings, README, error messages).
 
 ## Future Considerations
 

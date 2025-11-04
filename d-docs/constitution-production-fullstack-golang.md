@@ -81,7 +81,7 @@ visibility.
 This production-grade structure adheres to hexagonal architecture with Go conventions,
 emphasizing security, observability, and zero-trust principles.
 
-```text
+```
 project-root/
 ├── cmd/
 │   ├── api/
@@ -192,38 +192,25 @@ project-root/
 ├── go.sum
 ├── Makefile
 └── README.md
-```text
+```
 
 **Key Production-Grade Structural Principles:**
 
 - **Zero Trust Infrastructure**: `internal/infrastructure/auth/` centralizes authentication
-
   and authorization with mTLS or token-based identity. All service-to-service calls
   authenticated.
-
 - **Observability First**: Dedicated `infrastructure/logger/`, `metrics/`, `tracing/`, and
-
   `health/` packages ensure structured logs, metrics, and traces are available for all
   critical paths.
-
 - **Security by Design**: Secrets managed via `infrastructure/config/` with external vault
-
   integration. Database connections use least-privilege roles. Security events logged.
-
 - **Versioned Contracts**: API contracts versioned under `adapters/http/contracts/v1/`,
-
   `v2/`, etc., with deprecation windows for breaking changes.
-
 - **Chaos Engineering**: `tests/chaos/` contains failure injection tests for critical
-
   paths (timeouts, DB failures, circuit breakers).
-
 - **Migration Control**: All schema changes via `adapters/persistence/migrations/` with
-
   forward/backward compatibility and rollback procedures.
-
 - **Documentation & SLOs**: `docs/slos/` tracks SLO definitions, error budgets, and
-
   operational procedures. Architecture decisions recorded in ADRs.
 
 ## Architecture & Technical Constraints
@@ -268,10 +255,10 @@ level assignment.
 Pull Request Requirements:
 
 1. Link to spec & plan sections referencing contract definitions.
-1. Evidence of failing tests before implementation (where new domains introduced).
-1. Added/updated migrations with rollback notes.
-1. Logging & metric additions listed in description.
-1. If breaking change: documented deprecation or dual-support window.
+2. Evidence of failing tests before implementation (where new domains introduced).
+3. Added/updated migrations with rollback notes.
+4. Logging & metric additions listed in description.
+5. If breaking change: documented deprecation or dual-support window.
 
 Merge is BLOCKED if any gate unmet unless explicitly waived with recorded rationale.
 
@@ -285,19 +272,16 @@ non-semantic wording). Reviewers MUST verify gates remain objectively testable.
 Amendment Procedure:
 
 1. Draft proposal referencing impacted principles / sections.
-1. Classify bump level per rules above.
-1. Include migration or adoption steps if changing enforcement criteria.
-1. Update Sync Impact Report and affected templates.
-1. Secure approval from at least two maintainers (or designated governance group once
-
+2. Classify bump level per rules above.
+3. Include migration or adoption steps if changing enforcement criteria.
+4. Update Sync Impact Report and affected templates.
+5. Secure approval from at least two maintainers (or designated governance group once
 established).
 
 Compliance:
 
 - Quarterly (or pre-production milestone) audit: architecture boundaries, contract drift,
-
  test coverage thresholds, security dependency scan status.
-
 - Violations create remediation tasks with tracked due dates.
 - Emergency deviations allowed only with logged risk acceptance.
 

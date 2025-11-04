@@ -30,14 +30,12 @@ description: "Task list template for feature implementation"
   IMPORTANT: The tasks below are SAMPLE TASKS for illustration purposes only.
   
   The /speckit.tasks command MUST replace these with actual tasks based on:
-
   - User stories from spec.md (with their priorities P1, P2, P3...)
   - Feature requirements from plan.md
   - Entities from data-model.md
   - Endpoints from contracts/
   
   Tasks MUST be organized by user story so each story can be:
-
   - Implemented independently
   - Tested independently
   - Delivered as an MVP increment
@@ -207,7 +205,7 @@ Task: "Integration test for [user journey] in tests/integration/test_[name].py"
 # Launch all models for User Story 1 together:
 Task: "Create [Entity1] model in src/models/[entity1].py"
 Task: "Create [Entity2] model in src/models/[entity2].py"
-```yaml
+```
 
 ---
 
@@ -216,29 +214,29 @@ Task: "Create [Entity2] model in src/models/[entity2].py"
 ### MVP First (User Story 1 Only)
 
 1. Complete Phase 1: Setup
-1. Complete Phase 2: Foundational (CRITICAL - blocks all stories)
-1. Complete Phase 3: User Story 1
-1. **STOP and VALIDATE**: Test User Story 1 independently
-1. Deploy/demo if ready
+2. Complete Phase 2: Foundational (CRITICAL - blocks all stories)
+3. Complete Phase 3: User Story 1
+4. **STOP and VALIDATE**: Test User Story 1 independently
+5. Deploy/demo if ready
 
 ### Incremental Delivery
 
 1. Complete Setup + Foundational → Foundation ready
-1. Add User Story 1 → Test independently → Deploy/Demo (MVP!)
-1. Add User Story 2 → Test independently → Deploy/Demo
-1. Add User Story 3 → Test independently → Deploy/Demo
-1. Each story adds value without breaking previous stories
+2. Add User Story 1 → Test independently → Deploy/Demo (MVP!)
+3. Add User Story 2 → Test independently → Deploy/Demo
+4. Add User Story 3 → Test independently → Deploy/Demo
+5. Each story adds value without breaking previous stories
 
 ### Parallel Team Strategy
 
 With multiple developers:
 
 1. Team completes Setup + Foundational together
-1. Once Foundational is done:
+2. Once Foundational is done:
    - Developer A: User Story 1
    - Developer B: User Story 2
    - Developer C: User Story 3
-1. Stories complete and integrate independently
+3. Stories complete and integrate independently
 
 ---
 
