@@ -1,4 +1,4 @@
-# Spec Driven Development (SD2 Method)
+# Spec Driven Development (OnSpecKit)
 
 *Build high-quality software faster.*
 
