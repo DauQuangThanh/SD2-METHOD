@@ -1,5 +1,5 @@
 <div align="center">
-    <img src="./media/SD2.png" alt="SD2-METHOD Logo"/>
+    <img src="./media/SD2.png" alt="OnSpecKit Logo"/>
     <h1> 🥳 SD2-METHOD</h1>
     <h3><em>Build high-quality software faster.</em></h3>
 </div>
@@ -9,9 +9,9 @@
 </p>
 
 <p align="center">
-    <a href="https://github.com/DauQuangThanh/SD2-METHOD/actions/workflows/release.yml"><img src="https://github.com/DauQuangThanh/SD2-METHOD/actions/workflows/release.yml/badge.svg" alt="Release"/></a>
-    <a href="https://github.com/DauQuangThanh/SD2-METHOD/stargazers"><img src="https://img.shields.io/github/stars/DauQuangThanh/SD2-METHOD?style=social" alt="GitHub stars"/></a>
-    <a href="https://github.com/DauQuangThanh/SD2-METHOD/blob/main/LICENSE"><img src="https://img.shields.io/github/license/DauQuangThanh/SD2-METHOD" alt="License"/></a>
+    <a href="https://github.com/DauQuangThanh/OnSpecKit/actions/workflows/release.yml"><img src="https://github.com/DauQuangThanh/OnSpecKit/actions/workflows/release.yml/badge.svg" alt="Release"/></a>
+    <a href="https://github.com/DauQuangThanh/OnSpecKit/stargazers"><img src="https://img.shields.io/github/stars/DauQuangThanh/SD2-METHOD?style=social" alt="GitHub stars"/></a>
+    <a href="https://github.com/DauQuangThanh/OnSpecKit/blob/main/LICENSE"><img src="https://img.shields.io/github/license/DauQuangThanh/SD2-METHOD" alt="License"/></a>
     <a href="https://dauquangthanh.github.io/SD2-METHOD/"><img src="https://img.shields.io/badge/docs-GitHub_Pages-blue" alt="Documentation"/></a>
 </p>
 
@@ -50,7 +50,7 @@ Choose your preferred installation method:
 Install once and use everywhere:
 
 ```bash
-uv tool install specify-cli --from git+https://github.com/DauQuangThanh/SD2-METHOD.git
+uv tool install specify-cli --from git+https://github.com/DauQuangThanh/OnSpecKit.git
 ```
 
 Then use the tool directly:
@@ -63,7 +63,7 @@ specify check
 To upgrade specify run:
 
 ```bash
-uv tool install specify-cli --force --from git+https://github.com/DauQuangThanh/SD2-METHOD.git
+uv tool install specify-cli --force --from git+https://github.com/DauQuangThanh/OnSpecKit.git
 ```
 
 #### Option 2: One-time Usage
@@ -71,7 +71,7 @@ uv tool install specify-cli --force --from git+https://github.com/DauQuangThanh/
 Run directly without installing:
 
 ```bash
-uvx --from git+https://github.com/DauQuangThanh/SD2-METHOD.git specify init <PROJECT_NAME>
+uvx --from git+https://github.com/DauQuangThanh/OnSpecKit.git specify init <PROJECT_NAME>
 ```
 
 **Benefits of persistent installation:**
@@ -615,7 +615,7 @@ rm gcm-linux_amd64.2.6.1.deb
 
 ## 💬 Support
 
-For support, please open a [GitHub issue](https://github.com/DauQuangThanh/SD2-METHOD/issues/new). We welcome bug reports, feature requests, and questions about using Spec-Driven Development.
+For support, please open a [GitHub issue](https://github.com/DauQuangThanh/OnSpecKit/issues/new). We welcome bug reports, feature requests, and questions about using Spec-Driven Development.
 
 ## 🙏 Acknowledgements
 
