@@ -56,6 +56,15 @@ You **MUST** consider the user input before proceeding (if not empty).
      - File structure and directory conventions
      - Note: If this file is in template mode, suggest running `/contextualize` command first to ensure consistency
 
+   - **CRITICAL**: Read `/memory/architecture.md` (if exists) for:
+     - System architecture and design principles
+     - Architectural views (Logical, Process, Deployment, Data)
+     - Component interactions and responsibilities
+     - Architectural decisions and rationale
+     - Quality attributes and constraints
+     - System-wide policies and design patterns
+     - Note: If this file is in template mode, suggest running `/architect` command first to ensure consistency
+
    - **REQUIRED**: Read tasks.md for the complete task list and execution plan
    - **REQUIRED**: Read plan.md for tech stack, architecture, and file structure
    - **IF EXISTS**: Read data-model.md for entities and relationships
