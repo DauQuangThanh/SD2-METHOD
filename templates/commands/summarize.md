@@ -72,7 +72,7 @@ Follow this execution flow:
 
 After completing the analysis and update, provide:
 
-```
+```text
 ✓ Project context updated: /absolute/path/to/memory/project-context.md
 
 Summary of updates:

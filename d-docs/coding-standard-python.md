@@ -951,4 +951,5 @@ black src/ && isort src/ && ruff check src/ && mypy src/ && pytest
 ---
 
 **Version History**:
+
 - 1.0.0 (2025-10-26): Initial release

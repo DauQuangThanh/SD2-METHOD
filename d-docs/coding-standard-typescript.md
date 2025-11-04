@@ -1687,5 +1687,6 @@ npm run type-check && npm run lint && npm run test
 ---
 
 **Version History**:
+
 - 1.1.0 (2025-10-26): Added comprehensive HTML and DOM Element Naming Conventions section for Playwright testing support
 - 1.0.0 (2025-10-26): Initial release

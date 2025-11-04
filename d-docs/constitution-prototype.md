@@ -3,6 +3,7 @@
 ## Core Principles
 
 ### 1. Componentized Frontend Architecture (NON‑NEGOTIABLE)
+
 All UI logic MUST reside in cohesive, testable Vue 3 single-file components (SFCs) or composables.
 State management MUST be centralized (e.g., Pinia or minimal custom store) — no ad hoc global
 mutable objects. Cross-cutting concerns (API calls, formatting, feature flags) live in dedicated
@@ -13,6 +14,7 @@ outside Vue reactivity system is PROHIBITED (except inside dedicated low-level a
 Rationale: Maintains modularity, predictable rendering, and scalability as prototype evolves.
 
 ### 2. Incremental Prototype Discipline
+
 Prototype features MUST ship in vertical slices: UI component + local state + mock/service stub.
 Each slice MUST be independently demoable. Experiments time‑boxed (≤ 21 days) and tagged.
 Promotion to "baseline" requires (a) minimal tests (snapshot or interaction), (b) removal of dead
@@ -21,6 +23,7 @@ branches, (c) documented assumptions or deferred risks in README or plan.
 Rationale: Prevents prototype sprawl and enables early stakeholder feedback.
 
 ### 3. Interface Contracts & Mock-First API Integration
+
 External API dependencies MUST be represented by TypeScript interfaces + mock modules
 before real network integration. API response types centralized (e.g., `src/contracts/`). Breaking
 changes to a contract require updating mocks + affected components in same PR. Until backend
@@ -29,6 +32,7 @@ stabilizes, versioning is implicit; once backend introduced, formal version tags
 Rationale: Enables offline development and early UI progress without backend blockers.
 
 ### 4. Lightweight Quality & Telemetry
+
 Minimum coverage target: 40% overall (rising to 60% before backend integration). Critical
 user journeys (checkout flow drafts, authentication mock) MUST have at least one interaction
 test. Console or dev-overlay logging acceptable; production-grade logging deferred. Performance
@@ -38,6 +42,7 @@ No feature merges without a visible manual demo note or screenshot.
 Rationale: Balances speed with baseline safety without over‑engineering.
 
 ### 5. Accessibility & UX Feedback Loop
+
 All new UI components MUST meet baseline accessibility: semantic HTML, focus order,
 contrast ratio WCAG AA, keyboard navigation. User feedback collection (lightweight)—either
 noted usability observations or a feedback issue log—MUST accompany each major slice.
@@ -185,6 +190,7 @@ project-root/
 **Future Backend Integration Path:**
 
 When transitioning from prototype to production with backend:
+
 1. Replace `services/mocks/` imports with real API clients from `services/api/`
 2. Update `contracts/` types to match backend API schemas (Pydantic/OpenAPI)
 3. Add authentication middleware in `router/guards.ts`
@@ -201,9 +207,11 @@ dev), core bundle ≤ 250KB gzip. No premature SSR or micro-frontend segmentatio
 
 Deferred (Future Backend Phase): API gateway strategy, auth provider integration, Zero Trust
 controls, production observability platform.
+
 ## Future Hardening Roadmap
 
 Planned Reintroduction (Backend Phase):
+
 - Zero Trust enforcement (service identity, authN/authZ layering)
 - Data stewardship & PII classification
 - Formal SLOs & error budget policy
@@ -211,6 +219,7 @@ Planned Reintroduction (Backend Phase):
 - Contract versioning with deprecation windows
 
 Prototype Era Constraints:
+
 - Security: basic dependency audit (weekly), no secrets committed, environment variables for API keys.
 - Performance: monitor bundle size growth per feature; flag if >10% increase.
 
@@ -224,6 +233,7 @@ Refine (optional). Constitution Gate for prototype: architecture alignment (Prin
 mock contract presence, accessibility checks, bundle impact, and documented next risks.
 
 Pull Request Requirements:
+
 1. Link to plan slice and mock contract (if API involved).
 2. At least one screenshot or short Loom/GIF demonstration.
 3. Added/updated component story (Storybook or equivalent) for new UI elements.
@@ -240,6 +250,7 @@ governance change; MINOR=new or materially expanded principle/section; PATCH=cla
 non-semantic wording). Reviewers MUST verify gates remain objectively testable.
 
 Amendment Procedure:
+
 1. Draft proposal referencing impacted principles / sections.
 2. Classify bump level per rules above.
 3. Include migration or adoption steps if changing enforcement criteria.
@@ -248,8 +259,9 @@ Amendment Procedure:
 established).
 
 Compliance:
+
 - Quarterly (or pre-production milestone) audit: architecture boundaries, contract drift,
-	test coverage thresholds, security dependency scan status.
+ test coverage thresholds, security dependency scan status.
 - Violations create remediation tasks with tracked due dates.
 - Emergency deviations allowed only with logged risk acceptance.
 

@@ -134,12 +134,14 @@ GitHub Spec Kit provides **9 commands** that support different stages of spec-dr
 **Purpose**: Transform feature ideas into formal specifications
 
 **When to use**:
+
 - Starting a new feature
 - Responding to user feedback
 - Implementing business requirements
 - Creating MVP specifications
 
 **Example scenarios**:
+
 ```bash
 # User request from customer
 /speckit.specify Add user authentication with OAuth2
@@ -152,6 +154,7 @@ GitHub Spec Kit provides **9 commands** that support different stages of spec-dr
 ```
 
 **Output**:
+
 - `spec.md` with functional requirements
 - `requirements.md` checklist for validation
 
@@ -164,11 +167,13 @@ GitHub Spec Kit provides **9 commands** that support different stages of spec-dr
 **Purpose**: Answer clarifying questions to reduce specification ambiguity
 
 **When to use**:
+
 - After `/speckit.specify` generates questions
 - When specs have [NEEDS CLARIFICATION] markers
 - Before technical planning begins
 
 **Example flow**:
+
 1. Run `/speckit.specify`
 2. AI asks: "Should authentication support social login?"
 3. Product Owner provides: "Yes - Google, GitHub, Microsoft"
@@ -183,11 +188,13 @@ GitHub Spec Kit provides **9 commands** that support different stages of spec-dr
 **Purpose**: Validate requirements completeness from business perspective
 
 **When to use**:
+
 - After specification is complete
 - Before handoff to engineering
 - For UX and business logic validation
 
 **Example**:
+
 ```bash
 # Generate UX requirements checklist
 /speckit.checklist Generate a UX checklist focusing on user flows and accessibility
@@ -219,11 +226,13 @@ GitHub Spec Kit provides **9 commands** that support different stages of spec-dr
 **Purpose**: Create technical design and architecture artifacts
 
 **When to use**:
+
 - After specification is clarified
 - Before implementation begins
 - When architectural decisions are needed
 
 **What it does**:
+
 1. Reads spec.md
 2. Creates research.md (technical decisions)
 3. Creates data-model.md (entities and relationships)
@@ -232,6 +241,7 @@ GitHub Spec Kit provides **9 commands** that support different stages of spec-dr
 6. Updates agent context files
 
 **Example flow**:
+
 ```bash
 # After spec.md is ready
 /speckit.plan
@@ -258,12 +268,14 @@ GitHub Spec Kit provides **9 commands** that support different stages of spec-dr
 **Purpose**: Generate or update project context to ensure AI agent consistency
 
 **When to use**:
+
 - At project inception (first time setup)
 - Before starting implementation on features
 - When major architectural changes occur
 - When coding standards evolve
 
 **What it does**:
+
 1. Analyzes project structure and existing artifacts
 2. Extracts tech stack, versions, and dependencies
 3. Identifies coding conventions and standards
@@ -272,6 +284,7 @@ GitHub Spec Kit provides **9 commands** that support different stages of spec-dr
 6. Creates/updates memory/project-context.md
 
 **Example flow**:
+
 ```bash
 # First time project setup
 /speckit.summarize
@@ -300,11 +313,13 @@ GitHub Spec Kit provides **9 commands** that support different stages of spec-dr
 **Purpose**: Validate architectural quality and technical completeness
 
 **When to use**:
+
 - After creating technical plan
 - Before task breakdown
 - For architecture review
 
 **Example**:
+
 ```bash
 # Architecture validation
 /speckit.checklist Generate architecture checklist covering scalability, security, and maintainability
@@ -322,11 +337,13 @@ GitHub Spec Kit provides **9 commands** that support different stages of spec-dr
 **Purpose**: Define or update project governance principles
 
 **When to use**:
+
 - At project inception
 - When adding new architectural principles
 - When updating technical standards
 
 **Example**:
+
 ```bash
 # Create project constitution
 /speckit.constitution
@@ -362,11 +379,13 @@ GitHub Spec Kit provides **9 commands** that support different stages of spec-dr
 **Purpose**: Generate executable task breakdown with dependencies
 
 **When to use**:
+
 - After technical planning is complete
 - Before sprint planning
 - When estimating effort
 
 **What it does**:
+
 1. Reads spec.md (user stories with priorities)
 2. Reads plan.md (tech stack, structure)
 3. Reads data-model.md, contracts/, research.md
@@ -375,6 +394,7 @@ GitHub Spec Kit provides **9 commands** that support different stages of spec-dr
 6. Identifies parallel work opportunities
 
 **Example output structure**:
+
 ```markdown
 # Phase 1: Setup
 - [ ] T001 Create project structure
@@ -403,11 +423,13 @@ GitHub Spec Kit provides **9 commands** that support different stages of spec-dr
 **Purpose**: Pre-implementation quality gate - check consistency across all artifacts
 
 **When to use**:
+
 - After tasks.md is generated
 - Before starting implementation
 - As final validation before coding
 
 **What it checks**:
+
 - Spec/plan/tasks consistency
 - Constitution compliance
 - Requirement coverage (every requirement has tasks)
@@ -416,6 +438,7 @@ GitHub Spec Kit provides **9 commands** that support different stages of spec-dr
 - Missing edge cases
 
 **Example output**:
+
 ```
 ## Specification Analysis Report
 
@@ -442,12 +465,14 @@ GitHub Spec Kit provides **9 commands** that support different stages of spec-dr
 **Purpose**: Ensure project context is current for AI-assisted implementation
 
 **When to use**:
+
 - Before running `/speckit.tasks` (to ensure consistent task generation)
 - When team coding standards are updated
 - After significant architectural changes
 - Periodically to keep AI agents in sync with project evolution
 
 **What Tech Leads ensure**:
+
 - Project standards are documented accurately
 - Coding conventions match actual codebase
 - Error handling patterns are current
@@ -455,6 +480,7 @@ GitHub Spec Kit provides **9 commands** that support different stages of spec-dr
 - AI agents have complete context for consistent implementation
 
 **Example use**:
+
 ```bash
 # Before generating tasks for a feature
 /speckit.summarize
@@ -478,6 +504,7 @@ GitHub Spec Kit provides **9 commands** that support different stages of spec-dr
 **Purpose**: Collaborate with architects or create plans for smaller features
 
 **When to use**:
+
 - For smaller features without dedicated architect
 - To review/modify architectural decisions
 - When architect is unavailable
@@ -491,11 +518,13 @@ GitHub Spec Kit provides **9 commands** that support different stages of spec-dr
 **Purpose**: Create comprehensive quality checklists across all domains
 
 **When to use**:
+
 - Before code review
 - As pre-implementation validation
 - For team quality standards
 
 **Example**:
+
 ```bash
 # Comprehensive review checklist
 /speckit.checklist Generate a comprehensive pre-implementation checklist covering architecture, testing, security, and UX
@@ -527,11 +556,13 @@ GitHub Spec Kit provides **9 commands** that support different stages of spec-dr
 **Purpose**: Execute implementation following the task plan
 
 **When to use**:
+
 - After all artifacts are ready (spec, plan, tasks)
 - After analyze command passes
 - During development sprints
 
 **What it does**:
+
 1. Checks checklist completion (blocks if incomplete)
 2. Loads all context (spec, plan, tasks, data-model, contracts, research)
 3. Creates/verifies ignore files (.gitignore, .dockerignore, etc.)
@@ -541,6 +572,7 @@ GitHub Spec Kit provides **9 commands** that support different stages of spec-dr
 7. Validates implementation against specs
 
 **Example flow**:
+
 ```bash
 # Start implementation
 /speckit.implement
@@ -577,11 +609,13 @@ GitHub Spec Kit provides **9 commands** that support different stages of spec-dr
 **Purpose**: Ask clarifying questions when requirements are unclear
 
 **When to use**:
+
 - During implementation when ambiguity is discovered
 - Before starting complex features
 - When specifications have gaps
 
 **Example**:
+
 ```bash
 # Developer finds unclear requirement during implementation
 /speckit.clarify What should happen when a user tries to register with an already-used email?
@@ -600,6 +634,7 @@ GitHub Spec Kit provides **9 commands** that support different stages of spec-dr
 **Purpose**: Re-generate or modify task breakdown
 
 **When to use**:
+
 - When tasks need adjustment during development
 - After scope changes
 - For effort estimation
@@ -613,11 +648,13 @@ GitHub Spec Kit provides **9 commands** that support different stages of spec-dr
 **Purpose**: Create implementation-specific checklists
 
 **When to use**:
+
 - Before starting complex implementations
 - For self-review before code review
 - For technical validation
 
 **Example**:
+
 ```bash
 # Implementation checklist
 /speckit.checklist Create technical implementation checklist for error handling and logging
@@ -649,6 +686,7 @@ GitHub Spec Kit provides **9 commands** that support different stages of spec-dr
 **Purpose**: Create comprehensive test validation checklists
 
 **When to use**:
+
 - After specification is complete
 - Before implementation starts
 - For test planning
@@ -656,6 +694,7 @@ GitHub Spec Kit provides **9 commands** that support different stages of spec-dr
 **Important**: These are NOT test cases, but requirement quality checks
 
 **Example**:
+
 ```bash
 # Test requirements quality checklist
 /speckit.checklist Generate testing requirements checklist focusing on testability, acceptance criteria, and edge cases
@@ -676,11 +715,13 @@ GitHub Spec Kit provides **9 commands** that support different stages of spec-dr
 **Purpose**: Validate quality and completeness before implementation
 
 **When to use**:
+
 - After tasks are generated
 - As part of quality gate
 - Before test planning
 
 **What QA looks for**:
+
 - Every requirement has acceptance criteria
 - Edge cases are specified
 - Error handling is defined
@@ -711,11 +752,13 @@ GitHub Spec Kit provides **9 commands** that support different stages of spec-dr
 **Purpose**: Break down work for sprint planning and tracking
 
 **When to use**:
+
 - During sprint planning
 - For effort estimation
 - To identify dependencies and blockers
 
 **What Scrum Masters care about**:
+
 - Task breakdown by user story
 - Dependency graph (what blocks what)
 - Parallel work opportunities (maximize throughput)
@@ -723,6 +766,7 @@ GitHub Spec Kit provides **9 commands** that support different stages of spec-dr
 - Incremental delivery strategy
 
 **Example use**:
+
 ```bash
 # Generate tasks for sprint planning
 /speckit.tasks
@@ -747,11 +791,13 @@ GitHub Spec Kit provides **9 commands** that support different stages of spec-dr
 **Purpose**: Ensure process compliance and readiness
 
 **When to use**:
+
 - Before sprint starts (readiness check)
 - For definition of done validation
 - For release readiness
 
 **Example**:
+
 ```bash
 # Sprint readiness checklist
 /speckit.checklist Generate sprint readiness checklist covering requirements clarity, team capacity, and dependency resolution
@@ -784,11 +830,13 @@ GitHub Spec Kit provides **9 commands** that support different stages of spec-dr
 **Purpose**: Validate security requirements quality
 
 **When to use**:
+
 - After specification is complete
 - Before technical planning
 - For security review
 
 **Example**:
+
 ```bash
 # Security requirements checklist
 /speckit.checklist Generate security requirements checklist covering authentication, authorization, data protection, and threat modeling
@@ -809,11 +857,13 @@ GitHub Spec Kit provides **9 commands** that support different stages of spec-dr
 **Purpose**: Validate security requirements coverage and compliance
 
 **When to use**:
+
 - Before implementation
 - As security gate
 - For compliance validation
 
 **What Security Engineers look for**:
+
 - Security requirements coverage
 - Constitution compliance (security principles)
 - Missing threat scenarios
@@ -828,11 +878,13 @@ GitHub Spec Kit provides **9 commands** that support different stages of spec-dr
 **Purpose**: Define or update security principles and standards
 
 **When to use**:
+
 - At project inception
 - When adding security standards
 - After security incidents
 
 **Example principles**:
+
 - "All APIs must require authentication"
 - "Passwords must be hashed with bcrypt (cost factor ≥12)"
 - "All user input must be validated and sanitized"
@@ -861,11 +913,13 @@ GitHub Spec Kit provides **9 commands** that support different stages of spec-dr
 **Purpose**: Validate operational readiness requirements
 
 **When to use**:
+
 - During technical planning
 - Before deployment
 - For operational review
 
 **Example**:
+
 ```bash
 # Deployment requirements checklist
 /speckit.checklist Generate deployment checklist covering infrastructure, monitoring, logging, and disaster recovery
@@ -886,6 +940,7 @@ GitHub Spec Kit provides **9 commands** that support different stages of spec-dr
 **Purpose**: Review or contribute to infrastructure design
 
 **When to use**:
+
 - To review infrastructure requirements
 - To add operational constraints
 - For deployment architecture
@@ -899,6 +954,7 @@ GitHub Spec Kit provides **9 commands** that support different stages of spec-dr
 **Purpose**: Review deployment and infrastructure tasks
 
 **When to use**:
+
 - For deployment planning
 - To ensure infrastructure tasks are included
 - For effort estimation
@@ -912,11 +968,13 @@ GitHub Spec Kit provides **9 commands** that support different stages of spec-dr
 **Purpose**: Define operational principles and standards
 
 **When to use**:
+
 - At project inception
 - When defining SLAs/SLOs
 - For operational standards
 
 **Example principles**:
+
 - "All services must expose health check endpoints"
 - "99.9% uptime SLA for production"
 - "All deployments must be zero-downtime"
@@ -944,6 +1002,7 @@ GitHub Spec Kit provides **9 commands** that support different stages of spec-dr
 **Purpose**: Create formal specifications from business requirements
 
 **When to use**:
+
 - After stakeholder interviews
 - When documenting requirements
 - For requirements engineering
@@ -957,6 +1016,7 @@ GitHub Spec Kit provides **9 commands** that support different stages of spec-dr
 **Purpose**: Interactive requirements clarification
 
 **When to use**:
+
 - After initial specification
 - To resolve ambiguities
 - Before handoff to engineering
@@ -970,11 +1030,13 @@ GitHub Spec Kit provides **9 commands** that support different stages of spec-dr
 **Purpose**: Validate requirements quality
 
 **When to use**:
+
 - After specification is complete
 - For requirements review
 - Before technical planning
 
 **Example**:
+
 ```bash
 # Requirements quality checklist
 /speckit.checklist Generate requirements checklist focusing on completeness, clarity, consistency, and measurability
@@ -1006,11 +1068,13 @@ GitHub Spec Kit provides **9 commands** that support different stages of spec-dr
 **Purpose**: Define project governance and engineering principles
 
 **When to use**:
+
 - At project inception
 - When establishing team standards
 - After process retrospectives
 
 **Example principles**:
+
 - **Quality Gates**: "80% test coverage minimum", "No critical security vulnerabilities"
 - **Architecture**: "Microservices pattern", "Event-driven communication"
 - **Process**: "All changes require code review", "TDD for core business logic"
@@ -1025,6 +1089,7 @@ GitHub Spec Kit provides **9 commands** that support different stages of spec-dr
 **Purpose**: Quality oversight and risk management
 
 **When to use**:
+
 - For governance validation
 - As quality gate
 - For risk assessment
@@ -1036,6 +1101,7 @@ GitHub Spec Kit provides **9 commands** that support different stages of spec-dr
 #### Commands They Should Read (All)
 
 Engineering Managers should have read access to all commands for:
+
 - Team oversight
 - Process improvement
 - Risk identification

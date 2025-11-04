@@ -3,6 +3,7 @@
 ## Core Principles
 
 ### 1. Hexagonal Architecture Integrity (NON‑NEGOTIABLE)
+
 All backend domain logic MUST reside in inner domain packages with no outbound framework
 or transport dependencies. Adapters (Go net/http handlers, DB repositories, message/pub-sub
 adapters, external API clients) depend inward only through well-defined interfaces. The Vue
@@ -16,6 +17,7 @@ Rationale: Ensures testability, replaceability (swap transport, persistence, or 
 predictable evolution from PoC to production.
 
 ### 2. Evolutionary Path: PoC → Production
+
 All code MUST follow a maturation path: PoC (exploratory) → Hardened MVP → Production-ready.
 Each package or module MUST declare its maturity level in a leading package comment or
 README fragment. Promotion requires: (a) tests at required coverage (see Principle 4), (b)
@@ -26,6 +28,7 @@ imported by production-bound packages.
 Rationale: Prevents PoC entropy while enabling rapid validation of product hypotheses.
 
 ### 3. Contract-First Interfaces & Backward Compatibility
+
 All externally consumed interfaces (HTTP APIs, DB schemas, domain service ports, frontend
 API clients) MUST be defined via versioned contracts (OpenAPI/JSON Schema, SQL migration
 manifest, or interface definition) before implementation. Breaking changes REQUIRE either a
@@ -37,6 +40,7 @@ available.
 Rationale: Stabilizes integration velocity and reduces regression risk as the platform scales.
 
 ### 4. Quality & Observability as Gate Criteria
+
 Minimum automated test coverage: 70% domain layer, 50% adapters during PoC, increasing
 to 85% / 70% at Production readiness. Every feature MUST ship with: structured logging
 (correlated by request / job id), basic metrics (latency, error rate), and at least one
@@ -48,6 +52,7 @@ its observability signals are documented in the plan's Constitution Check sectio
 Rationale: Prevents invisible failures and enables safe iterative delivery.
 
 ### 5. Secure & Compliant Data Stewardship
+
 PostgreSQL schemas MUST follow explicit ownership (module or bounded context). PII fields
 MUST be isolated in dedicated tables or encrypted columns where applicable. Secrets MUST
 NOT appear in source—managed via environment or secret manager abstraction. Input
@@ -176,6 +181,7 @@ versioning impact, observability plan, security considerations, rollback path, a
 level assignment.
 
 Pull Request Requirements:
+
 1. Link to spec & plan sections referencing contract definitions.
 2. Evidence of failing tests before implementation (where new domains introduced).
 3. Added/updated migrations with rollback notes.
@@ -192,6 +198,7 @@ governance change; MINOR=new or materially expanded principle/section; PATCH=cla
 non-semantic wording). Reviewers MUST verify gates remain objectively testable.
 
 Amendment Procedure:
+
 1. Draft proposal referencing impacted principles / sections.
 2. Classify bump level per rules above.
 3. Include migration or adoption steps if changing enforcement criteria.
@@ -200,8 +207,9 @@ Amendment Procedure:
 established).
 
 Compliance:
+
 - Quarterly (or pre-production milestone) audit: architecture boundaries, contract drift,
-	test coverage thresholds, security dependency scan status.
+ test coverage thresholds, security dependency scan status.
 - Violations create remediation tasks with tracked due dates.
 - Emergency deviations allowed only with logged risk acceptance.
 
