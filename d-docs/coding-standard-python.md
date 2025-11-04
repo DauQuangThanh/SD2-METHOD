@@ -9,16 +9,16 @@
 ## Table of Contents
 
 1. [General Principles](#general-principles)
-2. [Naming Conventions](#naming-conventions)
-3. [Code Layout and Formatting](#code-layout-and-formatting)
-4. [Import Organization](#import-organization)
-5. [Type Annotations](#type-annotations)
-6. [Documentation Standards](#documentation-standards)
-7. [Error Handling](#error-handling)
-8. [Async/Await Conventions](#asyncawait-conventions)
-9. [Testing Conventions](#testing-conventions)
-10. [Hexagonal Architecture Guidelines](#hexagonal-architecture-guidelines)
-11. [Tools and Enforcement](#tools-and-enforcement)
+1. [Naming Conventions](#naming-conventions)
+1. [Code Layout and Formatting](#code-layout-and-formatting)
+1. [Import Organization](#import-organization)
+1. [Type Annotations](#type-annotations)
+1. [Documentation Standards](#documentation-standards)
+1. [Error Handling](#error-handling)
+1. [Async/Await Conventions](#asyncawait-conventions)
+1. [Testing Conventions](#testing-conventions)
+1. [Hexagonal Architecture Guidelines](#hexagonal-architecture-guidelines)
+1. [Tools and Enforcement](#tools-and-enforcement)
 
 ---
 
@@ -39,7 +39,7 @@ All Python code MUST adhere to [PEP 8](https://peps.python.org/pep-0008/) style 
 
 ```python
 import this  # The Zen of Python - guiding philosophy
-```
+```yaml
 
 ---
 
@@ -57,7 +57,7 @@ api_schemas.py
 domain/
 adapters/
 infrastructure/
-```
+```text
 
 ### Variables and Functions
 
@@ -73,7 +73,7 @@ def calculate_total_price(items: list[Item]) -> Decimal:
 def get_user_by_id(user_id: int) -> User | None:
     """Retrieve user by ID. Returns None if not found."""
     pass
-```
+```python
 
 ### Classes
 
@@ -100,7 +100,7 @@ MAX_RETRY_ATTEMPTS = 3
 DEFAULT_TIMEOUT_SECONDS = 30
 API_VERSION = "v1"
 DATABASE_URL = "postgresql://localhost/db"
-```
+```python
 
 ### Private/Protected Members
 
@@ -121,7 +121,7 @@ class UserService:
     def __private_method(self):
         """Private method with name mangling."""
         pass
-```
+```text
 
 ### Special Names
 
@@ -146,7 +146,7 @@ class User:
 
     def __repr__(self) -> str:
         return f"User(name={self.name!r})"
-```
+```python
 
 ### Naming by Intent
 
@@ -177,7 +177,7 @@ calculated_discount = calculate_discount()
 # PEP 8 recommends 79, but 88 is modern standard
 
 # For docstrings and comments: 72 characters
-```
+```text
 
 ### Indentation
 
@@ -200,7 +200,7 @@ result = some_function_that_takes_arguments(
     argument_three,
     argument_four,
 )
-```
+```text
 
 ### Blank Lines
 
@@ -230,7 +230,7 @@ class MyClass:
 
     def second_method(self):
         pass
-```
+```text
 
 ### Whitespace
 
@@ -267,7 +267,7 @@ user_data = {"name": "John", "age": 30}
 def example():
     """This is a docstring."""
     pass
-```
+```yaml
 
 ---
 
@@ -291,7 +291,7 @@ from sqlalchemy import Column, Integer, String
 from domain.entities.user import User
 from domain.repositories.user_repository import UserRepository
 from adapters.persistence.models import UserModel
-```
+```python
 
 ### Import Style
 
@@ -318,7 +318,7 @@ from domain.entities import (
 
 # BAD: Star imports (except in __init__.py for re-exporting)
 from domain.entities import *  # Avoid
-```
+```python
 
 ### Import Aliases
 
@@ -368,7 +368,7 @@ def get_user(user_id: int) -> User | None:
 def process_items(items: Sequence[Item]) -> list[Result]:
     """Process items and return results."""
     return [process_item(item) for item in items]
-```
+```text
 
 ### Variable Annotations
 
@@ -383,7 +383,7 @@ UserId = int
 UserCache = dict[UserId, User]
 
 cache: UserCache = {}
-```
+```python
 
 ### Generic Types
 
@@ -402,7 +402,7 @@ class Repository(Generic[T]):
     def save(self, entity: T) -> None:
         """Save entity."""
         pass
-```
+```python
 
 ### Protocol Classes (Structural Subtyping)
 
@@ -434,7 +434,7 @@ Typical usage example:
     repository = UserRepository(db_session)
     user = repository.get_by_id(123)
 """
-```
+```python
 
 ### Function Docstrings
 
@@ -471,7 +471,7 @@ def calculate_shipping_cost(
 
     base_cost = weight * Decimal("5.0") + distance * Decimal("0.10")
     return base_cost * Decimal("1.5") if express else base_cost
-```
+```python
 
 ### Class Docstrings
 
@@ -504,7 +504,7 @@ class UserService:
         """
         self.repository = repository
         self.logger = logger
-```
+```text
 
 ### Inline Comments
 
@@ -560,7 +560,7 @@ try:
 except Exception as e:
     logger.exception("Operation failed")
     raise
-```
+```python
 
 ### Custom Exceptions
 
@@ -587,7 +587,7 @@ def get_user(user_id: int) -> User:
     if user is None:
         raise UserNotFoundError(user_id)
     return user
-```
+```text
 
 ### Context Managers
 
@@ -600,7 +600,7 @@ with open("file.txt") as f:
 async with db_session() as session:
     user = await session.get(User, user_id)
     await session.commit()
-```
+```yaml
 
 ---
 
@@ -642,7 +642,7 @@ async def fetch_user_details(user_id: int) -> UserDetails:
 async def bad_example():
     time.sleep(1)  # BAD: Blocks event loop
     await asyncio.sleep(1)  # GOOD: Non-blocking
-```
+```yaml
 
 ---
 
@@ -654,7 +654,7 @@ async def bad_example():
 # tests/unit/domain/test_user_entity.py
 # tests/integration/adapters/test_user_repository.py
 # tests/e2e/test_user_registration_flow.py
-```
+```text
 
 ### Test Function Naming
 
@@ -677,7 +677,7 @@ def test_user_repository_get_by_id_with_missing_user_returns_none():
     repository = UserRepository(db_session)
     user = repository.get_by_id(999999)
     assert user is None
-```
+```python
 
 ### Test Structure (Arrange-Act-Assert)
 
@@ -722,7 +722,7 @@ def test_user_service_with_mock_repository(mock_repository):
 
     assert user.id == 1
     mock_repository.get_by_id.assert_called_once_with(1)
-```
+```yaml
 
 ---
 
@@ -756,7 +756,7 @@ class User:
     def _is_valid_email(email: str) -> bool:
         """Validate email format."""
         return "@" in email and "." in email.split("@")[1]
-```
+```python
 
 ### Repository Interfaces (Ports)
 
@@ -782,7 +782,7 @@ class UserRepository(ABC):
     async def delete(self, user_id: int) -> None:
         """Delete user by ID."""
         pass
-```
+```python
 
 ### Adapter Implementation
 
@@ -858,7 +858,7 @@ class Container(containers.DeclarativeContainer):
         UserService,
         repository=user_repository,
     )
-```
+```yaml
 
 ---
 
@@ -892,33 +892,43 @@ ignore = []
 testpaths = ["tests"]
 python_files = "test_*.py"
 python_functions = "test_*"
-```
+```yaml
 
 ### Pre-commit Hooks
 
 ```yaml
 # .pre-commit-config.yaml
 repos:
+
   - repo: https://github.com/psf/black
+
     rev: 24.10.0
     hooks:
+
       - id: black
 
   - repo: https://github.com/pycqa/isort
+
     rev: 5.13.2
     hooks:
+
       - id: isort
 
   - repo: https://github.com/astral-sh/ruff-pre-commit
+
     rev: v0.8.0
     hooks:
+
       - id: ruff
 
   - repo: https://github.com/pre-commit/mirrors-mypy
+
     rev: v1.13.0
     hooks:
+
       - id: mypy
-```
+
+```text
 
 ### Running Tools
 

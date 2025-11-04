@@ -1,6 +1,6 @@
 # Change Request Workflow During Feature Development
 
-**Handling Mid-Development Changes with Spec Kit**
+## Handling Mid-Development Changes with Spec Kit
 
 **Date**: 2025-10-26
 **Version**: 1.0
@@ -21,15 +21,15 @@
 ## Table of Contents
 
 1. [Initial Assessment: Accept or Defer?](#initial-assessment-accept-or-defer)
-2. [Change Impact Analysis](#change-impact-analysis)
-3. [Workflow: Minor Changes (Accept)](#workflow-minor-changes-accept)
-4. [Workflow: Major Changes (Defer or Accept)](#workflow-major-changes-defer-or-accept)
-5. [Workflow: Scope Changes (Usually Defer)](#workflow-scope-changes-usually-defer)
-6. [Handling Partially Completed Work](#handling-partially-completed-work)
-7. [Communication Patterns](#communication-patterns)
-8. [Real-World Scenarios](#real-world-scenarios)
-9. [Best Practices](#best-practices)
-10. [Anti-Patterns to Avoid](#anti-patterns-to-avoid)
+1. [Change Impact Analysis](#change-impact-analysis)
+1. [Workflow: Minor Changes (Accept)](#workflow-minor-changes-accept)
+1. [Workflow: Major Changes (Defer or Accept)](#workflow-major-changes-defer-or-accept)
+1. [Workflow: Scope Changes (Usually Defer)](#workflow-scope-changes-usually-defer)
+1. [Handling Partially Completed Work](#handling-partially-completed-work)
+1. [Communication Patterns](#communication-patterns)
+1. [Real-World Scenarios](#real-world-scenarios)
+1. [Best Practices](#best-practices)
+1. [Anti-Patterns to Avoid](#anti-patterns-to-avoid)
 
 ---
 
@@ -37,7 +37,7 @@
 
 ### Decision Tree
 
-```
+```text
 ┌─────────────────────────────────────────────────────────────────────────┐
 │               CHANGE REQUEST DECISION TREE                              │
 └─────────────────────────────────────────────────────────────────────────┘
@@ -80,7 +80,7 @@ Change Request Received
                 │
                 ▼
    DECISION: Accept or Defer?
-```
+```yaml
 
 ---
 
@@ -122,13 +122,14 @@ cat tasks.md          # Current tasks and progress
 # - Which sections of plan.md need updates?
 # - Which tasks in tasks.md are affected?
 # - How many tasks are [X] complete vs [ ] incomplete?
-```
+```text
 
 ### Step 2: Calculate Impact Metrics
 
 **Use this template to assess impact:**
 
 ```
+
 CHANGE REQUEST IMPACT ASSESSMENT
 ════════════════════════════════════════════════════════════════════════
 
@@ -196,7 +197,8 @@ RATIONALE:
 [Explain your recommendation]
 
 ────────────────────────────────────────────────────────────────────────
-```
+
+```yaml
 
 ---
 
@@ -206,7 +208,7 @@ RATIONALE:
 
 ### Scenario
 
-```
+```text
 CURRENT STATE:
 ├─ Feature: User Registration
 ├─ Progress: 60% complete (12 of 20 tasks done)
@@ -215,11 +217,12 @@ CURRENT STATE:
 CHANGE REQUEST:
 └─ "Add phone number field to registration form"
    └─ Impact: 1 new field, 2 tasks (3 hours)
-```
+```text
 
 ### Workflow: Accept and Integrate
 
 ```
+
 ┌─────────────────────────────────────────────────────────────────────────┐
 │           MINOR CHANGE WORKFLOW (Accept Immediately)                    │
 └─────────────────────────────────────────────────────────────────────────┘
@@ -297,7 +300,8 @@ STEP 6: Update Stakeholders (5 minutes)
 TOTAL TIME OVERHEAD: ~40 minutes for change integration
 TOTAL ADDITIONAL IMPLEMENTATION: 3 hours
 NET IMPACT: 3.5 hours total change cost
-```
+
+```yaml
 
 ---
 
@@ -307,7 +311,7 @@ NET IMPACT: 3.5 hours total change cost
 
 ### Scenario
 
-```
+```text
 CURRENT STATE:
 ├─ Feature: User Registration
 ├─ Progress: 60% complete (12 of 20 tasks done)
@@ -316,11 +320,12 @@ CURRENT STATE:
 CHANGE REQUEST:
 └─ "Change authentication from email/password to OAuth2 only"
    └─ Impact: Completely different approach, ~70% rework
-```
+```text
 
 ### Decision: Defer vs. Accept
 
 ```
+
 ┌─────────────────────────────────────────────────────────────────────────┐
 │                      MAJOR CHANGE DECISION PROCESS                      │
 └─────────────────────────────────────────────────────────────────────────┘
@@ -367,13 +372,14 @@ STEP 3: Make Decision with Stakeholders (30 minutes)
    └─ Recommendation: [Accept or Defer with rationale]
 
    Decision: [ ] Accept Now  [ ] Defer to Next Sprint  [ ] Defer to Backlog
-```
+
+```yaml
 
 ---
 
 ### If Decision = ACCEPT (Major Change)
 
-```
+```bash
 ┌─────────────────────────────────────────────────────────────────────────┐
 │              MAJOR CHANGE WORKFLOW (Accept - Full Re-Plan)              │
 └─────────────────────────────────────────────────────────────────────────┘
@@ -511,13 +517,14 @@ TOTAL TIME OVERHEAD: 8-14 hours for re-planning
 TOTAL IMPLEMENTATION TIME: ~62 hours (new approach)
 SALVAGED TIME: ~10 hours (reusable work)
 NET CHANGE COST: 60-66 hours (vs. 32 hours to finish original)
-```
+```yaml
 
 ---
 
 ### If Decision = DEFER (Major Change)
 
 ```
+
 ┌─────────────────────────────────────────────────────────────────────────┐
 │                  MAJOR CHANGE WORKFLOW (Defer)                          │
 └─────────────────────────────────────────────────────────────────────────┘
@@ -574,7 +581,8 @@ STEP 4: Update Stakeholders (15 minutes)
 TOTAL TIME OVERHEAD: 45 minutes (document and communicate)
 CURRENT FEATURE: Delivers on time (32 hours remaining)
 FUTURE FEATURE: OAuth2 (50 hours, next sprint)
-```
+
+```yaml
 
 ---
 
@@ -584,7 +592,7 @@ FUTURE FEATURE: OAuth2 (50 hours, next sprint)
 
 ### Scenario
 
-```
+```text
 CURRENT STATE:
 ├─ Feature: User Registration (email/password)
 ├─ Progress: 60% complete
@@ -593,11 +601,12 @@ CURRENT STATE:
 CHANGE REQUEST:
 └─ "Add social login (Google, Facebook, GitHub)"
    └─ This is NEW functionality, not modification of existing
-```
+```text
 
 ### Recommended Approach: Defer as Separate Feature
 
 ```
+
 ┌─────────────────────────────────────────────────────────────────────────┐
 │              SCOPE CHANGE WORKFLOW (Defer as Separate)                  │
 └─────────────────────────────────────────────────────────────────────────┘
@@ -647,7 +656,8 @@ STEP 4: Plan Separate Feature for Future
 TOTAL TIME OVERHEAD: 45 minutes (create new spec, communicate)
 CURRENT FEATURE: No impact, delivers on time
 NEW FEATURE: Planned for next sprint (independent)
-```
+
+```yaml
 
 ---
 
@@ -655,7 +665,7 @@ NEW FEATURE: Planned for next sprint (independent)
 
 ### Scenario: Change Invalidates Some Completed Work
 
-```
+```text
 CURRENT STATE:
 ├─ 12 of 20 tasks complete [X]
 ├─ Change affects 6 of the 12 completed tasks
@@ -678,7 +688,7 @@ OPTION 3: Hybrid (common)
 ├─ Some completed work discarded (authentication logic)
 └─ Mark partially reusable tasks with comment:
    "<!-- T012: [X] UI reusable, [ ] backend needs rework -->"
-```
+```yaml
 
 ---
 
@@ -716,7 +726,7 @@ OPTION 3: Hybrid (common)
 
 ### Template 1: Communicating Accepted Minor Change
 
-```
+```text
 TO: Product Owner, Team, Scrum Master
 SUBJECT: Change Accepted - [Feature Name] - [Brief Change Description]
 
@@ -745,13 +755,13 @@ Implementation continuing with new tasks integrated.
 
 Thanks,
 [Your Name]
-```
+```yaml
 
 ---
 
 ### Template 2: Communicating Deferred Major Change
 
-```
+```text
 TO: Product Owner, Change Requester, Team
 SUBJECT: Change Deferred - [Feature Name] - [Brief Change Description]
 
@@ -797,7 +807,7 @@ Thanks,
 
 ### Template 3: Communicating Accepted Major Change (Pivot)
 
-```
+```bash
 TO: Product Owner, Engineering Manager, Team, Stakeholders
 SUBJECT: MAJOR CHANGE - [Feature Name] - Implementation Pivot
 
@@ -848,7 +858,7 @@ Current status: [Paused/Re-planning/Restarting]
 
 Thanks,
 [Your Name]
-```
+```yaml
 
 ---
 
@@ -856,7 +866,7 @@ Thanks,
 
 ### Scenario 1: UI Requirement Change (Minor - Accept)
 
-```
+```yaml
 SITUATION:
 ├─ Feature: Product Catalog
 ├─ Progress: 70% complete (coding product grid)
@@ -866,19 +876,24 @@ SITUATION:
 WORKFLOW:
 
 1. Quick Assessment (5 min):
+
    └─ Minor change, late stage, but clean addition
 
-2. Update spec.md (5 min):
+1. Update spec.md (5 min):
+
    └─ Add "Price range filter" to functional requirements
 
-3. Update plan.md (5 min):
+1. Update plan.md (5 min):
+
    └─ No architecture change needed (uses existing filtering system)
 
-4. Add tasks manually (5 min):
+1. Add tasks manually (5 min):
+
    └─ T023 [P] Add price range slider to UI
    └─ T024 [P] Add price range filter to backend query
 
-5. Continue implementation (4 hours):
+1. Continue implementation (4 hours):
+
    └─ Current task → New tasks → Rest of feature
 
 OUTCOME:
@@ -892,7 +907,7 @@ OUTCOME:
 
 ### Scenario 2: Business Logic Change (Moderate - Defer)
 
-```
+```yaml
 SITUATION:
 ├─ Feature: E-commerce Checkout
 ├─ Progress: 50% complete (implementing payment processing)
@@ -902,24 +917,29 @@ SITUATION:
 WORKFLOW:
 
 1. Impact Assessment (30 min):
+
    ├─ Moderate change
    ├─ Affects completed tax calculation logic (8 hours wasted)
    ├─ Requires new payment plan logic (16 hours)
    └─ Total cost: 24 hours (vs. 20 hours to finish current)
 
-2. Business Discussion (30 min):
+1. Business Discussion (30 min):
+
    ├─ Urgency: Medium (customer request, not critical)
    ├─ Recommendation: Defer to next sprint
    └─ Decision: DEFER
 
-3. Create New Feature Spec (30 min):
+1. Create New Feature Spec (30 min):
+
    └─ /speckit.specify "Add payment plans (installments) to checkout"
    └─ Output: specs/048-payment-plans/spec.md
 
-4. Continue Current Feature (unchanged):
+1. Continue Current Feature (unchanged):
+
    └─ Deliver checkout with single payments on time
 
-5. Plan Payment Plans for Next Sprint:
+1. Plan Payment Plans for Next Sprint:
+
    └─ Scheduled for Sprint 8 (estimated 24 hours)
 
 OUTCOME:
@@ -927,13 +947,13 @@ OUTCOME:
 ├─ Payment plans: Clean implementation in next sprint
 ├─ Total effort saved: 8 hours (avoided rework)
 └─ Customer: Gets payment plans 2 weeks later (acceptable trade-off)
-```
+```yaml
 
 ---
 
 ### Scenario 3: Security Requirement (Critical - Accept Immediately)
 
-```
+```yaml
 SITUATION:
 ├─ Feature: User Profile Management
 ├─ Progress: 80% complete (almost done)
@@ -943,26 +963,32 @@ SITUATION:
 WORKFLOW:
 
 1. Security Assessment (1 hour):
+
    ├─ Critical security issue
    ├─ Must be fixed before production
    └─ Decision: ACCEPT IMMEDIATELY (no choice)
 
-2. Stop Implementation (immediate):
+1. Stop Implementation (immediate):
+
    └─ Halt current work, commit WIP
 
-3. Re-plan Security Approach (2 hours):
+1. Re-plan Security Approach (2 hours):
+
    ├─ Update data-model.md: Add encryption specifications
    ├─ Update plan.md: Add encryption layer
    └─ Research.md: Select encryption library (AES-256)
 
-4. Update Tasks (1 hour):
+1. Update Tasks (1 hour):
+
    ├─ /speckit.tasks (regenerate)
    └─ Mark affected tasks as [ ] (uncomplete)
 
-5. Implement Encryption (20 hours):
+1. Implement Encryption (20 hours):
+
    └─ Rework data layer with encryption
 
-6. Extended Testing (8 hours):
+1. Extended Testing (8 hours):
+
    └─ Additional security testing required
 
 OUTCOME:
@@ -976,7 +1002,7 @@ OUTCOME:
 
 ### Scenario 4: Feature Creep (Low Priority - Reject)
 
-```
+```yaml
 SITUATION:
 ├─ Feature: Admin Dashboard
 ├─ Progress: 40% complete
@@ -986,23 +1012,28 @@ SITUATION:
 WORKFLOW:
 
 1. Scope Assessment (15 min):
+
    ├─ This is feature creep, not a change request
    ├─ Unrelated to current feature (admin dashboard)
    └─ Should be separate feature entirely
 
-2. Discussion with Product Owner (15 min):
+1. Discussion with Product Owner (15 min):
+
    ├─ Clarify: Is chat support required for admin dashboard?
    └─ Answer: No, nice-to-have for future
 
-3. Decision: REJECT (or defer to backlog)
+1. Decision: REJECT (or defer to backlog)
+
    └─ Not in scope of current feature
 
-4. Create Backlog Item (15 min):
+1. Create Backlog Item (15 min):
+
    └─ /speckit.specify "Add real-time chat support to platform"
    └─ Priority: P3 (Low)
    └─ Status: Backlog (not scheduled)
 
-5. Continue Current Feature (unchanged):
+1. Continue Current Feature (unchanged):
+
    └─ No impact to current work
 
 OUTCOME:
@@ -1010,7 +1041,7 @@ OUTCOME:
 ├─ Chat feature: Properly scoped as separate initiative
 ├─ Product Owner: Understands scope boundaries
 └─ Backlog: Organized with separate priorities
-```
+```yaml
 
 ---
 
@@ -1018,7 +1049,7 @@ OUTCOME:
 
 ### 1. Always Assess Before Accepting
 
-```
+```text
 ❌ DON'T:
 └─ Immediately start coding the change without assessment
 
@@ -1033,7 +1064,7 @@ OUTCOME:
 
 ### 2. Use Spec Kit Artifacts as Single Source of Truth
 
-```
+```text
 ❌ DON'T:
 └─ Accept verbal change requests without updating spec.md
 
@@ -1042,13 +1073,13 @@ OUTCOME:
 ├─ Use /speckit.clarify to document clarifications
 ├─ Re-run /speckit.analyze after changes
 └─ Keep artifacts in sync
-```
+```yaml
 
 ---
 
 ### 3. Communicate Impact Clearly
 
-```
+```text
 ❌ DON'T:
 └─ "Sure, I can add that" (without understanding impact)
 
@@ -1063,7 +1094,7 @@ OUTCOME:
 
 ### 4. Preserve Completed Work When Possible
 
-```
+```text
 ❌ DON'T:
 └─ Discard all completed work when change comes
 
@@ -1072,13 +1103,13 @@ OUTCOME:
 ├─ Refactor vs. rebuild decision
 ├─ Mark salvageable tasks clearly in tasks.md
 └─ Maximize reuse to reduce waste
-```
+```yaml
 
 ---
 
 ### 5. Make Defer the Default for Non-Critical Changes
 
-```
+```text
 ❌ DON'T:
 └─ Accept every change request to be "helpful"
 
@@ -1095,7 +1126,7 @@ OUTCOME:
 
 ### 6. Use Feature Flags for Experimental Changes
 
-```
+```text
 ✓ DO (when appropriate):
 ├─ Implement change behind feature flag
 ├─ Deploy both versions
@@ -1103,13 +1134,13 @@ OUTCOME:
 └─ Flip flag or roll back based on results
 
 This avoids rework if change needs to be reverted.
-```
+```yaml
 
 ---
 
 ### 7. Track Change Request Metrics
 
-```
+```text
 ✓ DO:
 ├─ Track: Number of change requests per feature
 ├─ Track: Percentage of changes accepted vs. deferred
@@ -1124,7 +1155,7 @@ This avoids rework if change needs to be reverted.
 
 ### Anti-Pattern 1: "Yes to Everything"
 
-```
+```text
 ❌ PROBLEM:
 ├─ Accepting every change request without assessment
 ├─ Never saying no or defer
@@ -1134,13 +1165,13 @@ This avoids rework if change needs to be reverted.
 ├─ Use decision tree to evaluate objectively
 ├─ Make defer the default for non-critical changes
 └─ Get stakeholder buy-in for defer decisions
-```
+```yaml
 
 ---
 
 ### Anti-Pattern 2: "Scope Creep Acceptance"
 
-```
+```text
 ❌ PROBLEM:
 ├─ Feature grows from 20 tasks to 50 tasks
 ├─ "Just one more thing" repeated 10 times
@@ -1157,7 +1188,7 @@ This avoids rework if change needs to be reverted.
 
 ### Anti-Pattern 3: "Undocumented Verbal Changes"
 
-```
+```text
 ❌ PROBLEM:
 ├─ "Can you change X to Y?" → "Sure!" → implements without updating spec
 ├─ No trace of what changed or why
@@ -1168,13 +1199,13 @@ This avoids rework if change needs to be reverted.
 ├─ Use /speckit.clarify to document decisions
 ├─ Keep artifacts in sync with implementation
 └─ Spec.md is single source of truth
-```
+```yaml
 
 ---
 
 ### Anti-Pattern 4: "Change Without Re-Analysis"
 
-```
+```text
 ❌ PROBLEM:
 ├─ Accept change, update spec.md, continue coding
 ├─ Skip /speckit.analyze
@@ -1191,7 +1222,7 @@ This avoids rework if change needs to be reverted.
 
 ### Anti-Pattern 5: "Sunk Cost Fallacy"
 
-```
+```text
 ❌ PROBLEM:
 ├─ "We've invested 40 hours, we can't change now!"
 ├─ Proceed with wrong approach
@@ -1202,13 +1233,13 @@ This avoids rework if change needs to be reverted.
 ├─ Make decision based on forward-looking costs
 ├─ Sometimes pivoting late is still right decision
 └─ Compare: cost to pivot vs. cost of wrong solution in production
-```
+```yaml
 
 ---
 
 ## Summary: Decision Framework
 
-```
+```bash
 ┌─────────────────────────────────────────────────────────────────────────┐
 │                   CHANGE REQUEST DECISION SUMMARY                       │
 └─────────────────────────────────────────────────────────────────────────┘
@@ -1231,19 +1262,21 @@ WHEN TO REJECT:
 └─ Changes that contradict constitution principles
 
 WORKFLOW FOR ACCEPTED CHANGES:
+
 1. Update spec.md (/speckit.clarify if needed)
-2. Update plan.md (manually or /speckit.plan)
-3. Update tasks.md (manually or /speckit.tasks)
-4. Run /speckit.analyze (validate consistency)
-5. Continue/restart implementation
-6. Communicate impact to stakeholders
+1. Update plan.md (manually or /speckit.plan)
+1. Update tasks.md (manually or /speckit.tasks)
+1. Run /speckit.analyze (validate consistency)
+1. Continue/restart implementation
+1. Communicate impact to stakeholders
 
 WORKFLOW FOR DEFERRED CHANGES:
+
 1. Create new feature spec (/speckit.specify)
-2. Add to backlog (future sprint)
-3. Continue current feature unchanged
-4. Plan deferred feature separately
-5. Communicate decision and rationale
+1. Add to backlog (future sprint)
+1. Continue current feature unchanged
+1. Plan deferred feature separately
+1. Communicate decision and rationale
 
 KEY METRICS TO TRACK:
 ├─ Change request rate per feature

@@ -9,16 +9,16 @@
 ## Table of Contents
 
 1. [General Principles](#general-principles)
-2. [Naming Conventions](#naming-conventions)
-3. [Code Layout and Formatting](#code-layout-and-formatting)
-4. [Package Organization](#package-organization)
-5. [Type Declarations](#type-declarations)
-6. [Documentation Standards](#documentation-standards)
-7. [Error Handling](#error-handling)
-8. [Concurrency Patterns](#concurrency-patterns)
-9. [Testing Conventions](#testing-conventions)
-10. [Hexagonal Architecture Guidelines](#hexagonal-architecture-guidelines)
-11. [Tools and Enforcement](#tools-and-enforcement)
+1. [Naming Conventions](#naming-conventions)
+1. [Code Layout and Formatting](#code-layout-and-formatting)
+1. [Package Organization](#package-organization)
+1. [Type Declarations](#type-declarations)
+1. [Documentation Standards](#documentation-standards)
+1. [Error Handling](#error-handling)
+1. [Concurrency Patterns](#concurrency-patterns)
+1. [Testing Conventions](#testing-conventions)
+1. [Hexagonal Architecture Guidelines](#hexagonal-architecture-guidelines)
+1. [Tools and Enforcement](#tools-and-enforcement)
 
 ---
 
@@ -66,7 +66,7 @@ package userService   // BAD
 // If multiple words needed, use one compound word
 package httputil
 package ioutil
-```
+```text
 
 ### File Names
 
@@ -80,7 +80,7 @@ http_handler.go
 // AVOID: Camel case or mixed case
 userRepository.go  // BAD
 UserRepository.go  // BAD
-```
+```text
 
 ### Variables and Functions
 
@@ -109,7 +109,7 @@ for i := 0; i < len(items); i++ {
 // Longer names for broader scopes
 var userRepository UserRepository
 var httpClient *http.Client
-```
+```text
 
 ### Variable Naming Guidelines
 
@@ -161,7 +161,7 @@ type UserStruct struct {} // BAD: Don't use "Struct" suffix
 // Use singular form
 type User struct {} // GOOD
 type Users struct {} // BAD (unless it's a collection type)
-```
+```typescript
 
 ### Interface Names
 
@@ -189,7 +189,7 @@ type UserRepository interface {
 // AVOID: "I" prefix
 type IUserRepository interface {} // BAD
 type UserRepository interface {}  // GOOD
-```
+```javascript
 
 ### Constants
 
@@ -217,7 +217,7 @@ const (
     OrderStatusDelivered
     OrderStatusCancelled
 )
-```
+```typescript
 
 ### Acronyms and Initialisms
 
@@ -251,7 +251,7 @@ var httpClient *HttpClient // BAD
 
 // Or use goimports (includes import management):
 // goimports -w .
-```
+```text
 
 ### Line Length
 
@@ -271,7 +271,7 @@ result := SomeType{}.
     WithFirst(value1).
     WithSecond(value2).
     WithThird(value3)
-```
+```text
 
 ### Indentation
 
@@ -284,7 +284,7 @@ func ExampleFunction() {
   doSomething()
  }
 }
-```
+```text
 
 ### Blank Lines
 
@@ -348,7 +348,7 @@ type Order struct {
     Total    decimal.Decimal
     Currency string
 }
-```
+```yaml
 
 ---
 
@@ -378,7 +378,7 @@ package user
 type Service struct {
     repo Repository
 }
-```
+```python
 
 ### Import Organization
 
@@ -399,7 +399,7 @@ import (
 )
 
 // Use goimports to automatically organize imports
-```
+```python
 
 ### Import Aliases
 
@@ -442,7 +442,7 @@ config := Config{
     Port:     8080,
     Database: "mydb",  // Trailing comma
 }
-```
+```text
 
 ### Constructor Functions
 
@@ -466,7 +466,7 @@ func NewUserService(repo UserRepository) *UserService {
         repo: repo,
     }
 }
-```
+```typescript
 
 ### Method Receivers
 
@@ -497,7 +497,7 @@ func (self *User) SetName(name string) {}  // BAD
 // Use value receivers when:
 // - Receiver is small and doesn't need modification
 // - Receiver is a map, function, or channel
-```
+```text
 
 ### Interface Types
 
@@ -541,7 +541,7 @@ type UserRepository interface {  // BAD: Defined where implemented
 //     log.Fatal(err)
 // }
 package user
-```
+```text
 
 ### Function Documentation
 
@@ -566,7 +566,7 @@ func CalculateTotalPrice(subtotal decimal.Decimal, taxRate float64, express bool
 func Get() string {
     return ""
 }
-```
+```text
 
 ### Type Documentation
 
@@ -590,7 +590,7 @@ type UserRepository interface {
     GetByID(ctx context.Context, id int) (*User, error)
     Save(ctx context.Context, user *User) error
 }
-```
+```text
 
 ### Inline Comments
 
@@ -638,7 +638,7 @@ func ProcessUser(id int) error {
     }
     // ...
 }
-```
+```typescript
 
 ### Custom Errors
 
@@ -674,7 +674,7 @@ user, err := GetUser(123)
 if errors.Is(err, ErrUserNotFound) {
     // Handle not found
 }
-```
+```text
 
 ### Error Handling Patterns
 
@@ -717,7 +717,7 @@ defer func() {
         log.Printf("failed to close file: %v", err)
     }
 }()
-```
+```text
 
 ### Panic and Recover
 
@@ -788,7 +788,7 @@ func ProcessOrders(ctx context.Context, orders []Order) error {
 
     return nil
 }
-```
+```text
 
 ### Context Usage
 
@@ -821,7 +821,7 @@ func FetchData(ctx context.Context, url string) ([]byte, error) {
 
     return io.ReadAll(resp.Body)
 }
-```
+```text
 
 ### Channel Patterns
 
@@ -850,7 +850,7 @@ case <-ctx.Done():
 case <-time.After(timeout):
     return nil, errors.New("timeout")
 }
-```
+```typescript
 
 ### Mutex Usage
 
@@ -896,7 +896,7 @@ func GetInstance() *Singleton {
 ```go
 // user.go -> user_test.go
 // user_repository.go -> user_repository_test.go
-```
+```text
 
 ### Test Function Naming
 
@@ -915,7 +915,7 @@ func TestUserRepository_GetByID_WithMissingUser_ReturnsError(t *testing.T) {
     assert.Error(t, err)
     assert.Nil(t, user)
 }
-```
+```text
 
 ### Table-Driven Tests
 
@@ -948,7 +948,7 @@ func TestCalculateDiscount(t *testing.T) {
         })
     }
 }
-```
+```text
 
 ### Test Helpers
 
@@ -1010,7 +1010,7 @@ func TestUserService(t *testing.T) {
     assert.NoError(t, err)
     assert.Equal(t, 1, user.ID)
 }
-```
+```yaml
 
 ---
 
@@ -1054,7 +1054,7 @@ func (u *User) ChangeEmail(newEmail string) error {
     u.Email = newEmail
     return nil
 }
-```
+```text
 
 ### Repository Interface (Port)
 
@@ -1070,7 +1070,7 @@ type Repository interface {
     Save(ctx context.Context, user *User) error
     Delete(ctx context.Context, id int) error
 }
-```
+```text
 
 ### Repository Implementation (Adapter)
 
@@ -1161,7 +1161,7 @@ func (uc *CreateUserUseCase) Execute(ctx context.Context, req CreateUserRequest)
 
     return u, nil
 }
-```
+```text
 
 ### HTTP Handler (Adapter)
 
@@ -1200,7 +1200,7 @@ func (h *UserHandler) CreateUser(w http.ResponseWriter, r *http.Request) {
     w.Header().Set("Content-Type", "application/json")
     json.NewEncoder(w).Encode(user)
 }
-```
+```yaml
 
 ---
 
@@ -1213,7 +1213,7 @@ func (h *UserHandler) CreateUser(w http.ResponseWriter, r *http.Request) {
 go install golang.org/x/tools/cmd/goimports@latest
 go install github.com/golangci/golangci-lint/cmd/golangci-lint@latest
 go install honnef.co/go/tools/cmd/staticcheck@latest
-```
+```yaml
 
 ### golangci-lint Configuration
 
@@ -1221,6 +1221,7 @@ go install honnef.co/go/tools/cmd/staticcheck@latest
 # .golangci.yml
 linters:
   enable:
+
     - errcheck
     - gosimple
     - govet
@@ -1240,7 +1241,9 @@ linters-settings:
     simplify: true
   revive:
     rules:
+
       - name: exported
+
         severity: error
 ```
 
@@ -1267,21 +1270,25 @@ staticcheck ./...
 
 # All checks
 gofmt -w . && goimports -w . && golangci-lint run && go test ./...
-```
+```yaml
 
 ### Pre-commit Configuration
 
 ```yaml
 # .pre-commit-config.yaml
 repos:
+
   - repo: https://github.com/dnephin/pre-commit-golang
+
     rev: master
     hooks:
+
       - id: go-fmt
       - id: go-imports
       - id: go-lint
       - id: go-unit-tests
-```
+
+```yaml
 
 ---
 

@@ -1,6 +1,6 @@
 # Command-to-Role Matrix
 
-**GitHub Spec Kit - Who Should Use Which Commands and Why**
+## GitHub Spec Kit - Who Should Use Which Commands and Why
 
 **Date**: 2025-10-26
 **Version**: 1.0
@@ -18,11 +18,11 @@ GitHub Spec Kit provides **9 commands** that support different stages of spec-dr
 ## Table of Contents
 
 1. [Command Overview](#command-overview)
-2. [Role-Based Command Matrix](#role-based-command-matrix)
-3. [Detailed Role Mappings](#detailed-role-mappings)
-4. [Workflow Sequences](#workflow-sequences)
-5. [Collaboration Patterns](#collaboration-patterns)
-6. [Use Case Scenarios](#use-case-scenarios)
+1. [Role-Based Command Matrix](#role-based-command-matrix)
+1. [Detailed Role Mappings](#detailed-role-mappings)
+1. [Workflow Sequences](#workflow-sequences)
+1. [Collaboration Patterns](#collaboration-patterns)
+1. [Use Case Scenarios](#use-case-scenarios)
 
 ---
 
@@ -44,7 +44,7 @@ GitHub Spec Kit provides **9 commands** that support different stages of spec-dr
 
 ### Command Flow
 
-```
+```bash
             ┌────────────────────────┐
             │ /speckit.constitution  │ (Optional, run once per project)
             └──────────┬─────────────┘
@@ -97,7 +97,7 @@ GitHub Spec Kit provides **9 commands** that support different stages of spec-dr
         │     /speckit.implement             │ ◄─── Developer (with AI assistance)
         │  (Code generation & execution)     │
         └────────────────────────────────────┘
-```
+```yaml
 
 ---
 
@@ -151,7 +151,7 @@ GitHub Spec Kit provides **9 commands** that support different stages of spec-dr
 
 # Feature enhancement
 /speckit.specify Add analytics dashboard for user engagement metrics
-```
+```bash
 
 **Output**:
 
@@ -175,9 +175,9 @@ GitHub Spec Kit provides **9 commands** that support different stages of spec-dr
 **Example flow**:
 
 1. Run `/speckit.specify`
-2. AI asks: "Should authentication support social login?"
-3. Product Owner provides: "Yes - Google, GitHub, Microsoft"
-4. Spec updated with clarification
+1. AI asks: "Should authentication support social login?"
+1. Product Owner provides: "Yes - Google, GitHub, Microsoft"
+1. Spec updated with clarification
 
 **Why this role**: Product Owners make product decisions about scope, priorities, and user experience
 
@@ -234,11 +234,11 @@ GitHub Spec Kit provides **9 commands** that support different stages of spec-dr
 **What it does**:
 
 1. Reads spec.md
-2. Creates research.md (technical decisions)
-3. Creates data-model.md (entities and relationships)
-4. Creates contracts/ (API specifications)
-5. Creates plan.md (technical implementation plan)
-6. Updates agent context files
+1. Creates research.md (technical decisions)
+1. Creates data-model.md (entities and relationships)
+1. Creates contracts/ (API specifications)
+1. Creates plan.md (technical implementation plan)
+1. Updates agent context files
 
 **Example flow**:
 
@@ -257,7 +257,7 @@ GitHub Spec Kit provides **9 commands** that support different stages of spec-dr
 # - data-model.md: User, Subscription, Payment entities
 # - contracts/: OpenAPI specs for all endpoints
 # - plan.md: Full technical implementation plan
-```
+```yaml
 
 **Why this role**: Architects make technical stack and architecture decisions
 
@@ -277,11 +277,11 @@ GitHub Spec Kit provides **9 commands** that support different stages of spec-dr
 **What it does**:
 
 1. Analyzes project structure and existing artifacts
-2. Extracts tech stack, versions, and dependencies
-3. Identifies coding conventions and standards
-4. Documents architectural patterns and structure
-5. Records error handling and logging strategies
-6. Creates/updates memory/project-context.md
+1. Extracts tech stack, versions, and dependencies
+1. Identifies coding conventions and standards
+1. Documents architectural patterns and structure
+1. Records error handling and logging strategies
+1. Creates/updates memory/project-context.md
 
 **Example flow**:
 
@@ -302,7 +302,7 @@ GitHub Spec Kit provides **9 commands** that support different stages of spec-dr
 #   - Coding style guide (snake_case, PascalCase, etc.)
 #   - Architectural overview (system components, directory structure)
 #   - Error & log handling strategy (HTTP codes, logging patterns)
-```
+```yaml
 
 **Why this role**: Architects establish and document project-wide standards
 
@@ -326,7 +326,7 @@ GitHub Spec Kit provides **9 commands** that support different stages of spec-dr
 
 # API design validation
 /speckit.checklist Create API checklist for REST endpoint design and consistency
-```
+```yaml
 
 **Why this role**: Architects ensure technical design meets quality standards
 
@@ -387,11 +387,11 @@ GitHub Spec Kit provides **9 commands** that support different stages of spec-dr
 **What it does**:
 
 1. Reads spec.md (user stories with priorities)
-2. Reads plan.md (tech stack, structure)
-3. Reads data-model.md, contracts/, research.md
-4. Generates tasks.md organized by user story
-5. Creates dependency graph
-6. Identifies parallel work opportunities
+1. Reads plan.md (tech stack, structure)
+1. Reads data-model.md, contracts/, research.md
+1. Generates tasks.md organized by user story
+1. Creates dependency graph
+1. Identifies parallel work opportunities
 
 **Example output structure**:
 
@@ -411,8 +411,9 @@ GitHub Spec Kit provides **9 commands** that support different stages of spec-dr
 
 # Phase 4: User Story 2 - User Login
 - [ ] T008 [P] [US2] Create login endpoint
+
 ...
-```
+```yaml
 
 **Why this role**: Tech Leads break down work for the team and manage dependencies
 
@@ -439,7 +440,7 @@ GitHub Spec Kit provides **9 commands** that support different stages of spec-dr
 
 **Example output**:
 
-```
+```text
 ## Specification Analysis Report
 
 | ID  | Category     | Severity | Location       | Summary                      | Recommendation              |
@@ -448,13 +449,14 @@ GitHub Spec Kit provides **9 commands** that support different stages of spec-dr
 | C1  | Coverage     | CRITICAL | spec.md:FR-5   | No tasks for password reset  | Add tasks for FR-5         |
 | I1  | Inconsistency| MEDIUM   | plan.md:L45    | Spec says REST, plan says GraphQL| Align on REST          |
 
-**Coverage Summary:**
+### Coverage Summary:
 - Total Requirements: 15
 - Total Tasks: 42
 - Coverage: 93% (14/15 requirements have tasks)
 - Critical Issues: 1
 - Recommendation: Resolve critical issue before /speckit.implement
-```
+
+```yaml
 
 **Why this role**: Tech Leads are responsible for quality and completeness before implementation
 
@@ -531,7 +533,7 @@ GitHub Spec Kit provides **9 commands** that support different stages of spec-dr
 
 # Code review checklist
 /speckit.checklist Create code review checklist for this feature
-```
+```yaml
 
 **Why this role**: Tech Leads ensure holistic quality across technical and functional domains
 
@@ -564,12 +566,12 @@ GitHub Spec Kit provides **9 commands** that support different stages of spec-dr
 **What it does**:
 
 1. Checks checklist completion (blocks if incomplete)
-2. Loads all context (spec, plan, tasks, data-model, contracts, research)
-3. Creates/verifies ignore files (.gitignore, .dockerignore, etc.)
-4. Executes tasks phase-by-phase
-5. Respects dependencies and parallel markers
-6. Marks tasks complete as they finish
-7. Validates implementation against specs
+1. Loads all context (spec, plan, tasks, data-model, contracts, research)
+1. Creates/verifies ignore files (.gitignore, .dockerignore, etc.)
+1. Executes tasks phase-by-phase
+1. Respects dependencies and parallel markers
+1. Marks tasks complete as they finish
+1. Validates implementation against specs
 
 **Example flow**:
 
@@ -598,7 +600,7 @@ GitHub Spec Kit provides **9 commands** that support different stages of spec-dr
 # ...
 
 # Marks tasks complete: [X] in tasks.md
-```
+```yaml
 
 **Why this role**: Developers write the actual code
 
@@ -623,7 +625,7 @@ GitHub Spec Kit provides **9 commands** that support different stages of spec-dr
 # AI asks clarifying questions
 # Developer or Product Owner answers
 # Spec.md updated with clarification
-```
+```yaml
 
 **Why this role**: Developers discover ambiguities during implementation
 
@@ -704,7 +706,7 @@ GitHub Spec Kit provides **9 commands** that support different stages of spec-dr
 # ✅ "Can success criteria be objectively measured? [Measurability]"
 # ✅ "Are error scenarios defined for all failure modes? [Coverage]"
 # ✅ "Are edge cases documented with expected behavior? [Completeness]"
-```
+```yaml
 
 **Why this role**: QA Engineers validate that requirements are testable before implementation
 
@@ -780,7 +782,7 @@ GitHub Spec Kit provides **9 commands** that support different stages of spec-dr
 # - Sprint capacity planning
 # - Developer assignment (parallel tasks to different devs)
 # - Risk identification (critical path dependencies)
-```
+```yaml
 
 **Why this role**: Scrum Masters facilitate planning and track progress
 
@@ -804,7 +806,7 @@ GitHub Spec Kit provides **9 commands** that support different stages of spec-dr
 
 # Release readiness checklist
 /speckit.checklist Create release readiness checklist for deployment, documentation, and stakeholder communication
-```
+```yaml
 
 **Why this role**: Scrum Masters ensure process quality
 
@@ -929,7 +931,7 @@ GitHub Spec Kit provides **9 commands** that support different stages of spec-dr
 # ✅ "Are observability requirements defined (logs, metrics, traces)? [Coverage]"
 # ✅ "Are backup and recovery requirements documented? [Completeness]"
 # ✅ "Are scaling requirements quantified with specific thresholds? [Clarity]"
-```
+```yaml
 
 **Why this role**: DevOps Engineers ensure operational concerns are specified
 
@@ -1043,7 +1045,7 @@ GitHub Spec Kit provides **9 commands** that support different stages of spec-dr
 
 # Business logic checklist
 /speckit.checklist Create business logic checklist for edge cases and business rules
-```
+```yaml
 
 **Why this role**: Business Analysts ensure requirements are complete and clear
 
@@ -1113,66 +1115,86 @@ Engineering Managers should have read access to all commands for:
 
 ### Typical Feature Development Flow
 
-```
+```bash
 ┌─────────────────────────────────────────────────────────────────┐
 │ Stage 1: Specification (Product Owner)                          │
 └─────────────────────────────────────────────────────────────────┘
+
     1. Product Owner: /speckit.specify "Add user authentication"
+
        → Output: spec.md, requirements.md checklist
 
-    2. Product Owner: /speckit.clarify
+    1. Product Owner: /speckit.clarify
+
        → AI asks questions, Product Owner answers
        → Output: Updated spec.md with clarifications
 
-    3. Product Owner: /speckit.checklist (UX focus)
+    1. Product Owner: /speckit.checklist (UX focus)
+
        → Output: ux.md checklist
 
-    4. Business Analyst: Reviews spec.md, runs /speckit.checklist (requirements focus)
+    1. Business Analyst: Reviews spec.md, runs /speckit.checklist (requirements focus)
+
        → Output: requirements-quality.md checklist
 
 ┌─────────────────────────────────────────────────────────────────┐
 │ Stage 2: Quality Validation (Multi-Role)                        │
 └─────────────────────────────────────────────────────────────────┘
-    5. QA Engineer: /speckit.checklist (testing focus)
+
+    1. QA Engineer: /speckit.checklist (testing focus)
+
        → Output: testing.md checklist
 
-    6. Security Engineer: /speckit.checklist (security focus)
+    1. Security Engineer: /speckit.checklist (security focus)
+
        → Output: security.md checklist
 
-    7. Team: Reviews and completes all checklists
+    1. Team: Reviews and completes all checklists
+
        → All checklists must be complete before proceeding
 
 ┌─────────────────────────────────────────────────────────────────┐
 │ Stage 3: Technical Planning (Solution Architect)                │
 └─────────────────────────────────────────────────────────────────┘
-    8. Solution Architect: /speckit.plan
+
+    1. Solution Architect: /speckit.plan
+
        → Output: plan.md, data-model.md, contracts/, research.md
 
-    9. Solution Architect: /speckit.checklist (architecture focus)
+    1. Solution Architect: /speckit.checklist (architecture focus)
+
        → Output: architecture.md checklist
 
 ┌─────────────────────────────────────────────────────────────────┐
 │ Stage 4: Task Planning (Tech Lead + Scrum Master)               │
 └─────────────────────────────────────────────────────────────────┘
-    10. Tech Lead: /speckit.tasks
+
+    1. Tech Lead: /speckit.tasks
+
         → Output: tasks.md with dependency graph
 
-    11. Scrum Master: Reviews tasks.md for sprint planning
+    1. Scrum Master: Reviews tasks.md for sprint planning
+
         → Identifies parallel work, dependencies, effort estimates
 
 ┌─────────────────────────────────────────────────────────────────┐
 │ Stage 5: Pre-Implementation Validation (Tech Lead + QA)         │
 └─────────────────────────────────────────────────────────────────┘
-    12. Tech Lead: /speckit.analyze
+
+    1. Tech Lead: /speckit.analyze
+
         → Output: Analysis report with issues/gaps
 
-    13. Team: Resolves critical issues found by analyze
+    1. Team: Resolves critical issues found by analyze
+
         → May require re-running /speckit.specify or /speckit.plan
 
 ┌─────────────────────────────────────────────────────────────────┐
 │ Stage 6: Implementation (Developer)                             │
 └─────────────────────────────────────────────────────────────────┘
-    14. Developer: /speckit.implement
+
+    1. Developer: /speckit.implement
+
         → Checks checklist completion
         → Executes tasks phase-by-phase
         → Marks tasks complete
@@ -1181,9 +1203,11 @@ Engineering Managers should have read access to all commands for:
 ┌─────────────────────────────────────────────────────────────────┐
 │ Stage 7: Review & Deploy (Multi-Role)                           │
 └─────────────────────────────────────────────────────────────────┘
-    15. DevOps Engineer: Reviews deployment tasks, deploys
-    16. QA Engineer: Tests against acceptance criteria
-    17. Product Owner: Validates against business requirements
+
+    1. DevOps Engineer: Reviews deployment tasks, deploys
+    1. QA Engineer: Tests against acceptance criteria
+    1. Product Owner: Validates against business requirements
+
 ```
 
 ---
@@ -1192,15 +1216,15 @@ Engineering Managers should have read access to all commands for:
 
 ### Pattern 1: Product Owner → Developer (Direct)
 
-**For small features without dedicated architect**
+#### For small features without dedicated architect
 
-```
+```yaml
 Product Owner:
   /speckit.specify → /speckit.clarify → /speckit.checklist (UX)
 
 Developer:
   /speckit.plan → /speckit.tasks → /speckit.analyze → /speckit.implement
-```
+```yaml
 
 ---
 
@@ -1208,7 +1232,7 @@ Developer:
 
 **For large features with multiple stakeholders**
 
-```
+```bash
 Product Owner:      /speckit.specify → /speckit.clarify
                            ↓
 Business Analyst:   /speckit.checklist (requirements)
@@ -1231,9 +1255,9 @@ DevOps:             Deploy
 
 ### Pattern 3: Iterative Refinement
 
-**When requirements evolve during development**
+#### When requirements evolve during development
 
-```
+```text
 Developer discovers ambiguity:
   /speckit.clarify (with Product Owner)
      ↓
@@ -1242,7 +1266,7 @@ Developer discovers ambiguity:
   /speckit.tasks (regenerate affected tasks)
      ↓
   /speckit.implement (continue)
-```
+```yaml
 
 ---
 
@@ -1250,14 +1274,16 @@ Developer discovers ambiguity:
 
 **When quality gates are critical (regulated industries)**
 
-```
+```bash
 Product Owner:      /speckit.specify
                            ↓
 Multi-Role Review:  /speckit.checklist (multiple domains)
+
                     - UX checklist
                     - Security checklist
                     - Compliance checklist
                     - Performance checklist
+
                            ↓
 GATE: All checklists must be 100% complete
                            ↓
@@ -1282,7 +1308,7 @@ DevOps:             Deploy
 
 **Roles involved**: Product Owner, Solution Architect, Security Engineer, Developer
 
-```
+```bash
 Day 1 - Requirements:
   Product Owner: /speckit.specify "Add OAuth2 authentication with Google, GitHub, Microsoft"
   Product Owner: /speckit.clarify (answers: session timeout, refresh token strategy)
@@ -1295,6 +1321,7 @@ Day 2 - Security Review:
 Day 3 - Technical Design:
   Solution Architect: /speckit.plan
   → Creates:
+
     - research.md (OAuth2 libraries, session management)
     - data-model.md (User, OAuthToken, Session entities)
     - contracts/ (auth endpoints OpenAPI specs)
@@ -1303,6 +1330,7 @@ Day 3 - Technical Design:
 Day 4 - Task Planning:
   Tech Lead: /speckit.tasks
   → Creates tasks organized by user story:
+
     - Setup: OAuth client configuration
     - US1: Google OAuth integration
     - US2: GitHub OAuth integration
@@ -1315,7 +1343,7 @@ Day 5 - Validation:
 Day 6-10 - Implementation:
   Developer: /speckit.implement
   → Executes tasks, marks complete
-```
+```yaml
 
 ---
 
@@ -1323,7 +1351,7 @@ Day 6-10 - Implementation:
 
 **Roles involved**: Product Owner, Developer
 
-```
+```bash
 Bug Report: "Payment processing fails for amounts over $1000"
 
 Product Owner: /speckit.specify "Fix payment processing to support transactions up to $10,000"
@@ -1334,6 +1362,7 @@ Developer: /speckit.plan (quick technical assessment)
 
 Developer: /speckit.tasks
   → Creates tasks:
+
     - Update Stripe API version
     - Increase transaction limit
     - Add high-value transaction tests
@@ -1348,7 +1377,7 @@ Developer: /speckit.implement
 
 **Roles involved**: Product Owner, Solution Architect, Scrum Master, 3 Developers
 
-```
+```bash
 Week 1 - Planning:
   Product Owner: /speckit.specify "Create analytics dashboard with user engagement metrics"
   Product Owner: /speckit.clarify (defines metrics, time ranges, filters)
@@ -1356,6 +1385,7 @@ Week 1 - Planning:
 
   Tech Lead: /speckit.tasks
   → Output: 45 tasks across 5 user stories
+
     - US1 (P1): Basic dashboard layout
     - US2 (P1): User count metrics
     - US3 (P2): Engagement metrics
@@ -1364,6 +1394,7 @@ Week 1 - Planning:
 
   Scrum Master: Sprint planning using tasks.md
   → Sprint 1: US1 + US2 (MVP - 15 tasks, 3 parallel workstreams)
+
     - Developer A: Frontend layout (5 tasks)
     - Developer B: Data pipeline (4 tasks, parallel)
     - Developer C: API endpoints (6 tasks, parallel)
@@ -1382,7 +1413,7 @@ Week 4 - Sprint 3:
   → Sprint 3: US5 (Polish phase - 8 tasks)
   Developers: /speckit.implement
   → Full feature complete
-```
+```yaml
 
 ---
 
@@ -1390,7 +1421,7 @@ Week 4 - Sprint 3:
 
 **Roles involved**: Product Owner, Security Engineer, Compliance Officer, Solution Architect
 
-```
+```bash
 Phase 1 - Specification:
   Product Owner: /speckit.specify "Add patient health record management system"
   Product Owner: /speckit.clarify (scope, access controls, audit requirements)
@@ -1398,12 +1429,14 @@ Phase 1 - Specification:
 Phase 2 - Multi-Domain Checklists:
   Security Engineer: /speckit.checklist "Generate HIPAA security checklist"
   → Validates:
+
     - Encryption requirements specified
     - Access control requirements defined
     - Audit logging requirements documented
 
   Compliance Officer: /speckit.checklist "Generate HIPAA compliance checklist"
   → Validates:
+
     - PHI handling requirements
     - Patient consent requirements
     - Data breach notification requirements
@@ -1411,6 +1444,7 @@ Phase 2 - Multi-Domain Checklists:
 Phase 3 - Technical Design with Compliance:
   Solution Architect: /speckit.plan
   → Creates:
+
     - research.md (HIPAA-compliant tech stack)
     - data-model.md (Patient, HealthRecord, AuditLog)
     - contracts/ (secure API specs)
@@ -1436,10 +1470,11 @@ Phase 5 - Implementation:
 
 **Roles involved**: Engineering Manager, Solution Architect, Tech Lead
 
-```
+```bash
 Phase 0 - Governance:
   Engineering Manager: /speckit.constitution
   → Defines principles:
+
     - "All services must be independently deployable"
     - "Services communicate via events (async)"
     - "Each service has its own database"
@@ -1449,6 +1484,7 @@ Phase 1 - First Service:
   Product Owner: /speckit.specify "Extract user authentication into separate service"
   Solution Architect: /speckit.plan
   → research.md documents:
+
     - Service boundaries
     - Communication patterns
     - Data migration strategy
@@ -1467,7 +1503,7 @@ Phase 2 - Implementation:
 Phase 3 - Repeat for other services:
   → Each service follows same workflow
   → Constitution ensures consistency
-```
+```yaml
 
 ---
 
@@ -1476,60 +1512,60 @@ Phase 3 - Repeat for other services:
 ### For Product Owners
 
 1. **Start with `/speckit.specify`**: Don't write specs manually, let AI help
-2. **Always run `/speckit.clarify`**: Answer questions to reduce downstream rework
-3. **Use checklists early**: Catch issues before engineering starts
-4. **Be specific**: Provide concrete examples in your feature descriptions
-5. **Prioritize user stories**: P1, P2, P3 in spec.md drives task generation
+1. **Always run `/speckit.clarify`**: Answer questions to reduce downstream rework
+1. **Use checklists early**: Catch issues before engineering starts
+1. **Be specific**: Provide concrete examples in your feature descriptions
+1. **Prioritize user stories**: P1, P2, P3 in spec.md drives task generation
 
 ---
 
 ### For Solution Architects
 
 1. **Review spec before `/speckit.plan`**: Ensure requirements are clear
-2. **Document decisions in research.md**: Explain why, not just what
-3. **Use contracts/ for API-first**: Define interfaces before implementation
-4. **Update constitution proactively**: Add principles as patterns emerge
-5. **Validate with `/speckit.analyze`**: Ensure designs meet constitution
+1. **Document decisions in research.md**: Explain why, not just what
+1. **Use contracts/ for API-first**: Define interfaces before implementation
+1. **Update constitution proactively**: Add principles as patterns emerge
+1. **Validate with `/speckit.analyze`**: Ensure designs meet constitution
 
 ---
 
 ### For Tech Leads
 
 1. **Run `/speckit.analyze` always**: Never skip pre-implementation validation
-2. **Review dependency graph in tasks.md**: Identify critical path early
-3. **Identify parallel work**: Maximize team throughput
-4. **Use checklists for reviews**: Standardize quality expectations
-5. **Track progress in tasks.md**: Mark tasks complete to show progress
+1. **Review dependency graph in tasks.md**: Identify critical path early
+1. **Identify parallel work**: Maximize team throughput
+1. **Use checklists for reviews**: Standardize quality expectations
+1. **Track progress in tasks.md**: Mark tasks complete to show progress
 
 ---
 
 ### For Developers
 
 1. **Read all artifacts before `/speckit.implement`**: Understand full context
-2. **Trust the task order**: Dependencies are calculated automatically
-3. **Mark tasks complete**: Update tasks.md as you finish work
-4. **Use `/speckit.clarify` when stuck**: Don't guess, ask
-5. **Follow the plan**: Resist urge to deviate from architecture
+1. **Trust the task order**: Dependencies are calculated automatically
+1. **Mark tasks complete**: Update tasks.md as you finish work
+1. **Use `/speckit.clarify` when stuck**: Don't guess, ask
+1. **Follow the plan**: Resist urge to deviate from architecture
 
 ---
 
 ### For QA Engineers
 
 1. **Create checklists early**: Before implementation starts
-2. **Focus on testability in checklists**: Ensure requirements can be tested
-3. **Use `/speckit.analyze`**: Validate coverage before testing
-4. **Review acceptance criteria**: Every user story should have clear success metrics
-5. **Participate in clarification**: Help Product Owners define testable requirements
+1. **Focus on testability in checklists**: Ensure requirements can be tested
+1. **Use `/speckit.analyze`**: Validate coverage before testing
+1. **Review acceptance criteria**: Every user story should have clear success metrics
+1. **Participate in clarification**: Help Product Owners define testable requirements
 
 ---
 
 ### For Scrum Masters
 
 1. **Use tasks.md for sprint planning**: Pre-broken down, dependency-aware
-2. **Identify parallel streams**: Assign to different developers
-3. **Track by user story**: Each story is an independent increment
-4. **Monitor dependencies**: Use dependency graph to unblock team
-5. **Measure by story completion**: Not individual tasks
+1. **Identify parallel streams**: Assign to different developers
+1. **Track by user story**: Each story is an independent increment
+1. **Monitor dependencies**: Use dependency graph to unblock team
+1. **Measure by story completion**: Not individual tasks
 
 ---
 
@@ -1571,12 +1607,12 @@ Phase 3 - Repeat for other services:
 GitHub Spec Kit provides a complete workflow from specification to implementation, with clear role assignments:
 
 1. **Product Owners** own requirements (specify, clarify)
-2. **Architects** own technical design (plan, constitution)
-3. **Tech Leads** own quality and execution (tasks, analyze)
-4. **Developers** own implementation (implement)
-5. **QA/Security/DevOps** own domain-specific validation (checklist)
-6. **Scrum Masters** own process facilitation (tasks, planning)
-7. **Engineering Managers** own governance (constitution)
+1. **Architects** own technical design (plan, constitution)
+1. **Tech Leads** own quality and execution (tasks, analyze)
+1. **Developers** own implementation (implement)
+1. **QA/Security/DevOps** own domain-specific validation (checklist)
+1. **Scrum Masters** own process facilitation (tasks, planning)
+1. **Engineering Managers** own governance (constitution)
 
 **Key Principle**: Each role uses commands at the appropriate stage to ensure quality, consistency, and efficiency in the development process.
 

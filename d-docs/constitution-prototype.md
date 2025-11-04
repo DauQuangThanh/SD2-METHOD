@@ -55,7 +55,7 @@ Rationale: Prevents expensive retrofits and validates user value early.
 This frontend-focused structure emphasizes rapid prototyping with Vue 3 while maintaining
 modularity, testability, and clear separation of concerns for future backend integration.
 
-```
+```text
 project-root/
 ├── src/
 │   ├── components/                    # Vue 3 single-file components
@@ -165,25 +165,40 @@ project-root/
 ├── .eslintrc.js
 ├── .prettierrc
 └── README.md
-```
+```text
 
 **Key Prototype Structural Principles:**
 
 - **Component Modularity**: Clear separation between reusable `base/` components,
+
   feature-specific `features/` components, and page-level `views/`.
+
 - **Mock-First Development**: `services/mocks/` contains mock implementations enabling
+
   development without backend dependencies. Easy to swap with real API calls later.
+
 - **Centralized State**: Pinia stores in `stores/` manage application state with clear
+
   boundaries per domain (auth, cart, products, UI).
+
 - **Type Safety**: `contracts/` directory centralizes all TypeScript interfaces and types,
+
   preparing for future API integration with typed contracts.
+
 - **Design Tokens**: Consolidated color palette, spacing, and typography in
+
   `assets/styles/tokens.css` using Tailwind custom properties. No ad hoc color values.
+
 - **Experimental Isolation**: Time-boxed experiments live under `experimental/` and are
+
   clearly marked with expiration dates in their docstrings.
+
 - **Accessibility Built-In**: Base components follow WCAG AA standards with semantic HTML,
+
   proper ARIA labels, and keyboard navigation support.
+
 - **Lightweight Testing**: 40% coverage target with focus on critical user journeys
+
   (checkout, auth flows). Interaction tests in `tests/unit/`, visual regression with
   Storybook (optional).
 
@@ -192,10 +207,10 @@ project-root/
 When transitioning from prototype to production with backend:
 
 1. Replace `services/mocks/` imports with real API clients from `services/api/`
-2. Update `contracts/` types to match backend API schemas (Pydantic/OpenAPI)
-3. Add authentication middleware in `router/guards.ts`
-4. Implement versioned API contracts (`contracts/v1/`, `contracts/v2/`)
-5. Increase test coverage to production standards (60%+ overall)
+1. Update `contracts/` types to match backend API schemas (Pydantic/OpenAPI)
+1. Add authentication middleware in `router/guards.ts`
+1. Implement versioned API contracts (`contracts/v1/`, `contracts/v2/`)
+1. Increase test coverage to production standards (60%+ overall)
 
 ## Architecture & Technical Constraints
 
@@ -235,10 +250,10 @@ mock contract presence, accessibility checks, bundle impact, and documented next
 Pull Request Requirements:
 
 1. Link to plan slice and mock contract (if API involved).
-2. At least one screenshot or short Loom/GIF demonstration.
-3. Added/updated component story (Storybook or equivalent) for new UI elements.
-4. Accessibility quick audit (keyboard nav + contrast) noted.
-5. Bundle size delta noted (if >10KB gzip change in core bundle).
+1. At least one screenshot or short Loom/GIF demonstration.
+1. Added/updated component story (Storybook or equivalent) for new UI elements.
+1. Accessibility quick audit (keyboard nav + contrast) noted.
+1. Bundle size delta noted (if >10KB gzip change in core bundle).
 
 Merge is BLOCKED if any gate unmet unless explicitly waived (waiver ≤ 14 days, tracked).
 
@@ -252,16 +267,19 @@ non-semantic wording). Reviewers MUST verify gates remain objectively testable.
 Amendment Procedure:
 
 1. Draft proposal referencing impacted principles / sections.
-2. Classify bump level per rules above.
-3. Include migration or adoption steps if changing enforcement criteria.
-4. Update Sync Impact Report and affected templates.
-5. Secure approval from at least two maintainers (or designated governance group once
+1. Classify bump level per rules above.
+1. Include migration or adoption steps if changing enforcement criteria.
+1. Update Sync Impact Report and affected templates.
+1. Secure approval from at least two maintainers (or designated governance group once
+
 established).
 
 Compliance:
 
 - Quarterly (or pre-production milestone) audit: architecture boundaries, contract drift,
+
  test coverage thresholds, security dependency scan status.
+
 - Violations create remediation tasks with tracked due dates.
 - Emergency deviations allowed only with logged risk acceptance.
 

@@ -16,7 +16,7 @@ The easiest way to get started is to initialize a new project:
 
 ```bash
 uvx --from git+https://github.com/DauQuangThanh/SD2-METHOD.git specify init <PROJECT_NAME>
-```
+```bash
 
 Or initialize in the current directory:
 
@@ -24,7 +24,7 @@ Or initialize in the current directory:
 uvx --from git+https://github.com/DauQuangThanh/SD2-METHOD.git specify init .
 # or use the --here flag
 uvx --from git+https://github.com/DauQuangThanh/SD2-METHOD.git specify init --here
-```
+```bash
 
 ### Specify AI Agent
 
@@ -35,7 +35,7 @@ uvx --from git+https://github.com/DauQuangThanh/SD2-METHOD.git specify init <pro
 uvx --from git+https://github.com/DauQuangThanh/SD2-METHOD.git specify init <project_name> --ai gemini
 uvx --from git+https://github.com/DauQuangThanh/SD2-METHOD.git specify init <project_name> --ai copilot
 uvx --from git+https://github.com/DauQuangThanh/SD2-METHOD.git specify init <project_name> --ai codebuddy
-```
+```bash
 
 ### Specify Script Type (Shell vs PowerShell)
 
@@ -60,7 +60,7 @@ If you prefer to get the templates without checking for the right tools:
 
 ```bash
 uvx --from git+https://github.com/DauQuangThanh/SD2-METHOD.git specify init <project_name> --ai claude --ignore-agent-tools
-```
+```bash
 
 ## Verification
 
@@ -89,4 +89,4 @@ echo "Configuring Git to use GCM..."
 git config --global credential.helper manager
 echo "Cleaning up..."
 rm gcm-linux_amd64.2.6.1.deb
-```
+```text

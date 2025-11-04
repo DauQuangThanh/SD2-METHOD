@@ -9,17 +9,17 @@
 ## Table of Contents
 
 1. [General Principles](#general-principles)
-2. [Naming Conventions](#naming-conventions)
-3. [Code Layout and Formatting](#code-layout-and-formatting)
-4. [Type Annotations](#type-annotations)
-5. [Import and Export Organization](#import-and-export-organization)
-6. [Documentation Standards](#documentation-standards)
-7. [Error Handling](#error-handling)
-8. [Async/Await Patterns](#asyncawait-patterns)
-9. [HTML and DOM Element Naming Conventions](#html-and-dom-element-naming-conventions)
-10. [Vue 3 Specific Guidelines](#vue-3-specific-guidelines)
-11. [Testing Conventions](#testing-conventions)
-12. [Tools and Enforcement](#tools-and-enforcement)
+1. [Naming Conventions](#naming-conventions)
+1. [Code Layout and Formatting](#code-layout-and-formatting)
+1. [Type Annotations](#type-annotations)
+1. [Import and Export Organization](#import-and-export-organization)
+1. [Documentation Standards](#documentation-standards)
+1. [Error Handling](#error-handling)
+1. [Async/Await Patterns](#asyncawait-patterns)
+1. [HTML and DOM Element Naming Conventions](#html-and-dom-element-naming-conventions)
+1. [Vue 3 Specific Guidelines](#vue-3-specific-guidelines)
+1. [Testing Conventions](#testing-conventions)
+1. [Tools and Enforcement](#tools-and-enforcement)
 
 ---
 
@@ -70,7 +70,7 @@ UserProfile.spec.ts
 types.ts
 user.types.ts
 api.types.ts
-```
+```javascript
 
 ### Variables and Constants
 
@@ -105,7 +105,7 @@ const bIsActive = true;      // BAD
 const name = "John";
 const count = 5;
 const isActive = true;
-```
+```typescript
 
 ### Types and Interfaces
 
@@ -136,7 +136,7 @@ interface User { name: string; }           // GOOD for object shapes
 
 // Prefer type for unions and complex types
 type Result<T> = { success: true; data: T } | { success: false; error: string };
-```
+```python
 
 ### Classes
 
@@ -194,7 +194,7 @@ class Component {
     console.log(this.value);
   };
 }
-```
+```javascript
 
 ### Generics
 
@@ -218,7 +218,7 @@ function mapValues<TInput, TOutput>(
 // V - Value
 // E - Element
 // R - Return type
-```
+```yaml
 
 ---
 
@@ -244,7 +244,7 @@ const user = {
   name: "Test User",
   role: "admin",
 };
-```
+```javascript
 
 ### Indentation
 
@@ -267,7 +267,7 @@ const name = "John";
 function greet(): void {
   console.log("Hello");
 }
-```
+```javascript
 
 ### Quotes
 
@@ -278,7 +278,7 @@ const template = `Value: ${value}`;
 
 // Single quotes acceptable if consistent across project
 // Pick one and enforce with Prettier
-```
+```text
 
 ### Braces
 
@@ -293,7 +293,7 @@ if (condition) doSomething();  // BAD
 
 // Exception: Arrow functions with single expression
 const double = (n: number) => n * 2;  // OK
-```
+```javascript
 
 ### Object and Array Formatting
 
@@ -339,7 +339,7 @@ const config: Config = {
 // Explicit types when inference is unclear
 let value: number | undefined;
 const result: Promise<User> = fetchUser();
-```
+```javascript
 
 ### Function Type Annotations
 
@@ -368,7 +368,7 @@ const add = (a: number, b: number): number => a + b;
 
 type Calculator = (a: number, b: number) => number;
 const multiply: Calculator = (a, b) => a * b;
-```
+```typescript
 
 ### Union and Intersection Types
 
@@ -406,7 +406,7 @@ function handleState(state: LoadingState): void {
       break;
   }
 }
-```
+```typescript
 
 ### Utility Types
 
@@ -460,7 +460,7 @@ function processValue(value: string | number): void {
     console.log(value.toFixed(2));     // Type-safe
   }
 }
-```
+```typescript
 
 ### Branded Types
 
@@ -488,7 +488,7 @@ function getUser(id: UserId): User {
 const id = 123;
 getUser(id);  // Error: number is not assignable to UserId
 getUser(createUserId(123));  // OK
-```
+```yaml
 
 ---
 
@@ -512,7 +512,7 @@ import LoginForm from "@/components/LoginForm.vue";
 
 // 4. Styles (Vue SFC)
 import "./styles.css";
-```
+```python
 
 ### Import Styles
 
@@ -556,7 +556,7 @@ export default class UserService {
 // Re-exporting
 export { User } from "./user";
 export type { Config } from "./config";
-```
+```bash
 
 ### Path Aliases
 
@@ -570,7 +570,7 @@ import UserCard from "@/components/UserCard.vue";
 
 // AVOID: Relative paths for distant files
 import { User } from "../../../types/user";  // BAD
-```
+```yaml
 
 ---
 
@@ -580,18 +580,24 @@ import { User } from "../../../types/user";  // BAD
 
 ```typescript
 /**
+
  * Calculates the total price including tax and shipping.
+
  *
+
  * @param subtotal - Order subtotal before tax and shipping
  * @param taxRate - Tax rate as decimal (e.g., 0.08 for 8%)
  * @param shippingCost - Shipping cost in dollars
  * @returns Total price including all fees and taxes
+
  *
+
  * @example
  * ```typescript
  * const total = calculateTotal(100, 0.08, 10);
  * // Returns: 118
  * ```
+
  */
 function calculateTotal(
   subtotal: number,
@@ -600,17 +606,21 @@ function calculateTotal(
 ): number {
   return subtotal * (1 + taxRate) + shippingCost;
 }
-```
+```text
 
 ### Type Documentation
 
 ```typescript
 /**
+
  * Represents a user in the system.
+
  *
+
  * @remarks
  * Users are identified by email and can have multiple roles.
  * The `createdAt` timestamp is set automatically during creation.
+
  */
 interface User {
   /** Unique user identifier */
@@ -647,7 +657,7 @@ if (order.total > 100) {
 // BAD: Redundant comments
 // Increment counter by 1
 counter++;  // BAD: Obvious from code
-```
+```yaml
 
 ---
 
@@ -680,7 +690,7 @@ class UserNotFoundError extends NotFoundError {
     super("User", userId);
   }
 }
-```
+```text
 
 ### Try-Catch Patterns
 
@@ -714,7 +724,7 @@ function handleError(error: unknown): void {
     console.error("Unknown error:", error);
   }
 }
-```
+```typescript
 
 ### Result Type Pattern
 
@@ -774,7 +784,7 @@ async function badExample(): Promise<void> {
     .then(u => u)        // BAD: Mixing patterns
     .catch(e => null);   // BAD: Use try/catch instead
 }
-```
+```text
 
 ### Error Handling with Async
 
@@ -791,7 +801,7 @@ async function processOrder(orderId: string): Promise<void> {
     throw error;
   }
 }
-```
+```yaml
 
 ---
 
@@ -826,21 +836,25 @@ This section defines naming standards for HTML elements, attributes, and test se
 <button data-testid="loginButton">Login</button>        <!-- BAD: camelCase -->
 <button data-testid="login_button">Login</button>       <!-- BAD: snake_case -->
 <button data-testid="login-form-submit-button">...</button> <!-- GOOD: kebab-case -->
-```
+```text
 
 ### Test Data Attribute Naming Rules
 
 ```typescript
 /**
+
  * Test ID Naming Pattern:
  * [section]-[component]-[element]-[descriptor?]
+
  *
+
  * Examples:
  * - login-form-submit-button
  * - user-profile-edit-button
  * - product-card-add-to-cart-button
  * - order-list-item-123
  * - search-results-loading-spinner
+
  */
 
 // Use kebab-case for all test IDs
@@ -903,7 +917,7 @@ const testIds = {
 <!-- AVOID: IDs when classes or data attributes suffice -->
 <div id="container1">...</div>           <!-- BAD: Use class or data-testid -->
 <span id="text">Hello</span>             <!-- BAD: Too generic -->
-```
+```text
 
 ### Class Attributes
 
@@ -932,7 +946,7 @@ const testIds = {
 <div class="box1">...</div>              <!-- BAD: Not descriptive -->
 <div class="UserCard">...</div>          <!-- BAD: PascalCase for CSS -->
 <div class="user_card">...</div>         <!-- BAD: snake_case for CSS -->
-```
+```text
 
 ### ARIA and Accessibility Attributes
 
@@ -998,7 +1012,7 @@ const testIds = {
     Delete
   </button>
 </dialog>
-```
+```xml
 
 ### Vue 3 Component Data Attributes
 
@@ -1066,39 +1080,51 @@ const testIdPrefix = computed(() => `user-${props.userId}`);
 // test-helpers/selectors.ts
 
 /**
+
  * Test selector builder for consistent Playwright queries.
+
  */
 export class TestSelectors {
   /**
+
    * Get selector by test ID.
+
    */
   static byTestId(testId: string): string {
     return `[data-testid="${testId}"]`;
   }
 
   /**
+
    * Get selector for button by test ID.
+
    */
   static button(testId: string): string {
     return `button[data-testid="${testId}"]`;
   }
 
   /**
+
    * Get selector for input by test ID.
+
    */
   static input(testId: string): string {
     return `input[data-testid="${testId}"]`;
   }
 
   /**
+
    * Get selector for link by test ID.
+
    */
   static link(testId: string): string {
     return `a[data-testid="${testId}"]`;
   }
 
   /**
+
    * Get selector by role and name (accessibility-first).
+
    */
   static byRole(role: string, name?: string): string {
     return name
@@ -1107,7 +1133,9 @@ export class TestSelectors {
   }
 
   /**
+
    * Get selector for list item by index.
+
    */
   static listItem(listTestId: string, index: number): string {
     return `${this.byTestId(listTestId)} > [data-testid$="-item-${index}"]`;
@@ -1152,7 +1180,7 @@ test("user can add product to cart", async ({ page }) => {
   const cartCount = page.locator(TestSelectors.byTestId("header-cart-count"));
   await expect(cartCount).toHaveText("1");
 });
-```
+```xml
 
 ### Form Element Naming Conventions
 
@@ -1251,7 +1279,7 @@ test("user can add product to cart", async ({ page }) => {
     {{ isSubmitting ? 'Creating account...' : 'Create Account' }}
   </button>
 </form>
-```
+```xml
 
 ### Navigation and Menu Elements
 
@@ -1337,20 +1365,20 @@ test("user can add product to cart", async ({ page }) => {
     </li>
   </ul>
 </div>
-```
+```text
 
 ### Best Practices Summary
 
 1. **Always use `data-testid`** for elements that need to be tested
-2. **Use kebab-case** for all test IDs, IDs, and CSS classes (except Tailwind)
-3. **Be descriptive and hierarchical**: `section-component-element-action`
-4. **Include ARIA attributes** for accessibility and testing
-5. **Avoid generic names** like "button1", "container", "text"
-6. **Use dynamic test IDs** for list items with unique identifiers
-7. **Combine with ARIA roles** for more robust selectors
-8. **Document test ID patterns** in component files
-9. **Create selector helpers** to avoid hardcoding selectors in tests
-10. **Prefer accessibility attributes** (`role`, `aria-label`) over presentational selectors
+1. **Use kebab-case** for all test IDs, IDs, and CSS classes (except Tailwind)
+1. **Be descriptive and hierarchical**: `section-component-element-action`
+1. **Include ARIA attributes** for accessibility and testing
+1. **Avoid generic names** like "button1", "container", "text"
+1. **Use dynamic test IDs** for list items with unique identifiers
+1. **Combine with ARIA roles** for more robust selectors
+1. **Document test ID patterns** in component files
+1. **Create selector helpers** to avoid hardcoding selectors in tests
+1. **Prefer accessibility attributes** (`role`, `aria-label`) over presentational selectors
 
 ---
 
@@ -1454,7 +1482,7 @@ export function useAuth() {
     logout,
   };
 }
-```
+```python
 
 ### Pinia Stores
 
@@ -1505,7 +1533,7 @@ export const useUserStore = defineStore("user", {
     },
   },
 });
-```
+```yaml
 
 ---
 
@@ -1545,7 +1573,7 @@ describe("UserService", () => {
     });
   });
 });
-```
+```python
 
 ### Component Testing (Vue)
 
@@ -1609,7 +1637,7 @@ describe("UserCard", () => {
     }
   }
 }
-```
+```text
 
 ### ESLint Configuration
 
@@ -1635,7 +1663,7 @@ module.exports = {
     "no-console": ["warn", { allow: ["warn", "error"] }],
   },
 };
-```
+```json
 
 ### Prettier Configuration
 
@@ -1649,7 +1677,7 @@ module.exports = {
   "tabWidth": 2,
   "arrowParens": "avoid"
 }
-```
+```bash
 
 ### Running Tools
 

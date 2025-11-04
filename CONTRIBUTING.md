@@ -58,9 +58,9 @@ Here are a few things you can do that will increase the likelihood of your pull 
 When working on spec-kit:
 
 1. Test changes with the `specify` CLI commands (`/speckit.specify`, `/speckit.plan`, `/speckit.tasks`) in your coding agent of choice
-2. Verify templates are working correctly in `templates/` directory
-3. Test script functionality in the `scripts/` directory
-4. Ensure memory files (`memory/constitution.md`) are updated if major process changes are made
+1. Verify templates are working correctly in `templates/` directory
+1. Test script functionality in the `scripts/` directory
+1. Ensure memory files (`memory/constitution.md`) are updated if major process changes are made
 
 ### Testing template and command changes locally
 
@@ -71,17 +71,18 @@ To test your templates, commands, and other changes locally, follow these steps:
 
    Run the following command to generate the local packages:
 
-   ```
+   ```bash
    ./.github/workflows/scripts/create-release-packages.sh v1.0.0
-   ```
 
-2. **Copy the relevant package to your test project**
+```bash
 
-   ```
+1. **Copy the relevant package to your test project**
+
+   ```bash
    cp -r .genreleases/sdd-copilot-package-sh/. <path-to-test-project>/
-   ```
+```bash
 
-3. **Open and test the agent**
+1. **Open and test the agent**
 
    Navigate to your test project folder and open the agent to verify your implementation.
 

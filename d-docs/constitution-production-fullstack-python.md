@@ -79,7 +79,7 @@ visibility.
 This production-grade structure adheres to hexagonal architecture principles with Python
 conventions, emphasizing security, observability, and zero-trust principles.
 
-```
+```text
 project-root/
 ├── backend/
 │   ├── src/
@@ -190,27 +190,42 @@ project-root/
 │
 ├── docker-compose.yml
 └── README.md
-```
+```text
 
 **Key Production-Grade Structural Principles:**
 
 - **Domain Isolation**: The `domain/` layer has zero dependencies on FastAPI, ORM,
+
   or async libraries. Contains only pure Python business logic.
+
 - **Zero Trust Infrastructure**: `infrastructure/auth/` centralizes authentication
+
   and authorization with JWT or mTLS. All service-to-service calls authenticated.
+
 - **Observability First**: Dedicated `infrastructure/logging/`, `metrics/`, `tracing/`,
+
   and `health/` modules ensure structured logs, metrics, and traces are available for
   all critical paths with correlation IDs via contextvars.
+
 - **Security by Design**: Secrets managed via `infrastructure/config/` with external
+
   vault integration. Database connections use least-privilege roles. Security events
   logged with structured context.
+
 - **Versioned Contracts**: API routes and Pydantic schemas versioned under `v1/`, `v2/`,
+
   etc., with deprecation windows for breaking changes.
+
 - **Chaos Engineering**: `tests/chaos/` contains async failure injection tests for
+
   critical paths (timeouts, DB failures, circuit breakers).
+
 - **Migration Control**: All schema changes via `migrations/` (Alembic) with
+
   forward/backward compatibility and documented rollback procedures.
+
 - **Documentation & SLOs**: `docs/slos/` tracks SLO definitions, error budgets, and
+
   operational procedures. Architecture decisions recorded in ADRs.
 
 ## Architecture & Technical Constraints
@@ -257,10 +272,10 @@ level assignment.
 Pull Request Requirements:
 
 1. Link to spec & plan sections referencing contract definitions.
-2. Evidence of failing tests before implementation (where new domains introduced).
-3. Added/updated migrations with rollback notes.
-4. Logging & metric additions listed in description.
-5. If breaking change: documented deprecation or dual-support window.
+1. Evidence of failing tests before implementation (where new domains introduced).
+1. Added/updated migrations with rollback notes.
+1. Logging & metric additions listed in description.
+1. If breaking change: documented deprecation or dual-support window.
 
 Merge is BLOCKED if any gate unmet unless explicitly waived with recorded rationale.
 
@@ -274,16 +289,19 @@ non-semantic wording). Reviewers MUST verify gates remain objectively testable.
 Amendment Procedure:
 
 1. Draft proposal referencing impacted principles / sections.
-2. Classify bump level per rules above.
-3. Include migration or adoption steps if changing enforcement criteria.
-4. Update Sync Impact Report and affected templates.
-5. Secure approval from at least two maintainers (or designated governance group once
+1. Classify bump level per rules above.
+1. Include migration or adoption steps if changing enforcement criteria.
+1. Update Sync Impact Report and affected templates.
+1. Secure approval from at least two maintainers (or designated governance group once
+
 established).
 
 Compliance:
 
 - Quarterly (or pre-production milestone) audit: architecture boundaries, contract drift,
+
  test coverage thresholds, security dependency scan status.
+
 - Violations create remediation tasks with tracked due dates.
 - Emergency deviations allowed only with logged risk acceptance.
 

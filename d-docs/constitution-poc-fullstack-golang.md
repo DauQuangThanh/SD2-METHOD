@@ -67,7 +67,7 @@ Rationale: Reduces breach surface and ensures predictable data evolution.
 This structure adheres to hexagonal architecture principles with Go-specific conventions,
 ensuring clear separation between domain logic, application use cases, and adapters.
 
-```
+```text
 project-root/
 ├── cmd/
 │   └── api/
@@ -140,22 +140,33 @@ project-root/
 ├── go.sum
 ├── Makefile
 └── README.md
-```
+```text
 
 **Key Structural Principles:**
 
 - **Domain Isolation**: The `internal/domain/` layer has zero dependencies on net/http,
+
   database/sql, or any framework. Contains only pure Go business logic with interfaces.
+
 - **Adapter Independence**: HTTP handlers (`adapters/http/`) and database repositories
+
   (`adapters/persistence/`) depend inward through interfaces defined in `domain/` and
   `application/` layers.
+
 - **Internal Package**: Following Go conventions, `internal/` ensures private application
+
   code cannot be imported by external projects.
+
 - **Contract-First Frontend**: `frontend/src/contracts/` contains TypeScript types
+
   mirroring backend JSON contracts for type-safe API consumption.
+
 - **Maturity Markers**: Each package declares its maturity level (PoC/MVP/Production) in
+
   package comments as per Principle 2.
+
 - **Migration Control**: All database schema changes flow through
+
   `internal/adapters/persistence/migrations/` with forward/backward compatibility.
 
 ## Architecture & Technical Constraints
@@ -183,10 +194,10 @@ level assignment.
 Pull Request Requirements:
 
 1. Link to spec & plan sections referencing contract definitions.
-2. Evidence of failing tests before implementation (where new domains introduced).
-3. Added/updated migrations with rollback notes.
-4. Logging & metric additions listed in description.
-5. If breaking change: documented deprecation or dual-support window.
+1. Evidence of failing tests before implementation (where new domains introduced).
+1. Added/updated migrations with rollback notes.
+1. Logging & metric additions listed in description.
+1. If breaking change: documented deprecation or dual-support window.
 
 Merge is BLOCKED if any gate unmet unless explicitly waived with recorded rationale.
 
@@ -200,16 +211,19 @@ non-semantic wording). Reviewers MUST verify gates remain objectively testable.
 Amendment Procedure:
 
 1. Draft proposal referencing impacted principles / sections.
-2. Classify bump level per rules above.
-3. Include migration or adoption steps if changing enforcement criteria.
-4. Update Sync Impact Report and affected templates.
-5. Secure approval from at least two maintainers (or designated governance group once
+1. Classify bump level per rules above.
+1. Include migration or adoption steps if changing enforcement criteria.
+1. Update Sync Impact Report and affected templates.
+1. Secure approval from at least two maintainers (or designated governance group once
+
 established).
 
 Compliance:
 
 - Quarterly (or pre-production milestone) audit: architecture boundaries, contract drift,
+
  test coverage thresholds, security dependency scan status.
+
 - Violations create remediation tasks with tracked due dates.
 - Emergency deviations allowed only with logged risk acceptance.
 

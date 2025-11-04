@@ -79,28 +79,28 @@ The SDD methodology is significantly enhanced through three powerful commands th
 This command transforms a simple feature description (the user-prompt) into a complete, structured specification with automatic repository management:
 
 1. **Automatic Feature Numbering**: Scans existing specs to determine the next feature number (e.g., 001, 002, 003)
-2. **Branch Creation**: Generates a semantic branch name from your description and creates it automatically
-3. **Template-Based Generation**: Copies and customizes the feature specification template with your requirements
-4. **Directory Structure**: Creates the proper `specs/[branch-name]/` structure for all related documents
+1. **Branch Creation**: Generates a semantic branch name from your description and creates it automatically
+1. **Template-Based Generation**: Copies and customizes the feature specification template with your requirements
+1. **Directory Structure**: Creates the proper `specs/[branch-name]/` structure for all related documents
 
 ### The `/speckit.plan` Command
 
 Once a feature specification exists, this command creates a comprehensive implementation plan:
 
 1. **Specification Analysis**: Reads and understands the feature requirements, user stories, and acceptance criteria
-2. **Constitutional Compliance**: Ensures alignment with project constitution and architectural principles
-3. **Technical Translation**: Converts business requirements into technical architecture and implementation details
-4. **Detailed Documentation**: Generates supporting documents for data models, API contracts, and test scenarios
-5. **Quickstart Validation**: Produces a quickstart guide capturing key validation scenarios
+1. **Constitutional Compliance**: Ensures alignment with project constitution and architectural principles
+1. **Technical Translation**: Converts business requirements into technical architecture and implementation details
+1. **Detailed Documentation**: Generates supporting documents for data models, API contracts, and test scenarios
+1. **Quickstart Validation**: Produces a quickstart guide capturing key validation scenarios
 
 ### The `/speckit.tasks` Command
 
 After a plan is created, this command analyzes the plan and related design documents to generate an executable task list:
 
 1. **Inputs**: Reads `plan.md` (required) and, if present, `data-model.md`, `contracts/`, and `research.md`
-2. **Task Derivation**: Converts contracts, entities, and scenarios into specific tasks
-3. **Parallelization**: Marks independent tasks `[P]` and outlines safe parallel groups
-4. **Output**: Writes `tasks.md` in the feature directory, ready for execution by a Task agent
+1. **Task Derivation**: Converts contracts, entities, and scenarios into specific tasks
+1. **Parallelization**: Marks independent tasks `[P]` and outlines safe parallel groups
+1. **Output**: Writes `tasks.md` in the feature directory, ready for execution by a Task agent
 
 ### Example: Building a Chat Feature
 
@@ -109,13 +109,15 @@ Here's how these commands transform the traditional development workflow:
 **Traditional Approach:**
 
 ```text
+
 1. Write a PRD in a document (2-3 hours)
-2. Create design documents (2-3 hours)
-3. Set up project structure manually (30 minutes)
-4. Write technical specifications (3-4 hours)
-5. Create test plans (2 hours)
+1. Create design documents (2-3 hours)
+1. Set up project structure manually (30 minutes)
+1. Write technical specifications (3-4 hours)
+1. Create test plans (2 hours)
+
 Total: ~12 hours of documentation work
-```
+```bash
 
 **SDD with Commands Approach:**
 
@@ -141,7 +143,7 @@ Total: ~12 hours of documentation work
 # - specs/003-chat-system/contracts/ (WebSocket events, REST endpoints)
 # - specs/003-chat-system/quickstart.md (Key validation scenarios)
 # - specs/003-chat-system/tasks.md (Task list derived from the plan)
-```
+```bash
 
 In 15 minutes, you have:
 
@@ -156,9 +158,9 @@ In 15 minutes, you have:
 These commands don't just save time—they enforce consistency and completeness:
 
 1. **No Forgotten Details**: Templates ensure every aspect is considered, from non-functional requirements to error handling
-2. **Traceable Decisions**: Every technical choice links back to specific requirements
-3. **Living Documentation**: Specifications stay in sync with code because they generate it
-4. **Rapid Iteration**: Change requirements and regenerate plans in minutes, not days
+1. **Traceable Decisions**: Every technical choice links back to specific requirements
+1. **Living Documentation**: Specifications stay in sync with code because they generate it
+1. **Rapid Iteration**: Change requirements and regenerate plans in minutes, not days
 
 The commands embody SDD principles by treating specifications as executable artifacts rather than static documents. They transform the specification process from a necessary evil into the driving force of development.
 
@@ -171,9 +173,11 @@ The true power of these commands lies not just in automation, but in how the tem
 The feature specification template explicitly instructs:
 
 ```text
+
 - ✅ Focus on WHAT users need and WHY
 - ❌ Avoid HOW to implement (no tech stack, APIs, code structure)
-```
+
+```bash
 
 This constraint forces the LLM to maintain proper abstraction levels. When an LLM might naturally jump to "implement using React with Redux," the template keeps it focused on "users need real-time updates of their data." This separation ensures specifications remain stable even as implementation technologies change.
 
@@ -183,8 +187,10 @@ Both templates mandate the use of `[NEEDS CLARIFICATION]` markers:
 
 ```text
 When creating this spec from a user prompt:
+
 1. **Mark all ambiguities**: Use [NEEDS CLARIFICATION: specific question]
-2. **Don't guess**: If the prompt doesn't specify something, mark it
+1. **Don't guess**: If the prompt doesn't specify something, mark it
+
 ```
 
 This prevents the common LLM behavior of making plausible but potentially incorrect assumptions. Instead of guessing that a "login system" uses email/password authentication, the LLM must mark it as `[NEEDS CLARIFICATION: auth method not specified - email/password, SSO, OAuth?]`.
@@ -198,7 +204,8 @@ The templates include comprehensive checklists that act as "unit tests" for the 
 - [ ] No [NEEDS CLARIFICATION] markers remain
 - [ ] Requirements are testable and unambiguous
 - [ ] Success criteria are measurable
-```
+
+```text
 
 These checklists force the LLM to self-review its output systematically, catching gaps that might otherwise slip through. It's like giving the LLM a quality assurance framework.
 
@@ -214,7 +221,8 @@ The implementation plan template enforces architectural principles through phase
 #### Anti-Abstraction Gate (Article VIII)
 - [ ] Using framework directly?
 - [ ] Single model representation?
-```
+
+```text
 
 These gates prevent over-engineering by making the LLM explicitly justify any complexity. If a gate fails, the LLM must document why in the "Complexity Tracking" section, creating accountability for architectural decisions.
 
@@ -226,7 +234,7 @@ The templates enforce proper information architecture:
 **IMPORTANT**: This implementation plan should remain high-level and readable.
 Any code samples, detailed algorithms, or extensive technical specifications
 must be placed in the appropriate `implementation-details/` file
-```
+```text
 
 This prevents the common problem of specifications becoming unreadable code dumps. The LLM learns to maintain appropriate detail levels, extracting complexity to separate files while keeping the main document navigable.
 
@@ -237,8 +245,9 @@ The implementation template enforces test-first development:
 ```text
 ### File Creation Order
 1. Create `contracts/` with API specifications
-2. Create test files in order: contract → integration → e2e → unit
-3. Create source files to make tests pass
+1. Create test files in order: contract → integration → e2e → unit
+1. Create source files to make tests pass
+
 ```
 
 This ordering constraint ensures the LLM thinks about testability and contracts before implementation, leading to more robust and verifiable specifications.
@@ -248,9 +257,11 @@ This ordering constraint ensures the LLM thinks about testability and contracts 
 Templates explicitly discourage speculation:
 
 ```text
+
 - [ ] No speculative or "might need" features
 - [ ] All phases have clear prerequisites and deliverables
-```
+
+```text
 
 This stops the LLM from adding "nice to have" features that complicate implementation. Every feature must trace back to a concrete user story with clear acceptance criteria.
 
@@ -282,7 +293,7 @@ Every feature must begin as a standalone library—no exceptions. This forces mo
 Every feature in Specify MUST begin its existence as a standalone library.
 No feature shall be implemented directly within application code without
 first being abstracted into a reusable library component.
-```
+```text
 
 This principle ensures that specifications generate modular, reusable code rather than monolithic applications. When the LLM generates an implementation plan, it must structure features as libraries with clear boundaries and minimal dependencies.
 
@@ -292,10 +303,12 @@ Every library must expose its functionality through a command-line interface:
 
 ```text
 All CLI interfaces MUST:
+
 - Accept text as input (via stdin, arguments, or files)
 - Produce text as output (via stdout)
 - Support JSON format for structured data exchange
-```
+
+```text
 
 This enforces observability and testability. The LLM cannot hide functionality inside opaque classes—everything must be accessible and verifiable through text-based interfaces.
 
@@ -306,9 +319,11 @@ The most transformative article—no code before tests:
 ```text
 This is NON-NEGOTIABLE: All implementation MUST follow strict Test-Driven Development.
 No implementation code shall be written before:
+
 1. Unit tests are written
-2. Tests are validated and approved by the user
-3. Tests are confirmed to FAIL (Red phase)
+1. Tests are validated and approved by the user
+1. Tests are confirmed to FAIL (Red phase)
+
 ```
 
 This completely inverts traditional AI code generation. Instead of generating code and hoping it works, the LLM must first generate comprehensive tests that define behavior, get them approved, and only then generate implementation.
@@ -319,12 +334,15 @@ These paired articles combat over-engineering:
 
 ```text
 Section 7.3: Minimal Project Structure
+
 - Maximum 3 projects for initial implementation
 - Additional projects require documented justification
 
 Section 8.1: Framework Trust
+
 - Use framework features directly rather than wrapping them
-```
+
+```text
 
 When an LLM might naturally create elaborate abstractions, these articles force it to justify every layer of complexity. The implementation plan template's "Phase -1 Gates" directly enforce these principles.
 
@@ -334,10 +352,12 @@ Prioritizes real-world testing over isolated unit tests:
 
 ```text
 Tests MUST use realistic environments:
+
 - Prefer real databases over mocks
 - Use actual service instances over stubs
 - Contract tests mandatory before implementation
-```
+
+```text
 
 This ensures generated code works in practice, not just in theory.
 
@@ -358,7 +378,8 @@ The implementation plan template operationalizes these articles through concrete
 #### Integration-First Gate (Article IX)
 - [ ] Contracts defined?
 - [ ] Contract tests written?
-```
+
+```text
 
 These gates act as compile-time checks for architectural principles. The LLM cannot proceed without either passing the gates or documenting justified exceptions in the "Complexity Tracking" section.
 
@@ -367,9 +388,9 @@ These gates act as compile-time checks for architectural principles. The LLM can
 The constitution's power lies in its immutability. While implementation details can evolve, the core principles remain constant. This provides:
 
 1. **Consistency Across Time**: Code generated today follows the same principles as code generated next year
-2. **Consistency Across LLMs**: Different AI models produce architecturally compatible code
-3. **Architectural Integrity**: Every feature reinforces rather than undermines the system design
-4. **Quality Guarantees**: Test-first, library-first, and simplicity principles ensure maintainable code
+1. **Consistency Across LLMs**: Different AI models produce architecturally compatible code
+1. **Architectural Integrity**: Every feature reinforces rather than undermines the system design
+1. **Quality Guarantees**: Test-first, library-first, and simplicity principles ensure maintainable code
 
 ### Constitutional Evolution
 
@@ -378,9 +399,11 @@ While principles are immutable, their application can evolve:
 ```text
 Section 4.2: Amendment Process
 Modifications to this constitution require:
+
 - Explicit documentation of the rationale for change
 - Review and approval by project maintainers
 - Backwards compatibility assessment
+
 ```
 
 This allows the methodology to learn and improve while maintaining stability. The constitution shows its own evolution with dated amendments, demonstrating how principles can be refined based on real-world experience.

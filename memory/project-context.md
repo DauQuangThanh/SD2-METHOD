@@ -83,7 +83,7 @@ description: "Project context template for AI agent consistency"
 
 ### Project Source Code Structure
 
-```
+```toml
 [PROJECT ROOT]/
 ├── src/
 │   ├── domain/                   # [EXAMPLE: Core business logic (hexagon center)]
@@ -123,7 +123,7 @@ description: "Project context template for AI agent consistency"
 ├── docs/                         # [EXAMPLE: Project documentation]
 ├── scripts/                      # [EXAMPLE: Automation and deployment scripts]
 └── config/                       # [EXAMPLE: Environment-specific configurations]
-```
+```yaml
 
 ---
 
@@ -158,7 +158,7 @@ description: "Project context template for AI agent consistency"
   }
 }
 ]
-```
+```text
 
 **Exception Handling:**
 
@@ -198,6 +198,7 @@ description: "Project context template for AI agent consistency"
 **Log Format:**
 
 ```
+
 [EXAMPLE:
 {
   "timestamp": "2025-10-28T12:34:56.789Z",
@@ -208,7 +209,8 @@ description: "Project context template for AI agent consistency"
   "requestId": "req-abc-xyz"
 }
 ]
-```
+
+```yaml
 
 ---
 

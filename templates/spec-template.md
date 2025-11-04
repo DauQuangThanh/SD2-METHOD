@@ -14,10 +14,12 @@
   
   Assign priorities (P1, P2, P3, etc.) to each story, where P1 is the most critical.
   Think of each story as a standalone slice of functionality that can be:
+
   - Developed independently
   - Tested independently
   - Deployed independently
   - Demonstrated to users independently
+
 -->
 
 ### User Story 1 - [Brief Title] (Priority: P1)
@@ -31,7 +33,7 @@
 **Acceptance Scenarios**:
 
 1. **Given** [initial state], **When** [action], **Then** [expected outcome]
-2. **Given** [initial state], **When** [action], **Then** [expected outcome]
+1. **Given** [initial state], **When** [action], **Then** [expected outcome]
 
 ---
 
