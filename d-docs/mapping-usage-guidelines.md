@@ -87,7 +87,7 @@ Phase 3: SYSTEM DESIGN & ARCHITECTURE
 │  │  └─ Duration: 2-4 hours per system/major component
 │  │
 │  ├─ /speckit.plan (PRIMARY)
-│  │  └─ Input: spec.md
+│  │  └─ Input: spec.md, architecture.md
 │  │  └─ Output: plan.md, data-model.md, contracts/, research.md
 │  │  └─ Duration: 30-60 minutes per feature
 │  │
@@ -104,7 +104,7 @@ Phase 4: IMPLEMENTATION PLANNING
 ├─ Activities: Task breakdown, effort estimation, sprint planning
 ├─ Spec Kit Commands:
 │  └─ /speckit.tasks (PRIMARY)
-│     └─ Input: spec.md, plan.md, data-model.md, contracts/
+│     └─ Input: spec.md, architecture.md, plan.md, data-model.md, contracts/
 │     └─ Output: tasks.md with dependency graph
 │     └─ Duration: 20-40 minutes per feature
 │
@@ -118,7 +118,7 @@ Phase 5: PRE-IMPLEMENTATION VALIDATION
 ├─ Activities: Quality gate, consistency check, risk assessment
 ├─ Spec Kit Commands:
 │  └─ /speckit.analyze (PRIMARY)
-│     └─ Input: spec.md, plan.md, tasks.md
+│     └─ Input: spec.md, architecture.md, plan.md, tasks.md
 │     └─ Output: Analysis report with issues, coverage metrics
 │     └─ Duration: 10-15 minutes
 │

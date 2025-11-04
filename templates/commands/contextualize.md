@@ -23,6 +23,7 @@ Follow this execution flow:
 2. **Collect and derive values** by:
    - Read `/memory/constitution.md` if available.
    - Read spec.md, plan.md, data-model.md from `specs/` folder if available.
+   - Read `/memory/architecture.md` (if exists)
    - Analyze the codebase thoroughly to extract accurate information if available.
    - **Last Updated**: Use today's date in ISO format (YYYY-MM-DD).
 

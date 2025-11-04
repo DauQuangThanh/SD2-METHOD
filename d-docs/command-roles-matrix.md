@@ -37,7 +37,7 @@ GitHub Spec Kit provides **10 commands** that support different stages of spec-d
 | `/speckit.checklist` | Generate quality validation checklists ("unit tests for requirements") | 2-3. Quality | Domain-specific checklist (ux.md, api.md, security.md) |
 | `/speckit.contextualize` | Generate/update project context for AI agent consistency | 0. Project Setup | project-context.md with coding standards and architecture |
 | `/speckit.constitution` | Create/update project governance principles | 0. Governance | constitution.md |
-| `/speckit.architect` | Create/update project architecture design document | 0. Architecture | architecture.md with views, decisions, and constraints |
+| `/speckit.architect` | Create/update project architecture design document | 3. Architecture Design | architecture.md with views, decisions, and constraints |
 | `/speckit.plan` | Technical planning and architecture design | 4. Design | plan.md, data-model.md, contracts/, research.md |
 | `/speckit.tasks` | Generate executable task breakdown by user story | 5. Task Planning | tasks.md with dependency graph |
 | `/speckit.analyze` | Cross-artifact consistency analysis | 6. Pre-Implementation | Analysis report with coverage metrics |
@@ -48,12 +48,6 @@ GitHub Spec Kit provides **10 commands** that support different stages of spec-d
 ```
             ┌────────────────────────┐
             │ /speckit.constitution  │ (Optional, run once per project)
-            └──────────┬─────────────┘
-                       │
-            ┌──────────▼─────────────┐
-            │  /speckit.architect    │ (Optional, run for formal architecture)
-            │ (Create architecture   │ ◄─── Solution Architect, Engineering Manager
-            │  design document)      │
             └──────────┬─────────────┘
                        │
                        ▼
@@ -67,6 +61,13 @@ GitHub Spec Kit provides **10 commands** that support different stages of spec-d
         ┌────────────────────────────────────┐
         │      /speckit.specify              │ ◄─── Product Owner, Business Analyst
         │  (Feature description → spec.md)   │
+        └──────────────┬─────────────────────┘
+                       │
+                       ▼
+        ┌────────────────────────────────────┐
+        │      /speckit.architect            │ ◄─── Solution Architect (Optional)
+        │  (Create architecture design       │      (After requirements, before plan)
+        │   document with views/decisions)   │
         └──────────────┬─────────────────────┘
                        │
                        ▼
@@ -307,8 +308,8 @@ GitHub Spec Kit provides **10 commands** that support different stages of spec-d
 **Purpose**: Create or update formal architecture design document
 
 **When to use**:
-- At project inception (for greenfield projects)
-- When establishing system architecture
+- After specification is complete (after `/speckit.specify`)
+- Before technical planning (before `/speckit.plan`)
 - When major architectural changes occur
 - For formal architecture documentation needs
 
@@ -1112,15 +1113,12 @@ Engineering Managers should have read access to all commands for:
 
 ```
 ┌─────────────────────────────────────────────────────────────────┐
-│ Stage 0: Governance & Architecture (Engineering Manager + Architect) │
+│ Stage 0: Governance & Project Setup (Engineering Manager + Architect) │
 └─────────────────────────────────────────────────────────────────┘
     0a. Engineering Manager: /speckit.constitution
         → Output: constitution.md with project principles
 
-    0b. Solution Architect: /speckit.architect (optional, for complex systems)
-        → Output: architecture.md with architectural views and decisions
-
-    0c. Solution Architect: /speckit.contextualize
+    0b. Solution Architect: /speckit.contextualize
         → Output: project-context.md with coding standards
 
 ┌─────────────────────────────────────────────────────────────────┐
@@ -1152,36 +1150,39 @@ Engineering Managers should have read access to all commands for:
        → All checklists must be complete before proceeding
 
 ┌─────────────────────────────────────────────────────────────────┐
-│ Stage 3: Technical Planning (Solution Architect)                │
+│ Stage 3: Architecture & Technical Planning (Solution Architect) │
 └─────────────────────────────────────────────────────────────────┘
-    8. Solution Architect: /speckit.plan
+    8. Solution Architect: /speckit.architect (optional, for complex systems)
+       → Output: architecture.md with architectural views and decisions
+
+    9. Solution Architect: /speckit.plan
        → Output: plan.md, data-model.md, contracts/, research.md
 
-    9. Solution Architect: /speckit.checklist (architecture focus)
-       → Output: architecture.md checklist
+    10. Solution Architect: /speckit.checklist (architecture focus)
+        → Output: architecture.md checklist
 
 ┌─────────────────────────────────────────────────────────────────┐
 │ Stage 4: Task Planning (Tech Lead + Scrum Master)               │
 └─────────────────────────────────────────────────────────────────┘
-    10. Tech Lead: /speckit.tasks
+    11. Tech Lead: /speckit.tasks
         → Output: tasks.md with dependency graph
 
-    11. Scrum Master: Reviews tasks.md for sprint planning
+    12. Scrum Master: Reviews tasks.md for sprint planning
         → Identifies parallel work, dependencies, effort estimates
 
 ┌─────────────────────────────────────────────────────────────────┐
 │ Stage 5: Pre-Implementation Validation (Tech Lead + QA)         │
 └─────────────────────────────────────────────────────────────────┘
-    12. Tech Lead: /speckit.analyze
+    13. Tech Lead: /speckit.analyze
         → Output: Analysis report with issues/gaps
 
-    13. Team: Resolves critical issues found by analyze
+    14. Team: Resolves critical issues found by analyze
         → May require re-running /speckit.specify or /speckit.plan
 
 ┌─────────────────────────────────────────────────────────────────┐
 │ Stage 6: Implementation (Developer)                             │
 └─────────────────────────────────────────────────────────────────┘
-    14. Developer: /speckit.implement
+    15. Developer: /speckit.implement
         → Checks checklist completion
         → Executes tasks phase-by-phase
         → Marks tasks complete
@@ -1190,9 +1191,9 @@ Engineering Managers should have read access to all commands for:
 ┌─────────────────────────────────────────────────────────────────┐
 │ Stage 7: Review & Deploy (Multi-Role)                           │
 └─────────────────────────────────────────────────────────────────┘
-    15. DevOps Engineer: Reviews deployment tasks, deploys
-    16. QA Engineer: Tests against acceptance criteria
-    17. Product Owner: Validates against business requirements
+    16. DevOps Engineer: Reviews deployment tasks, deploys
+    17. QA Engineer: Tests against acceptance criteria
+    18. Product Owner: Validates against business requirements
 ```
 
 ---
@@ -1565,10 +1566,10 @@ Phase 3 - Repeat for other services:
 | Stage | Primary Role | Supporting Roles | Commands Used |
 |-------|--------------|------------------|---------------|
 | **Governance** | Engineering Manager | Solution Architect | constitution |
-| **Architecture Design** | Solution Architect | Engineering Manager | architect |
 | **Project Context Setup** | Solution Architect | Tech Lead, Engineering Manager | contextualize |
 | **Specification** | Product Owner | Business Analyst | specify, clarify |
 | **Quality Validation** | Multi-Role | QA, Security, DevOps | checklist (domain-specific) |
+| **Architecture Design** | Solution Architect | Engineering Manager | architect (after specify, before plan) |
 | **Technical Planning** | Solution Architect | Tech Lead | plan, checklist (architecture), contextualize (if needed) |
 | **Task Planning** | Tech Lead | Scrum Master | tasks (after contextualize) |
 | **Pre-Implementation** | Tech Lead | QA Engineer | analyze |
@@ -1580,8 +1581,8 @@ Phase 3 - Repeat for other services:
 
 GitHub Spec Kit provides a complete workflow from specification to implementation, with clear role assignments:
 
-1. **Engineering Managers** own governance (constitution) and architecture oversight (architect)
-2. **Architects** own formal architecture design (architect) and technical design (plan, constitution)
+1. **Engineering Managers** own governance (constitution) and architecture oversight
+2. **Architects** own formal architecture design (architect, after requirements) and technical design (plan, constitution)
 3. **Product Owners** own requirements (specify, clarify)
 4. **Tech Leads** own quality and execution (tasks, analyze)
 5. **Developers** own implementation (implement)

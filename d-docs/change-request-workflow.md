@@ -408,8 +408,8 @@ STEP 2: Re-Specify (2-4 hours)
 │  └─ Result: spec.md fully updated with OAuth2 requirements
 │
 └─ Command: Update architecture if needed
-   └─ If architecture.md exists: Update with OAuth2 architectural changes
-   └─ If major architectural shift: /speckit.architect (to document new approach)
+   └─ If architecture.md exists: Update manually or use /speckit.architect
+   └─ If major architectural shift: /speckit.architect (to document new approach after spec update)
 
 ────────────────────────────────────────────────────────────────────────────
 
