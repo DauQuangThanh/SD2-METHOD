@@ -49,6 +49,7 @@ description: "Project context template for AI agent consistency"
 **Variables & Functions:**
 - [EXAMPLE: Python: `snake_case` for variables, functions, and methods]
 - [EXAMPLE: TypeScript: `camelCase` for variables and functions, `PascalCase` for classes and components]
+- [EXAMPLE: UI Elements: `kebab-case` for all UI element names]
 
 **Classes & Components:**
 - [EXAMPLE: Python: `PascalCase` for class names]

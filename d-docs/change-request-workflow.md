@@ -437,9 +437,18 @@ STEP 4: Re-Plan Technical Approach (2-4 hours)
 
 ────────────────────────────────────────────────────────────────────────────
 
-STEP 5: Regenerate Tasks (1-2 hours)
+STEP 5: Update Project Context (15 minutes)
+├─ Command: /speckit.contextualize
+│  └─ Updates project-context.md with new approach
+│  └─ Ensures AI agents understand OAuth2 patterns and standards
+│
+└─ Output: Updated project-context.md
+
+────────────────────────────────────────────────────────────────────────────
+
+STEP 6: Regenerate Tasks (1-2 hours)
 ├─ Command: /speckit.tasks
-│  └─ Input: Updated spec.md, plan.md, data-model.md
+│  └─ Input: Updated spec.md, plan.md, data-model.md, project-context.md
 │  └─ Output: NEW tasks.md
 │     └─ Completely new task breakdown for OAuth2 approach
 │
@@ -454,7 +463,7 @@ STEP 5: Regenerate Tasks (1-2 hours)
 
 ────────────────────────────────────────────────────────────────────────────
 
-STEP 6: Validate Consistency (30 minutes)
+STEP 7: Validate Consistency (30 minutes)
 ├─ Command: /speckit.analyze
 │  └─ Validates: New spec, plan, and tasks are consistent
 │  └─ Must show: 0 critical issues before proceeding
@@ -465,7 +474,7 @@ STEP 6: Validate Consistency (30 minutes)
 
 ────────────────────────────────────────────────────────────────────────────
 
-STEP 7: Salvage Reusable Work (2-4 hours)
+STEP 8: Salvage Reusable Work (2-4 hours)
 ├─ Review old feature branch:
 │  └─ git diff main...feature/001-user-registration
 │
@@ -484,7 +493,7 @@ STEP 7: Salvage Reusable Work (2-4 hours)
 
 ────────────────────────────────────────────────────────────────────────────
 
-STEP 8: Restart Implementation (N hours)
+STEP 9: Restart Implementation (N hours)
 ├─ Command: /speckit.implement (with new tasks.md)
 │  └─ Start fresh with OAuth2 implementation
 │  └─ Leverage salvaged work where applicable
@@ -493,7 +502,7 @@ STEP 8: Restart Implementation (N hours)
 
 ────────────────────────────────────────────────────────────────────────────
 
-STEP 9: Update Stakeholders (30 minutes)
+STEP 10: Update Stakeholders (30 minutes)
 └─ Communication:
    ├─ Email/Slack to: Product Owner, Team, Scrum Master
    ├─ Subject: "Feature 001 - Major Change Accepted: Email/Password → OAuth2"

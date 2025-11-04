@@ -103,14 +103,19 @@ Phase 3: SYSTEM DESIGN & ARCHITECTURE
 Phase 4: IMPLEMENTATION PLANNING
 ├─ Activities: Task breakdown, effort estimation, sprint planning
 ├─ Spec Kit Commands:
+│  ├─ /speckit.contextualize (PRIMARY)
+│  │  └─ Input: Project codebase, existing artifacts
+│  │  └─ Output: project-context.md with coding standards and architecture
+│  │  └─ Duration: 5-10 minutes (automated analysis)
+│  │
 │  └─ /speckit.tasks (PRIMARY)
-│     └─ Input: spec.md, architecture.md, plan.md, data-model.md, contracts/
+│     └─ Input: spec.md, architecture.md, plan.md, data-model.md, contracts/, project-context.md
 │     └─ Output: tasks.md with dependency graph
 │     └─ Duration: 20-40 minutes per feature
 │
-├─ Artifacts Produced: Executable task list, dependency graph, estimates
+├─ Artifacts Produced: project-context.md, executable task list, dependency graph, estimates
 ├─ Roles: Technical Lead, Scrum Master
-└─ Exit Criteria: All tasks defined, dependencies identified, estimates provided
+└─ Exit Criteria: Project context current, all tasks defined, dependencies identified, estimates provided
 
 ─────────────────────────────────────────────────────────────────────────
 
@@ -200,6 +205,10 @@ BACKLOG REFINEMENT (Weekly)
 │  ├─ Solution Architect: /speckit.plan
 │  │  └─ Creates technical design
 │  │  └─ Output: plan.md, data-model.md, contracts/
+│  │
+│  ├─ Tech Lead: /speckit.contextualize
+│  │  └─ Updates project context before task planning
+│  │  └─ Output: project-context.md
 │  │
 │  └─ Tech Lead: /speckit.tasks
 │     └─ Breaks down into tasks with estimates
@@ -326,7 +335,7 @@ WEEK BEFORE SPRINT (Backlog Refinement):
 │   PO: /speckit.specify → /speckit.clarify                      │
 │   Team: /speckit.checklist (UX, Security, Testing)             │
 │   Architect: /speckit.plan                                     │
-│   Tech Lead: /speckit.tasks → /speckit.analyze                 │
+│   Tech Lead: /speckit.contextualize → /speckit.tasks → /speckit.analyze │
 │   Status: ✓ Ready (8 tasks, 13 story points)                  │
 ├────────────────────────────────────────────────────────────────┤
 │ Story 2: User Login (P1)                                       │
@@ -470,10 +479,12 @@ Column 5: TASK PLANNING
 ├─ WIP Limit: 4 stories
 ├─ Entry Criteria: Technical design complete
 ├─ Spec Kit Actions:
+│  ├─ Tech Lead: /speckit.contextualize
 │  ├─ Tech Lead: /speckit.tasks
 │  └─ Tech Lead: /speckit.analyze
 │
 ├─ Definition of Done for column:
+│  ├─ project-context.md updated
 │  ├─ tasks.md created with all tasks
 │  ├─ Dependency graph generated
 │  ├─ /speckit.analyze shows 0 critical issues
@@ -694,6 +705,11 @@ PHASE 3: IMPLEMENTATION PLANNING (Week 9)
 │  └─ Risk assessment
 │
 ├─ Spec Kit Integration:
+│  ├─ Tech Lead: /speckit.contextualize (update project context)
+│  │  └─ Analyzes project structure and existing artifacts
+│  │  └─ Updates project-context.md with current standards
+│  │  └─ Ensures AI agent consistency before task generation
+│  │
 │  └─ Tech Lead: /speckit.tasks (for all features)
 │     └─ Generates complete tasks.md with:
 │        ├─ All implementation tasks
@@ -702,6 +718,7 @@ PHASE 3: IMPLEMENTATION PLANNING (Week 9)
 │        └─ Effort estimates
 │
 ├─ Deliverables:
+│  ├─ Updated project-context.md
 │  ├─ Complete tasks.md for entire project
 │  ├─ Project schedule (Gantt chart)
 │  ├─ Resource allocation plan
@@ -1239,16 +1256,19 @@ Developer (wearing all hats):
 ├─ 3. Technical Design (20 minutes)
 │  └─ /speckit.plan
 │
-├─ 4. Task Breakdown (10 minutes)
+├─ 4. Context Update (5 minutes)
+│  └─ /speckit.contextualize
+│
+├─ 5. Task Breakdown (10 minutes)
 │  └─ /speckit.tasks
 │
-├─ 5. Quick Analysis (5 minutes)
+├─ 6. Quick Analysis (5 minutes)
 │  └─ /speckit.analyze
 │
-└─ 6. Implementation (varies)
+└─ 7. Implementation (varies)
    └─ /speckit.implement
 
-TOTAL OVERHEAD: ~1 hour of specification work
+TOTAL OVERHEAD: ~1 hour and 5 minutes of specification work
 BENEFIT: Clear direction, testable requirements, no scope creep
 
 OPTIMIZATIONS:
@@ -1289,6 +1309,7 @@ Product Owner (20% time on Spec Kit):
 
 Tech Lead (30% time on Spec Kit):
 ├─ /speckit.plan (review or create)
+├─ /speckit.contextualize (before task planning)
 ├─ /speckit.tasks (for all features)
 ├─ /speckit.analyze (before each sprint)
 └─ /speckit.checklist (architecture focus)
@@ -1360,6 +1381,7 @@ PRODUCT TEAM (Product Owners + Business Analysts):
 
 ARCHITECTURE TEAM (Architect + Tech Leads):
 ├─ Weekly: /speckit.plan (all new features)
+├─ Weekly: /speckit.contextualize (before task planning)
 ├─ Weekly: /speckit.tasks (all new features)
 ├─ Bi-weekly: /speckit.constitution (update standards)
 ├─ Before each sprint: /speckit.analyze (quality gate)
@@ -1394,9 +1416,10 @@ Week N-2 (Two weeks ahead):
    └─ /speckit.checklist (all domains)
 
 Week N-1 (One week ahead):
-├─ Architecture Team: Create designs
+├─ Architecture Team: Create designs and context
 │  ├─ /speckit.architect (for complex features requiring formal architecture)
 │  ├─ /speckit.plan
+│  ├─ /speckit.contextualize
 │  └─ /speckit.tasks
 │
 └─ All Teams: Review and approve
@@ -1610,6 +1633,9 @@ PHASE 1: Integration Planning (Week 2)
 └─ Output: plan.md with detailed integration strategy
 
 PHASE 2: Task Breakdown (Week 2)
+├─ Tech Lead: /speckit.contextualize
+│  └─ Update project context with current codebase state
+│
 ├─ Tech Lead: /speckit.tasks
 │  └─ Include tasks for:
 │     ├─ Existing code refactoring (if needed)

@@ -35,12 +35,12 @@ GitHub Spec Kit provides **10 commands** that support different stages of spec-d
 | `/speckit.specify` | Create feature specification from natural language | 1. Specification | spec.md, requirements.md checklist |
 | `/speckit.clarify` | Interactive Q&A to reduce specification ambiguity | 2. Clarification | Updated spec.md with clarifications |
 | `/speckit.checklist` | Generate quality validation checklists ("unit tests for requirements") | 2-3. Quality | Domain-specific checklist (ux.md, api.md, security.md) |
-| `/speckit.contextualize` | Generate/update project context for AI agent consistency | 0. Project Setup | project-context.md with coding standards and architecture |
 | `/speckit.constitution` | Create/update project governance principles | 0. Governance | constitution.md |
 | `/speckit.architect` | Create/update project architecture design document | 3. Architecture Design | architecture.md with views, decisions, and constraints |
 | `/speckit.plan` | Technical planning and architecture design | 4. Design | plan.md, data-model.md, contracts/, research.md |
+| `/speckit.contextualize` | Generate/update project context for AI agent consistency | 5. Pre-Implementation Setup | project-context.md with coding standards and architecture |
 | `/speckit.tasks` | Generate executable task breakdown by user story | 5. Task Planning | tasks.md with dependency graph |
-| `/speckit.analyze` | Cross-artifact consistency analysis | 6. Pre-Implementation | Analysis report with coverage metrics |
+| `/speckit.analyze` | Cross-artifact consistency analysis | 6. Pre-Implementation Validation | Analysis report with coverage metrics |
 | `/speckit.implement` | Execute implementation following task plan | 7. Implementation | Working code implementation |
 
 ### Command Flow
@@ -119,7 +119,7 @@ GitHub Spec Kit provides **10 commands** that support different stages of spec-d
 | **Product Manager** | specify, clarify | checklist (business) | plan, tasks, analyze, contextualize, architect |
 | **Business Analyst** | specify, clarify, checklist | - | plan, tasks, analyze, contextualize, architect |
 | **Solution Architect** | plan, architect, checklist (architecture), contextualize | constitution | specify, clarify, tasks, analyze |
-| **Technical Lead** | plan, tasks, analyze, contextualize | checklist (all), constitution, architect | specify, clarify |
+| **Technical Lead** | tasks, analyze, contextualize | plan, checklist (all), constitution, architect | specify, clarify |
 | **Software Engineer** | implement, clarify | tasks, checklist (technical) | specify, plan, analyze, contextualize, architect |
 | **QA Engineer** | checklist (testing), analyze | - | specify, plan, tasks, contextualize, architect |
 | **Scrum Master** | tasks | checklist (process) | specify, plan, analyze, contextualize, architect |
@@ -266,8 +266,8 @@ GitHub Spec Kit provides **10 commands** that support different stages of spec-d
 **Purpose**: Generate or update project context to ensure AI agent consistency
 
 **When to use**:
-- At project inception (first time setup)
-- Before starting implementation on features
+- After technical design is complete (after `/speckit.plan`)
+- Before task breakdown (before `/speckit.tasks`)
 - When major architectural changes occur
 - When coding standards evolve
 
@@ -281,11 +281,14 @@ GitHub Spec Kit provides **10 commands** that support different stages of spec-d
 
 **Example flow**:
 ```bash
-# First time project setup
+# After completing technical design with /speckit.plan
 /speckit.contextualize
 
 # AI analyzes:
-# - README.md, package.json, requirements.txt for tech stack
+# - plan.md for tech stack decisions
+# - data-model.md for data structures
+# - contracts/ for API patterns
+# - README.md, package.json, requirements.txt for dependencies
 # - Source code for naming conventions and patterns
 # - Linter configs for style guides
 # - Existing architecture for patterns
@@ -299,7 +302,7 @@ GitHub Spec Kit provides **10 commands** that support different stages of spec-d
 #   - Error & log handling strategy (HTTP codes, logging patterns)
 ```
 
-**Why this role**: Architects establish and document project-wide standards
+**Why this role**: Architects establish and document project-wide standards after design is complete
 
 ---
 
@@ -483,37 +486,40 @@ GitHub Spec Kit provides **10 commands** that support different stages of spec-d
 
 ##### `/speckit.contextualize` ⭐ PRIMARY
 
-**Purpose**: Ensure project context is current for AI-assisted implementation
+**Purpose**: Ensure project context is current before task generation and implementation
 
 **When to use**:
-- Before running `/speckit.tasks` (to ensure consistent task generation)
+- After technical design is complete (after `/speckit.plan`)
+- Before task breakdown (before `/speckit.tasks`)
 - When team coding standards are updated
 - After significant architectural changes
-- Periodically to keep AI agents in sync with project evolution
 
 **What Tech Leads ensure**:
-- Project standards are documented accurately
+- Project standards are documented accurately from design artifacts
 - Coding conventions match actual codebase
 - Error handling patterns are current
 - Testing requirements are specified
-- AI agents have complete context for consistent implementation
+- AI agents have complete context for consistent task generation and implementation
 
 **Example use**:
 ```bash
-# Before generating tasks for a feature
+# After completing technical design
+/speckit.plan
+
+# Update project context based on design
 /speckit.contextualize
 
 # Verifies project-context.md is current with:
-# - Latest dependency versions
-# - Current coding standards
-# - Updated directory structure
-# - Recent architectural patterns
+# - Latest tech stack from plan.md
+# - Coding standards from constitution.md
+# - Architectural patterns from plan.md
+# - API patterns from contracts/
 
 # Then proceed with tasks
 /speckit.tasks
 ```
 
-**Why this role**: Tech Leads ensure team consistency and AI agent alignment
+**Why this role**: Tech Leads ensure team consistency and AI agent alignment after design is complete
 
 ---
 
